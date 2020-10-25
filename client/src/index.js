@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 65%;
-    background-position: 54% 8%;
+    background-position: 54% 15%;
     background-blend-mode: multiply;
     background-color: rgba(196, 196, 196, 0.08);
   }
