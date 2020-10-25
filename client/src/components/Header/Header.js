@@ -1,30 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import gator from '../../assets/lilgator.png';
 import './Header.css';
 
 const Header = () => {
     return (
-        <div className='topnav'>
-            {/* Logo */}
-            <Link id="logo-link" to="/">
-                <img className="topnav-logo" src={ "/logo192.png" } alt="React logo" />
-            </Link>
 
-            {/* Page Links */}
-            <div className="topnav-right">
-                <Link className="topnav-link" to='/Register'>Sign in</Link>
-                <Link className="topnav-link" to='/projects'>Projects</Link>
-                <a className="topnav-link" target='_blank' rel="noopener noreferrer" href="https://www.facebook.com/groups/ufosc/events/?source=4&action_history=null&filter=calendar">
-                    Events
-                    <i className="fas fa-external-link-alt external-link" data-fa-transform="up-6"></i>
-                </a>
-                <a className="topnav-link" target='_blank' rel="noopener noreferrer" href="https://github.com/ufosc/club-resources">
-                    Resources
-                    <i className="fas fa-external-link-alt external-link" data-fa-transform="up-6 right-4"></i>
-                </a>
-                <Link className="topnav-link" to="/about">About</Link>
+        <div class="header" style = {{margin: "auto"}}>
+            <img src={gator} alt = "logo"/>
+            
+            <a href="#Gator" class= "GatorRater"> <b>Gator Rater</b></a>
+        
+            <div class="header-right">
+                <a href="#dashboard">Weekly Schedule</a>
+            
+                <a href="#whatif">What-If</a>
+            
+                <a href="#resource">Resources</a>
+            
+                <a href="#Comment">Comment Board</a>
+                <a href="#signout">Sign Out</a>
+            
+                
             </div>
         </div>
+
     )
 }
 
