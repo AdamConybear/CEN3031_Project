@@ -5,6 +5,7 @@ import NotFound from "./views/NotFound";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Week from "./views/week/weekDash"
+import CommentBoard from "./views/CommentBoard/CommentBoard"
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
       <Switch>
         <Route path="/Home" component={Home} />
         <Route path="/Week" exact component={Week} />
+        <Route path="/CommentBoard" exact component = {CommentBoard}/>
         <Route exact path="/">
           <Redirect to="/Home" />
         </Route>
