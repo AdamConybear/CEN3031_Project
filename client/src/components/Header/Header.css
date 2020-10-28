@@ -1,16 +1,15 @@
 
 .header {
-    width: 100%;
-    left: 0;
-    top: 0; 
-    height: 42px;
-    top: 0; 
-   padding: 15px;
-    text-align: center;
-    background:  rgba(196, 196, 196, 0.01);
-    font-size: 20px;
+  width: 100%;
+  left: 0;
+  top: 0; 
+  height: 42px;
+  padding: 15px;
+  text-align: center;
+  background:  rgba(196, 196, 196, 0.01);
+  font-size: 20px;
    
-  }
+}
   
   @media screen and (max-width: 500px) {
     .header a {
@@ -62,3 +61,17 @@
     height: 50px;
    
   }
+
+
+.logo{
+  position: absolute;
+  left: 110px;
+  top: 50px;
+  font-size: 25px;
+}
+
+.logo-header {
+  width: 200px;
+
+
+}
