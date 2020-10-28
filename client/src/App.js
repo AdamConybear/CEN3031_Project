@@ -1,12 +1,11 @@
-import React from 'react';
-import { Route, Switch, Redirect  } from 'react-router-dom';
+import React from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Week from "./views/week/weekDash"
-import CommentBoard from "./views/CommentBoard/CommentBoard"
-
+import Week from "./views/week/weekDash";
+import CommentBoard from "./views/CommentBoard/CommentBoard";
 
 const App = () => {
   return (
@@ -15,15 +14,15 @@ const App = () => {
       <Switch>
         <Route path="/Home" component={Home} />
         <Route path="/Week" exact component={Week} />
-        <Route path="/CommentBoard" exact component = {CommentBoard}/>
+        <Route path="/CommentBoard" exact component={CommentBoard} />
         <Route exact path="/">
           <Redirect to="/Home" />
         </Route>
-        <Route component={NotFound}/>
+        <Route component={NotFound} />
       </Switch>
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
