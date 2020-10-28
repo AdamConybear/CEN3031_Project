@@ -6,21 +6,21 @@ import './Header.css';
 const Header = () => {
     return (
 
-        <div class="header" style = {{margin: "auto"}}>
-            <img src={gator} alt = "logo"/>
-            
-            <a href="#Gator" class= "GatorRater"> <b>Gator Rater</b></a>
+        <div className="header">
         
-            <div class="header-right">
-                <a href="#dashboard">Weekly Schedule</a>
-            
-                <a href="#whatif">What-If</a>
-            
-                <a href="#resource">Resources</a>
-            
-                <a href="#Comment">Comment Board</a>
-                <a href="#signout">Sign Out</a>
-            
+            <Link to="/Home" className="logo-header">
+                <img src={gator} alt = "logo"/> 
+                <span className="logo"><b>Gator Rater</b></span>
+            </Link>
+          
+            <div className="header-right">
+                {/* <a href="#dashboard">Weekly Schedule</a> */}
+                <Link to="/Week">Weekly Schedule</Link>
+
+                <Link to="">What-If</Link>
+                <Link to="">Resources</Link>
+                <Link to="">Comment Board</Link>
+                <a>Signout</a>
                 
             </div>
         </div>

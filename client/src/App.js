@@ -4,6 +4,7 @@ import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import Week from "./views/week/weekDash"
 
 
 const App = () => {
@@ -11,7 +12,8 @@ const App = () => {
     <div>
       <Header />
       <Switch>
-        <Route exact path="/Home" component={Home} />
+        <Route path="/Home" component={Home} />
+        <Route path="/Week" exact component={Week} />
         <Route exact path="/">
           <Redirect to="/Home" />
         </Route>

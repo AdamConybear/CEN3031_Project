@@ -4,15 +4,25 @@ const path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     exampleRouter = require('../routes/examples.server.routes');
+    config = require('./config');
 
 module.exports.init = () => {
     /* 
         connect to database
         - reference README for db uri
     */
-    mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
-        useNewUrlParser: true
-    });
+    mongoose.connect(process.env.DB_URI || config.db.uri, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+        .then(() => console.log('MongoDB Connected...'))
+        .catch(err => console.log(err));
+    
+
+    // // const db = config.get('config');
+    // console.log(db);
+    // mongoose
+    //     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+    //     .then(() => console.log('MongoDB Connected...'))
+    //     .catch(err => console.log(err));
+
     mongoose.set('useCreateIndex', true);
     mongoose.set('useFindAndModify', false);
 
