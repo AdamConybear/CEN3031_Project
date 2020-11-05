@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
+import PopUp from "../../components/PopUp/PopUp";
+import { useState, useEffect, setState } from "react";
+
 import "./Home.css";
 
 const Home = () => {
-  const [open, setOpen] = useState(false);
-
-  const test = () => {
-    // console.log("testing");
-    return <h2>Testing the test</h2>;
-  };
+  const [isOpen, setOpen] = useState(false);
 
   const handleOpen = (e) => {
     e.preventDefault();
     setOpen(true);
   };
+  const getPop = (e) => {
+    return <PopUp setOpen={setOpen} />;
+  };
 
   return (
-    <div>
-      <h1> Dashboard goes here</h1>
-      <button onClick={handleOpen}>Open popup</button>
-      {open ? test() : null}
+    <div class="home">
+      <div>
+        <button onClick={handleOpen}>Open Pop</button>
+        {isOpen ? getPop() : null}
+      </div>
     </div>
   );
 };
