@@ -1,34 +1,32 @@
-
-.footer{
-position: fixed;
-left: 0; 
-bottom: 0; 
-width: 100%;
-height: 10%;
-background-color:rgba(196, 196, 196, 0.01);
-color: black;
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10%;
+  background-color: rgba(196, 196, 196, 0.01);
+  color: black;
 }
 
-
-.footerHeading{
-padding-top: 25px;
-text-align: center;
-color: black;
+.footerHeading {
+  padding-top: 25px;
+  text-align: center;
+  color: black;
 }
 
 .footer a.active {
-font-weight: bold;
+  font-weight: bold;
 }
 
 .footer a:hover {
-font-weight: bold;
+  font-weight: bold;
 }
 .footer a {
-color: black;
-text-align: center;
-padding: 12px;
-text-decoration: none;
-font-size: 18px;
-line-height: 25px;
-border-radius: 4px;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
 }

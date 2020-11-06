@@ -1,69 +1,62 @@
-
 .header {
   width: 100%;
   left: 0;
-  top: 0; 
+  top: 0;
   height: 42px;
   padding: 15px;
   text-align: center;
-  background:  rgba(196, 196, 196, 0.01);
+  background: rgba(196, 196, 196, 0.01);
   font-size: 20px;
-   
 }
-  
-  @media screen and (max-width: 500px) {
-    .header a {
-      margin-top: 0; 
-      float: none;
-      display: block;
-      text-align: left;
-    }
-    .header-right {
-      float: none;
-    }
-  }
-  
-  .header-right {
-    margin-left: 54%; 
-    margin-right: 10px;
-  }
-  
-  
-  .header a.active {
-   
-   font-weight: bold;
-  }
-  
-  .header a:hover {
-  
-    font-weight: bold;
-  }
-  
-  .header a.GatorRater{
-    font-size: 25px;
-    font-weight: bold;
-  }
-  
+
+@media screen and (max-width: 500px) {
   .header a {
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
+    margin-top: 0;
+    float: none;
+    display: block;
+    text-align: left;
   }
-  .header img {
-    float: left;
-    padding-left: 5%;
-    width: 50px;
-    height: 50px;
-   
+  .header-right {
+    float: none;
   }
+}
 
+.header-right {
+  margin-left: 54%;
+  margin-right: 10px;
+}
 
-.logo{
+.header a.active {
+  font-weight: bold;
+}
+
+.header a:hover {
+  font-weight: bold;
+}
+
+.header a.GatorRater {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+.header img {
+  float: left;
+  padding-left: 5%;
+  width: 50px;
+  height: 50px;
+}
+
+.logo {
   position: absolute;
   left: 110px;
   top: 50px;
@@ -72,6 +65,4 @@
 
 .logo-header {
   width: 200px;
-
-
 }
