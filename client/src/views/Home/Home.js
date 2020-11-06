@@ -1,16 +1,13 @@
 import React, {useState} from 'react';
 import './Home.css';
 
+
 const Home = () => {
 
     const [open, setOpen] = useState(false);
 
     const test = () => {
-        // console.log("testing");
-        return(
-            <h2>Testing the test</h2>
-        );
-
+        console.log("testing");
     }
 
     const handleOpen =(e) => {
