@@ -177,20 +177,18 @@ function CommentBoard() {
   return (
     <div>
       <div>
-        <h1> Comment Board </h1>
-      </div>
-      <div text-align="center" class="ui action input">
-        <input type="text" placeholder="Enter a course code..." />
-        <button class="ui button">Search</button>
+        <h1 class = "commentBoard"> Comment Board</h1>
       </div>
 
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="custom pagination table">
-          <TableHead>
-            <StyledTableRow>
-              <StyledTableCell>Comments for CEN3031</StyledTableCell>
-            </StyledTableRow>
-          </TableHead>
+      <input type="text" class="no-outline" placeholder= "   Enter a Course Code"/>
+
+      <TableContainer class = "tableContainer" component={Paper}>
+      <Table class = "commentTable" className={classes.table} aria-label="custom pagination table">
+        <TableHead>
+          <StyledTableRow>
+            <StyledTableCell>CEN3031</StyledTableCell>
+          </StyledTableRow>
+        </TableHead>
           <TableBody>
             {(rowsPerPage > 0
               ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -212,13 +210,13 @@ function CommentBoard() {
           <TableFooter>
             <StyledTableRow>
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 colSpan={1}
                 count={rows.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 SelectProps={{
-                  inputProps: { "aria-label": "rows per page" },
+                  inputProps: { 'aria-label': 'rows per page' },
                   native: true,
                 }}
                 onChangePage={handleChangePage}
