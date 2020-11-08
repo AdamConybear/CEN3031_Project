@@ -1,5 +1,5 @@
 import React from "react";
-// import './Home.css';
+import "./weekDash.css";
 import Upload from "./Upload";
 
 const weekDash = () => {
