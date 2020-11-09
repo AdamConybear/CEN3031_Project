@@ -1,7 +1,7 @@
 import React from "react";
 import PopUp from "../../components/PopUp/PopUp";
 import { useState, useEffect, setState } from "react";
-
+import TipPopUp from "../../components/Tips/TipPopUp";
 import "./Home.css";
 
 const Home = () => {
@@ -17,6 +17,7 @@ const Home = () => {
 
   return (
     <div class="home">
+      <TipPopUp />
       <div>
         <button onClick={handleOpen}>Open Pop</button>
         {isOpen ? getPop() : null}

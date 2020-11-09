@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
     background-position: 54% 15%;
     background-blend-mode: multiply;
     background-color: rgba(196, 196, 196, 0.08);
+    // overflow: auto;
   }
 `;
 

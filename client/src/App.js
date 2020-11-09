@@ -30,7 +30,7 @@ const App = () => {
         </Route>
         <Route component={NotFound} />
       </Switch>
-      <Footer />
+      /* <Footer /> */
     </div>
   );
 };

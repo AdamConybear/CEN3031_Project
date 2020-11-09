@@ -14,7 +14,7 @@
   color: black;
 }
 
-.footer a.active {
+.footer a:active {
   font-weight: bold;
 }
 
