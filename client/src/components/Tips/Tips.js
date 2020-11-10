@@ -39,23 +39,27 @@ const TipPop = styled.div`
 `;
 
 const Tips = (props) => {
-  const TipList = ["Drink a glass of water first thing in the morning"];
-  const [stress, setStress] = useState(5);
-  const [sleep, setSleep] = useState(5);
-  const [exercise, setEx] = useState(true);
+  const items = [
+    "Drink a glass of water first thing in the morning!",
+    "Make half your plate veggies!",
+    "Get a fitness tracker and track your steps!",
+    "Switch to non-toxic household cleaning products!",
+  ];
 
   const handleClick = () => {
     props.setOpen(false);
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <TipPop>
-        TipList[Math.random() * (TipList.length - 1)]
-        <button class="dialogButton" onClick={handleClick}>
-          Dismiss
-        </button>
-      </TipPop>
+    <div className="modal">
+      <div className="modal_content">
+        <span className="close" onClick={handleClick}>
+          &times;
+        </span>
+        <form>
+          <h3>{items[Math.floor(Math.random() * items.length)]}</h3>
+        </form>
+      </div>
     </div>
   );
 };

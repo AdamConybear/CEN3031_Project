@@ -17,6 +17,9 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
 import { DataGrid } from "@material-ui/data-grid";
 import "./CommentBoard.css";
+
+const emoji = require("emoji-dictionary");
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.white,
@@ -283,11 +286,11 @@ function CommentBoard() {
                   <div class="superReaction">
                     <div class="reactionGroup">
                       <p class="reactionStats">13</p>
-                      <button class="reaction">:+1:</button>
+                      <button class="reaction">{emoji.getUnicode("+1")}</button>
                       <p class="reactionStats">2</p>
-                      <button class="reaction">:-1:</button>
+                      <button class="reaction">{emoji.getUnicode("-1")}</button>
                       <button class="reaction">
-                        :triangular_flag_on_post:
+                        {emoji.getUnicode("triangular_flag_on_post")}
                       </button>
                     </div>
                   </div>
