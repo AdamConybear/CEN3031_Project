@@ -1,7 +1,5 @@
 .header {
   width: 100%;
-  left: 0;
-  top: 0;
   height: 42px;
   padding: 15px;
   text-align: center;
@@ -22,20 +20,15 @@
 }
 
 .header-right {
-  margin-left: 54%;
+  margin-left: 65%;
   margin-right: 10px;
 }
 
-.header a.active {
+.header a:active {
   font-weight: bold;
 }
 
 .header a:hover {
-  font-weight: bold;
-}
-
-.header a.GatorRater {
-  font-size: 25px;
   font-weight: bold;
 }
 
@@ -50,16 +43,19 @@
   border-radius: 4px;
 }
 .header img {
-  float: left;
-  padding-left: 5%;
+  position: absolute;
+  left: 20px;
+  top: 15px;
   width: 50px;
   height: 50px;
 }
 
 .logo {
   position: absolute;
-  left: 110px;
-  top: 50px;
+  left: 90px;
+  top: 27px;
+  justify-content: center;
+  align-items: center;
   font-size: 25px;
 }
 

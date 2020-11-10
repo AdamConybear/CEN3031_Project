@@ -3,8 +3,10 @@ const path = require("path"),
   mongoose = require("mongoose"),
   morgan = require("morgan"),
   bodyParser = require("body-parser"),
-  exampleRouter = require("../routes/examples.server.routes");
-config = require("./config");
+  popupRouter = require("../routes/popupRouter");
+  config = require("./config");
+  cors = require('cors');
+  commentRouter = require("../routes/commentRouter");
 
 module.exports.init = () => {
   /* 
@@ -19,7 +21,7 @@ module.exports.init = () => {
     })
     .then(() => console.log("MongoDB Connected..."))
     .catch((err) => console.log(err));
-
+    db = mongoose.connection;
   // // const db = config.get('config');
   // console.log(db);
   // mongoose
@@ -38,9 +40,10 @@ module.exports.init = () => {
 
   // body parsing middleware
   app.use(bodyParser.json());
-
+  app.use(cors());
   // add a router
-  app.use("/api/example", exampleRouter);
+  app.use('/api/popups', popupRouter);
+  app.use('/api/comment', commentRouter);
 
   if (process.env.NODE_ENV === "production") {
     // Serve any static files

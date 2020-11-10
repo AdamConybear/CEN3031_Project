@@ -1,13 +1,24 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import ICAL from "ical.js";
 import moment from "moment";
 import styled from "styled-components";
+import Assignment from './Assignment';
+import Button from "@material-ui/core/Button";
+// import { LensTwoTone } from "@material-ui/icons";
 
-const UploadButton = styled.button`
-  background-color: red;
-  height: 60px;
-  width: 120px;
-`;
+// const UploadButton = styled.button`
+//   background-color: red;
+//   height: 60px;
+//   width: 120px;
+// `;
+
+// const AssignmentsContainer = styled.div`
+//   // display: flex;
+//   // flex-direction: row;
+//   // justifyContent:'center';
+//   // margin-top: '30px';
+
+// `;
 
 let classMap = new Map();
 let weekArr = [];
@@ -21,6 +32,8 @@ const endOfWeek = moment().add(6, "days").format();
 const Upload = () => {
   let fileReader;
   const hiddenFileInput = useRef(null);
+
+  const [showAssingments, setShowAssingments] = useState(false);
 
   const parseEvent = (e) => {
     //passed in a single vevent
@@ -41,8 +54,8 @@ const Upload = () => {
         if (date >= startOfWeek && date <= endOfWeek) {
           event[prop[0]] = prop[3];
         } else {
-          console.log("end of week is: " + endOfWeek);
-          console.log("assignment date is: " + date);
+          // console.log("end of week is: " + endOfWeek);
+          // console.log("assignment date is: " + date);
           return -1;
         }
       }
@@ -114,28 +127,58 @@ const Upload = () => {
     fileReader.readAsText(file);
   };
 
-  // const handleClick = (e) => {
-  //     hiddenFileInput.current.click();
-  // }
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      setShowAssingments(true);
+  }
+  
+  
 
-  // const success = () => {
-  //     return (
-  //         <div>
-  //             File uploaded Successfully
-  //         </div>
+  const getDayAssignments = (day) => {
+    let assignments = []; 
+    let classArr = [];
+    // let assignments = [];
+    for(const [key, value] of classMap.entries()){
+      for (let i = 0; i < value.length; i++){
+        let text = value[i][0]; //assignment
+        let date = moment(value[i][1]).format('dddd'); //date of assignment
+        // console.log("day: " + day + " date: " + date);
+        if (date === day){ //if assingment belongs to the specfic day passed in
+          // console.log("day and date are the same, get assignment from");
+          //will be one of assignments displayed
+          assignments.push(text);
+          classArr.push(key);   
+        }
+      }
+    }
+    return {
+      classes: classArr,
+      assignments: assignments,
+    };
+  }
 
-  //     );
-  // }
 
-  // const diplayWeek =()=> {
-  //     return(
-  //         <div>
+  const displayWeek =(day)=> {
 
-  //         </div>
+    let arr = getDayAssignments(day);
+    let cArr = arr.classes;
+    let aArr = arr.assignments;
+    // console.log(arr.classes);
+    // console.log(arr.assignments);
+    
+    return aArr.map(assignment => {
+      let index = aArr.indexOf(assignment);
+      let c = cArr[index];
 
-  //     );
-
-  // }
+      return(
+        <Assignment 
+          assignment = {assignment}
+          c = {c}
+          key= {assignment}
+        />
+      );
+    })
+  }
 
   return (
     <div>
@@ -162,6 +205,22 @@ const Upload = () => {
       >
         *upload an ical file (.ics)
       </div>
+      <div style={{textAlign:'center'}}>
+        <Button size="medium" variant="contained" style={{fontSize: 11, cursor: 'pointer'}} onClick={handleSubmit}>
+            Submit
+        </Button>
+      </div>
+      <div style={{display:'flex', flexDirection:'row', justifyContent:'center', marginTop: '30px'}}>
+        {weekArr.map(day => {
+          return(
+            <div style={{padding:'20px', fontSize:'24px', textAlign:'center'}}>
+              {day}
+              {showAssingments ? displayWeek(day) : null}
+            </div>
+          );
+        })}
+      </div>
+
     </div>
   );
 };

@@ -14,11 +14,9 @@ const Header = () => {
       </Link>
 
       <div className="header-right">
-        {/* <a href="#dashboard">Weekly Schedule</a> */}
         <Link to="/Week">Weekly Schedule</Link>
-
-        <Link to="">What-If</Link>
-        <Link to="">Resources</Link>
+        <Link to="/WhatIf">What-If</Link>
+        <Link to="/Resources">Resources</Link>
         <Link to="/CommentBoard">Comment Board</Link>
         <a>Signout</a>
       </div>

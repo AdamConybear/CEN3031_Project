@@ -1,0 +1,25 @@
+.graph {
+  margin: 0px;
+  padding-top: 0px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-top: 2%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.home {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -142px;
+}
+.home:after {
+  content: "";
+  display: block;
+}
+h1 {
+  font-size: 50px;
+  padding-bottom: 0px;
+  text-align: center;
+}
