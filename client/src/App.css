@@ -1,0 +1,43 @@
+.footer {
+  height: 10px;
+  padding-bottom: 0%;
+
+  text-align: center;
+
+  color: black;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  min-height: 100%;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: 100px;
+}
+.footerHeading {
+  padding-top: 25px;
+  text-align: center;
+  color: black;
+  flex-shrink: 0;
+}
+
+.footer a.active {
+  font-weight: bold;
+}
+
+.footer a:hover {
+  font-weight: bold;
+}
+.footer a {
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}

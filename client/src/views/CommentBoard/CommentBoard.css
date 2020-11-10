@@ -18,10 +18,382 @@ h1.commentBoard {
   margin-left: auto;
   margin-right: auto;
 }
+​ .centerinput {
+  margin-left: auto;
+  margin-right: auto;
+}
+​ input.no-outline {
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  height: 70px;
+  font-size: 20px;
+  font-family: "Nunito", sans-serif;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  transition: transform 1s ease-out;
+}
+​ ​ ​ ​ ​ ​ ​ ​ .no-outline:focus {
+  outline: none;
+}
+​ .no-outline:hover {
+  transform: scale(1.1);
+  transition-duration: 1s;
+}
+​ ::placeholder {
+  color: #a3a3a3;
+  opacity: 0.8;
+  font-size: 15px;
+  text-align: center;
+  line-height: 100px;
+}
+​ ​ ​ .commentTable {
+  align-self: flex-start;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  margin-bottom: 70px;
+}
+​ .tableCell {
+  font-size: 15px;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  border-top-style: solid;
+  border-top-width: thin;
+  border-top-height: 10px;
+  padding-top: 30px;
+  justify-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+​ .superReaction {
+  display: flex;
+}
+​ .reactionGroup {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: 0;
+  padding-top: 5px;
+}
+​ .reaction {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: rgba(255, 0, 0, 0);
+  transition: transform 1s ease-out;
+  line-height: 3;
+  font-size: 15px;
+}
+​ .reaction:hover {
+  transform: scale(1.5);
+  transition-duration: 0.2s;
+}
+​ .reaction:focus {
+  outline: none;
+}
+​ .tableContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  background-color: white;
+}
+​ .addCommentParent {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+​ .addComment {
+  display: block;
+  height: 60px;
+  width: 60px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  border-radius: 0;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-right: 0;
+  margin-left: auto;
+  transition: transform 0.2s ease-out;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 30px;
+  align-content: center;
+}
+​ .addComment:hover {
+  transform: scale(1.5);
+  transition-duration: 0.2s;
+}
+​ .addComment:focus {
+  outline: none;
+}
+​ .titleParent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+​ .center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.title {
+  display: flex;
+  font-size: 20px;
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  font-family: "Nunito", sans-serif;
+  font-weight: normal;
+  align-self: center;
+}
+​ .filterBy {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 13px;
+  padding-right: 0px;
+}
+​ .filterOptions {
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 15px;
+}
+​ .option {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 10px;
+  margin-left: 10px;
+  transition: transform 0.2s ease-out;
+}
+​ .option:focus {
+  background-color: #dfffd4;
+  outline: none;
+}
+​ .option:hover {
+  transform: scale(1.1);
+  transition-duration: 0.2s;
+}
+​ .submit:hover {
+  transform: scale(1.2);
+  transition-duration: 0.2s;
+}
+​ ​ ​ ​ .lbl {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+  padding-left: 20px;
+  height: 15px;
+}
+​ textarea.popUpInput {
+  display: flex;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  height: 100px;
+  min-height: 110px;
+  width: 450px;
+  font-size: 15px;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 450px;
+  max-height: 100px;
+  border: 1px solid;
+}
+​ .popUpInput:focus {
+  outline: none;
+}
+​ textarea.popUpInputClass {
+  display: flex;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  height: 30px;
+  min-height: 30px;
+  width: 450px;
+  font-size: 15px;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 450px;
+  max-height: 30px;
+  border: 1px solid;
+}
+​ .popUpInputClass:focus {
+  outline: none;
+}
+.popUpInputClass::placeholder {
+  line-height: 30px;
+}
+textarea.popUpInputProf {
+  display: flex;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  height: 30px;
+  min-height: 30px;
+  width: 450px;
+  font-size: 15px;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 450px;
+  max-height: 30px;
+  border: 1px solid;
+}
+​ .popUpInputProf:focus {
+  outline: none;
+}
+.popUpInputProf::placeholder {
+  line-height: 30px;
+}
+​ .inputPart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: white;
+  width: 100%;
+  height: 85%;
+}
+​ .popup .overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: none;
+}
+​ .popup .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: #fff;
+  width: 500px;
+  height: 460px;
+  z-index: 2;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+​ .popup.active .overlay {
+  display: block;
+}
+​ .popup.active .content {
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%, -50%) scale(1);
+}
+​ .submit {
+  display: flex;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: #dfffd4;
+  border-radius: 0;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease-out;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+  margin-right: 0px;
+  margin-left: auto;
+}
+​ .cancel {
+  display: flex;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: #ff9494;
+  border-radius: 0;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease-out;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+  margin-left: 0px;
+}
+​ .cancel:focus {
+  outline: none;
+}
+.cancel:hover {
+  transform: scale(1.2);
+  transition-duration: 0.2s;
+}
+.submit:focus {
+  outline: none;
+}
+​ .cancelSubmit {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 450px;
+  margin: auto;
+}
+.addTitle {
+  font-family: "Nunito", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1px;
+}
+p.reactionStats {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 12px;
+  align-self: center;
+}
+h1.commentBoard {
+  width: 500px;
+  height: 50px;
+  margin: 0 auto;
+  text-align: center;
+  align-self: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .centerinput {
   margin-left: auto;
   margin-right: auto;
 }
+
 input.no-outline {
   display: block;
   margin: 0 auto;
@@ -38,18 +410,24 @@ input.no-outline {
   text-align: center;
   transition: transform 1s ease-out;
 }
+
 .no-outline:focus {
   outline: none;
 }
+
 .no-outline:hover {
   transform: scale(1.1);
   transition-duration: 1s;
 }
+
 ::placeholder {
   color: #a3a3a3;
   opacity: 0.8;
   font-size: 15px;
+  text-align: center;
+  line-height: 100px;
 }
+
 .commentTable {
   align-self: flex-start;
   width: 100%;
@@ -59,6 +437,7 @@ input.no-outline {
   background-color: white;
   margin-bottom: 70px;
 }
+
 .tableCell {
   font-size: 15px;
   font-family: "Nunito", sans-serif;
@@ -71,9 +450,11 @@ input.no-outline {
   padding-left: 15px;
   padding-right: 15px;
 }
+
 .superReaction {
   display: flex;
 }
+
 .reactionGroup {
   display: flex;
   flex-direction: row;
@@ -81,6 +462,7 @@ input.no-outline {
   margin-right: 0;
   padding-top: 5px;
 }
+
 .reaction {
   border-top-style: hidden;
   border-right-style: hidden;
@@ -91,24 +473,29 @@ input.no-outline {
   line-height: 3;
   font-size: 15px;
 }
+
 .reaction:hover {
   transform: scale(1.5);
   transition-duration: 0.2s;
 }
+
 .reaction:focus {
   outline: none;
 }
+
 .tableContainer {
   margin-left: auto;
   margin-right: auto;
   width: 60%;
   background-color: white;
 }
+
 .addCommentParent {
   margin-left: auto;
   margin-right: auto;
   width: 60%;
 }
+
 .addComment {
   display: block;
   height: 60px;
@@ -128,18 +515,22 @@ input.no-outline {
   font-size: 30px;
   align-content: center;
 }
+
 .addComment:hover {
   transform: scale(1.5);
   transition-duration: 0.2s;
 }
+
 .addComment:focus {
   outline: none;
 }
+
 .titleParent {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
+
 .center {
   margin-left: auto;
   margin-right: auto;
@@ -154,12 +545,14 @@ input.no-outline {
   font-weight: normal;
   align-self: center;
 }
+
 .filterBy {
   font-family: "Nunito", sans-serif;
   font-weight: lighter;
   font-size: 13px;
   padding-right: 0px;
 }
+
 .filterOptions {
   display: flex;
   flex-direction: row;
@@ -167,6 +560,7 @@ input.no-outline {
   padding-top: 5px;
   padding-bottom: 15px;
 }
+
 .option {
   border-top-style: hidden;
   border-right-style: hidden;
@@ -178,11 +572,209 @@ input.no-outline {
   margin-left: 10px;
   transition: transform 0.2s ease-out;
 }
+
 .option:focus {
   background-color: #dfffd4;
   outline: none;
 }
+
 .option:hover {
   transform: scale(1.1);
   transition-duration: 0.2s;
+}
+
+.submit:hover {
+  transform: scale(1.2);
+  transition-duration: 0.2s;
+}
+
+.lbl {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+  padding-left: 20px;
+  height: 15px;
+}
+
+textarea.popUpInput {
+  display: flex;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  height: 100px;
+  min-height: 110px;
+  width: 450px;
+  font-size: 15px;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 450px;
+  max-height: 100px;
+  border: 1px solid;
+}
+
+.popUpInput:focus {
+  outline: none;
+}
+
+textarea.popUpInputClass {
+  display: flex;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  height: 30px;
+  min-height: 30px;
+  width: 450px;
+  font-size: 15px;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 450px;
+  max-height: 30px;
+  border: 1px solid;
+}
+
+.popUpInputClass:focus {
+  outline: none;
+}
+.popUpInputClass::placeholder {
+  line-height: 30px;
+}
+textarea.popUpInputProf {
+  display: flex;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  height: 30px;
+  min-height: 30px;
+  width: 450px;
+  font-size: 15px;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 450px;
+  max-height: 30px;
+  border: 1px solid;
+}
+
+.popUpInputProf:focus {
+  outline: none;
+}
+.popUpInputProf::placeholder {
+  line-height: 30px;
+}
+
+.inputPart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: white;
+  width: 100%;
+  height: 85%;
+}
+
+.popup .overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: none;
+}
+
+.popup .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: #fff;
+  width: 500px;
+  height: 460px;
+  z-index: 2;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+.popup.active .overlay {
+  display: block;
+}
+
+.popup.active .content {
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.submit {
+  display: flex;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: #dfffd4;
+  border-radius: 0;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease-out;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+  margin-right: 0px;
+  margin-left: auto;
+}
+
+.cancel {
+  display: flex;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: #ff9494;
+  border-radius: 0;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease-out;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+  margin-left: 0px;
+}
+
+.cancel:focus {
+  outline: none;
+}
+.cancel:hover {
+  transform: scale(1.2);
+  transition-duration: 0.2s;
+}
+.submit:focus {
+  outline: none;
+}
+
+.cancelSubmit {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 450px;
+  margin: auto;
+}
+.addTitle {
+  font-family: "Nunito", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1px;
 }

@@ -18,8 +18,6 @@ import LastPageIcon from "@material-ui/icons/LastPage";
 import { DataGrid } from "@material-ui/data-grid";
 import "./CommentBoard.css";
 
-const emoji = require("emoji-dictionary");
-
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.white,
@@ -29,6 +27,7 @@ const StyledTableCell = withStyles((theme) => ({
     fontSize: 14,
   },
 }))(TableCell);
+
 const StyledTableRow = withStyles((theme) => ({
   root: {
     "&:nth-of-type(odd)": {
@@ -36,16 +35,19 @@ const StyledTableRow = withStyles((theme) => ({
     },
   },
 }))(TableRow);
+
 const useStyles1 = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
     marginLeft: theme.spacing(2.5),
   },
 }));
+
 function TablePaginationActions(props) {
   const classes = useStyles1();
   const theme = useTheme();
   const { count, page, rowsPerPage, onChangePage } = props;
+
   const handleFirstPageButtonClick = (event) => {
     onChangePage(event, 0);
   };
@@ -58,6 +60,7 @@ function TablePaginationActions(props) {
   const handleLastPageButtonClick = (event) => {
     onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
+
   return (
     <div className={classes.root}>
       <IconButton
@@ -99,15 +102,24 @@ function TablePaginationActions(props) {
     </div>
   );
 }
+
 TablePaginationActions.propTypes = {
   count: PropTypes.number.isRequired,
   onChangePage: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
+
 function createData(name) {
   return { name };
 }
+
+// This is where I actually started coding
+
+// Variable that lets the table know how many rows to create
+var incrementer = 0;
+
+//Comment class
 class Comment {
   constructor(course, professor, comment, thumbsUp, thumbsDown) {
     this.course = course;
@@ -117,6 +129,8 @@ class Comment {
     this.thumbsDown = thumbsDown;
   }
 }
+
+//Creating dummy data
 let comment1 = new Comment(
   "CEN3031",
   "Sanethia Thomas",
@@ -169,7 +183,7 @@ let comment8 = new Comment(
 );
 let comment9 = new Comment("SPO1111", "Messi", "Love sports", "52220", "22");
 let comment10 = new Comment("TEC2023", "Tech Guy", "So tech", "10", "2");
-var commentDB = new Array(
+var commentDB = [
   comment1,
   comment2,
   comment3,
@@ -179,47 +193,80 @@ var commentDB = new Array(
   comment7,
   comment8,
   comment9,
-  comment10
-);
-const rows = []; //THIS IS WHERE COMMENTS DISPLAYED WILL GO, TO ADD TO IT WE rows.push(createData(commentDB[(an index)].comment))
-const useStyles2 = makeStyles({
-  table: {
-    minWidth: 500,
-  },
-});
+  comment10,
+];
+
+//Rows displayed where comments will be
+const rows = [];
+
+//Formality
+const useStyles2 = makeStyles({ table: { minWidth: 500 } });
 
 function CommentBoard() {
+  // From lines 143-157 it's the table's default stuff
   const classes = useStyles2();
+
   const [page, setPage] = React.useState(0);
+
   const [rowsPerPage, setRowsPerPage] = React.useState(incrementer);
+
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  function refreshPage() {
-    window.location.reload();
-  }
-  var incrementer = 0;
+
+  // Populating the table rows. If course code on search bar == database comment's course code -> display on table
   for (var i = 0; i < commentDB.length; i++) {
-    if (commentDB[i].course == window.name) {
+    if (commentDB[i].course.toUpperCase() == window.name.toUpperCase()) {
       rows.push(createData(commentDB[i].comment));
       incrementer++;
     }
   }
+
   function handleChange(e) {
     this.setState({ value: e.target.value });
   }
+
+  //Variable displayed on the table's title such as -> "Showing Results for " + this variable
   var titleDisplay = "";
+
+  //Changing the titleDisplay if there's no input or to the actual input
   if (window.name == "") {
     titleDisplay = "No Course Code Provided";
   } else {
-    titleDisplay = "Showing Results for " + window.name;
+    titleDisplay = "Showing Results for " + window.name.toUpperCase();
   }
+
+  //Show or hide popup
+  function togglePopup() {
+    document.getElementById("popup-1").classList.toggle("active");
+  }
+
+  //Refreshes the page for table to show new data
+  function refreshPage() {
+    window.location.reload();
+  }
+
+  //Adds to database
+  function addToDB() {
+    var course = document.getElementById("courseInput").value;
+    var professor = document.getElementById("professorInput").value;
+    var comment = document.getElementById("commentInput").value;
+
+    // Adding new comment to fake DB
+    let commentX = new Comment(course, professor, comment, "3", "20");
+    commentDB.push(commentX);
+
+    refreshPage();
+  }
+
   return (
     <div>
       <div>
@@ -242,9 +289,51 @@ function CommentBoard() {
         class="no-outline"
         placeholder="Enter a Course Code"
       />
-      <div class="addCommentParent">
-        <button class="addComment">+</button>
+
+      <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content">
+          <div class="inputPart">
+            <p class="addTitle">Add a Comment</p>
+            <p class="lbl">Course Code:</p>
+            <textarea
+              class="popUpInputClass"
+              type="text"
+              placeholder="Course Code"
+              id="courseInput"
+            />
+            <p class="lbl">Professor:</p>
+            <textarea
+              class="popUpInputProf"
+              type="text"
+              placeholder="Professor"
+              id="professorInput"
+            />
+            <p class="lbl">Comment:</p>
+            <textarea
+              class="popUpInput"
+              type="text"
+              placeholder="Write your Comment"
+              id="commentInput"
+            />
+          </div>
+          <div class="cancelSubmit">
+            <button class="cancel" onClick={() => togglePopup()}>
+              Cancel
+            </button>
+            <button class="submit" onClick={() => addToDB()}>
+              Submit
+            </button>
+          </div>
+        </div>
       </div>
+
+      <div class="addCommentParent">
+        <button class="addComment" onClick={() => togglePopup()}>
+          +
+        </button>
+      </div>
+
       <TableContainer class="tableContainer" component={Paper}>
         <Table
           id="tabla"
@@ -286,17 +375,16 @@ function CommentBoard() {
                   <div class="superReaction">
                     <div class="reactionGroup">
                       <p class="reactionStats">13</p>
-                      <button class="reaction">{emoji.getUnicode("+1")}</button>
+                      <button class="reaction">👍</button>
                       <p class="reactionStats">2</p>
-                      <button class="reaction">{emoji.getUnicode("-1")}</button>
-                      <button class="reaction">
-                        {emoji.getUnicode("triangular_flag_on_post")}
-                      </button>
+                      <button class="reaction">👎</button>
+                      <button class="reaction">🚩</button>
                     </div>
                   </div>
                 </TableCell>
               </StyledTableRow>
             ))}
+
             {emptyRows > 0 && (
               <StyledTableRow style={{ height: 53 * emptyRows }}>
                 <TableCell colSpan={1} />
@@ -326,4 +414,5 @@ function CommentBoard() {
     </div>
   );
 }
+
 export default CommentBoard;
