@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { useState, setState } from "react";
+import axios from 'axios';
 
 import Slider from "../Slider";
 import "./PopUp.css";
@@ -20,6 +21,19 @@ const PopUp = (props) => {
     };
     props.setOpen(false);
     console.log(DailyData);
+
+
+    let address = process.env.ADDRESS || "http://localhost:5000/api/popups";
+    axios.post(address,DailyData)
+    .then(res => console.log(res.data))
+    .catch(error => {
+      if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+      }
+    });
+
   };
 
   const userName = "Jeffrey";
