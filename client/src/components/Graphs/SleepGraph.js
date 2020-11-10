@@ -39,9 +39,9 @@ const SleepGraph = () => {
         height: "400px",
       }}
     >
-      <div class="title">Sleep</div>
+      <div>Sleep</div>
       <Chart data={data} axes={axes} />
-      <h2>hours </h2>
+      <div>hours </div>
     </div>
   );
 };

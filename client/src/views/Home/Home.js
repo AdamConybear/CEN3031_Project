@@ -3,7 +3,7 @@ import PopUp from "../../components/PopUp/PopUp";
 import { useState, useEffect, setState } from "react";
 import TipPopUp from "../../components/Tips/TipPopUp";
 import SleepGraph from "../../components/Graphs/SleepGraph";
-import Stress from "../../components/Graphs/StressGraph";
+import StressGraph from "../../components/Graphs/StressGraph";
 import "./Home.css";
 
 const Home = () => {
@@ -30,9 +30,12 @@ const Home = () => {
       </div>
       {!isOpen ? getName() : null}
       <div class="graph" style={{ justifyContent: "center" }}>
-        <SleepGraph style={{ padding: "50px" }} />
-
-        <Stress style={{ padding: "50px" }} />
+        <div style={{ padding: "50px" }}>
+          <SleepGraph />
+        </div>
+        <div style={{ padding: "50px" }}>
+          <StressGraph />
+        </div>
       </div>
     </div>
   );
