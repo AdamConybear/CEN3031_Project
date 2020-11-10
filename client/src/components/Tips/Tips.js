@@ -3,7 +3,6 @@ import { useState, setState } from "react";
 
 import Slider from "../Slider";
 import "./Tips.css";
-import Radio from "../Radio/Radio";
 import styled from "styled-components";
 
 const TipPop = styled.div`
@@ -50,15 +49,20 @@ const Tips = (props) => {
     props.setOpen(false);
   };
 
+  const userName = "Jeffrey";
+
   return (
     <div className="modal">
       <div className="modal_content">
         <span className="close" onClick={handleClick}>
           &times;
         </span>
-        <form>
-          <h3>{items[Math.floor(Math.random() * items.length)]}</h3>
-        </form>
+        <div>
+          <header className="tiphead">
+            {userName}, your daily wellness tip is:
+          </header>
+          <div>{items[Math.floor(Math.random() * items.length)]}</div>
+        </div>
       </div>
     </div>
   );
