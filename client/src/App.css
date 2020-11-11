@@ -1,38 +1,48 @@
-.footer {
-  height: 10px;
-  padding-bottom: 0%;
-
-  text-align: center;
-
-  color: black;
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  position:relative;
+  height:auto;
 }
-
-body {
+html, body {
   height: 100%;
   margin: 0;
 }
-.wrapper {
-  min-height: 100%;
-
-  /* Equal to height of footer */
-  /* But also accounting for potential margin-bottom of last child */
-  margin-bottom: 50px;
+​
+.page-header{
+  flex-shrink:0;
 }
+
+.page-footer {
+  flex-shrink: 0;
+  left: 0;
+  margin-bottom: 10px;
+  width: 100%;
+    text-decoration: none;
+  text-align: center;
+  margin-top: -50px;
+}
+​
+.page-body {
+  flex-grow: 1;
+}
+​
+​
 .footerHeading {
   padding-top: 25px;
   text-align: center;
-  color: black;
   flex-shrink: 0;
 }
-
-.footer a.active {
+​
+.page-footer a.active {
   font-weight: bold;
 }
-
-.footer a:hover {
+​
+.page-footer a:hover {
   font-weight: bold;
 }
-.footer a {
+.page-footer a {
   color: black;
   text-align: center;
   padding: 12px;
