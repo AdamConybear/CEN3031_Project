@@ -48,6 +48,7 @@ const getCommentsByClass = async(req,res) => {
     });
   });
 
+
   // await Comment.find({class:_class_}, (err, data) => {
   //   if (err)
   //     return res.status(200).send({
@@ -56,8 +57,75 @@ const getCommentsByClass = async(req,res) => {
   //   res.json(data);
   // });
 }
+const updateLike = async(req,res) => {
+  const _id_ = req.params.commentId;
+  await Comment.findById(_id_)
+  .then((data) => {
+    data.likes++;
+    data
+      .save()
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.status(200).send({
+          error: err.message || "An unknown error has occurred.",
+        });
+      });
+  })
+  .catch((err) => {
+    res.status(200).send({
+      error: err.message || "An unknown error has occurred.",
+    });
+  });
 
+}
+const updateDislike = async(req,res) => {
+  const _id_ = req.params.commentId;
+  await Comment.findById(_id_)
+  .then((data) => {
+    data.dislikes++;
+    data
+      .save()
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.status(200).send({
+          error: err.message || "An unknown error has occurred.",
+        });
+      });
+  })
+  .catch((err) => {
+    res.status(200).send({
+      error: err.message || "An unknown error has occurred.",
+    });
+  });
 
+}
+const updateFlags = async(req,res) => {
+  const _id_ = req.params.commentId;
+  await Comment.findById(_id_)
+  .then((data) => {
+    data.flags++;
+    data
+      .save()
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.status(200).send({
+          error: err.message || "An unknown error has occurred.",
+        });
+      });
+  })
+  .catch((err) => {
+    res.status(200).send({
+      error: err.message || "An unknown error has occurred.",
+    });
+  });
+
+}
 
 // const getCommentsByProf = async(req,res) => {
 
@@ -67,6 +135,8 @@ const getCommentsByClass = async(req,res) => {
 
 module.exports = {
     addCommentData: addCommentData,
-    // findCommentData: findCommentData,
-    getCommentsByClass: getCommentsByClass
+    getCommentsByClass: getCommentsByClass,
+    updateLike: updateLike,
+    updateDislike: updateDislike,
+    updateFlags: updateFlags
 }

@@ -22,6 +22,10 @@ const commentSchema = new Schema ({
     dislikes: {
         type: Number,
         required: true
+    },
+    flags: {
+        type: Number,
+        required: true
     }
 });
 //specifies the collection in the third var

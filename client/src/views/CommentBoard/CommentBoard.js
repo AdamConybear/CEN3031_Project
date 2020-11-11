@@ -58,7 +58,51 @@ class CommentBoard extends Component {
             }
         });
     }
-
+    updateLike = (commentId) =>{
+      let address = process.env.ADDRESS || 'http://localhost:5000/api/comment/like/';
+      console.log(commentId);
+      axios.put(address+commentId)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(error => {
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        }
+    });
+    }
+    updateDislike = (commentId) =>{
+      let address = process.env.ADDRESS || 'http://localhost:5000/api/comment/dislike/';
+      console.log(commentId);
+      axios.put(address+commentId)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(error => {
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        }
+    });
+    }
+    updateFlags = (commentId) =>{
+      let address = process.env.ADDRESS || 'http://localhost:5000/api/comment/flag/';
+      console.log(commentId);
+      axios.put(address+commentId)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(error => {
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        }
+    });
+    }
     checkIfValid = () => {
         let val = false;
         let regex = "^[a-zA-Z]{3}[0-9]{4}$";
@@ -85,7 +129,8 @@ class CommentBoard extends Component {
             class: this.state.course.toUpperCase(),
             professor: this.state.prof,
             likes: 0,
-            dislikes:0
+            dislikes:0,
+            flags:0
         };
         let address = process.env.ADDRESS || 'http://localhost:5000/api/comment';
         axios.post(address,commentData)
@@ -178,11 +223,12 @@ class CommentBoard extends Component {
                             <TableRow key={comment.comment}>
                                 <TableCell component="th" scope="row">
                                     {comment.comment}
-                                    {comment.likes}
-                                    <button class="reaction">{emoji.getUnicode("+1")}</button>
+                                        {comment.likes}
+                                    <button class="reaction" onClick={() => {this.updateLike(comment._id);}}>{emoji.getUnicode("+1")}</button>
                                     {comment.dislikes}
-                                    <button class="reaction">{emoji.getUnicode("-1")}</button>
-                                    <button class="reaction">{emoji.getUnicode("triangular_flag_on_post")}</button>
+                                    <button class="reaction" onClick={() => {this.updateDislike(comment._id);}}>{emoji.getUnicode("-1")}</button>
+                                    {comment.flags}
+                                    <button class="reaction" onClick={() => {this.updateFlags(comment._id);}}>{emoji.getUnicode("triangular_flag_on_post")}</button>
                                 </TableCell>
                             
                             </TableRow>
