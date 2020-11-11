@@ -16,7 +16,7 @@ body {
 
   /* Equal to height of footer */
   /* But also accounting for potential margin-bottom of last child */
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 .footerHeading {
   padding-top: 25px;
