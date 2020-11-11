@@ -16,6 +16,16 @@ const addPopData = async(req,res) => {
         res.status(200).send(err);
       });
 }
+const getDailyData = async(req,res) => {
+  await Popup.find({}, (err, data) => {
+    if (err)
+      return res.status(200).send({
+        message: err.message || "An unknown error occurred",
+      });
+    res.json(data);
+  });
+}
 module.exports = {
-    addPopData: addPopData
+    addPopData: addPopData,
+    getDailyData: getDailyData
 }
