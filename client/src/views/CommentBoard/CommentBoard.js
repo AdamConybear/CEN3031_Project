@@ -111,8 +111,12 @@ class CommentBoard extends Component {
   };
   checkIfValid = () => {
     let val = false;
-    let regex = "^[a-zA-Z]{3}[0-9]{4}$";
-    if (this.state.searchValue.match(regex)) {
+    let regex1 = "^[a-zA-Z]{3}[0-9]{4}$";
+    let regex2 = "^[a-zA-Z]{3}[0-9]{4}[a-zA-Z]{1}$";
+    if (
+      this.state.searchValue.match(regex1) ||
+      this.state.searchValue.match(regex2)
+    ) {
       console.log("this is a good string");
       this.setState({ searchisValid: true });
       val = true;
