@@ -289,7 +289,9 @@ class CommentBoard extends Component {
           }
           target="_blank"
         >
-          <button>See what reddit says about {this.state.searchValue}!</button>
+          <button>
+            See what reddit says about {this.state.searchValue.toUpperCase()}!
+          </button>
         </a>
       </div>
     );
