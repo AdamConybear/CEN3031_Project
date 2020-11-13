@@ -30,12 +30,12 @@ input.searchBox::placeholder {
 }
 
 h1.commentBoard {
-  width:500px;
-  height:50px;
+  width: 500px;
+  height: 50px;
   margin: 0 auto;
   text-align: center;
   align-self: center;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-weight: bold;
   font-size: 40px;
   padding-top: 30px;
@@ -270,38 +270,38 @@ textarea.popUpInputProf {
 }
 
 .cancel:focus {
-      outline: none;
+  outline: none;
 }
 
 .cancel:hover {
-    transform: scale(1.2);
-    transition-duration: 0.2s;
+  transform: scale(1.2);
+  transition-duration: 0.2s;
 }
 
 .submit:focus {
-      outline: none;
+  outline: none;
 }
 
 .submit:hover {
-    transform: scale(1.2);
-    transition-duration: 0.2s;
+  transform: scale(1.2);
+  transition-duration: 0.2s;
 }
 
 .cancelSubmit {
-      display: flex;
-      flex-direction: row;
-      align-content: center;
-      width: 450px;
-      margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 450px;
+  margin-top: 20px;
 }
 
 .addTitle {
-      font-family: "Nunito", sans-serif;
-      font-weight: normal;
-      font-size: 20px;
-      margin-left: auto;
-      margin-right: auto;
-      height: 1px;
+  font-family: "Nunito", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1px;
 }
 
 .reaction {
@@ -383,4 +383,39 @@ textarea.popUpInputProf {
   font-family: Nunito, sans-serif;
   font-size: 20px;
   font-weight: normal;
+}
+
+.redditParent {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+a.reddit {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  background-color: black;
+  /*background-color: #FBBF66;*/
+  width: 200px;
+  height: 75px;
+  line-height: 75px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  font-family: Nunito, sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  margin-bottom: 100px;
+  margin-top: 20px;
+  transition: all 0.33s ease-out;
+}
+
+a.reddit:hover {
+  background-color: orange;
+  color: white;
+  transition-duration: 0.33s;
+  transition-property: all;
 }

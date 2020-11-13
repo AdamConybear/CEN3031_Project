@@ -284,19 +284,20 @@ class CommentBoard extends Component {
             </TableBody>
           </Table>
         </TableContainer>
-        <a
-          rel="noopener noreferrer"
-          href={
-            "https://www.reddit.com/r/ufl/search?q=" +
-            this.state.searchValue +
-            "&restrict_sr=1"
-          }
-          target="_blank"
-        >
-          <button>
-            See what reddit says about {this.state.searchValue.toUpperCase()}!
-          </button>
-        </a>
+        <div className="redditParent">
+          <a
+            className="reddit"
+            rel="noopener noreferrer"
+            href={
+              "https://www.reddit.com/r/ufl/search?q=" +
+              this.state.searchValue +
+              "&restrict_sr=1"
+            }
+            target="_blank"
+          >
+            {this.state.searchValue.toUpperCase()} on Reddit
+          </a>
+        </div>
       </div>
     );
 
@@ -329,6 +330,7 @@ class CommentBoard extends Component {
             if (ev.key === "Enter") {
               ev.preventDefault();
               this.setState({ isSubmitted: true });
+              //   this.setState({ searchValue: event.target.value });
               const val = this.checkIfValid();
               //get comments for searchValue db
               if (val) {
