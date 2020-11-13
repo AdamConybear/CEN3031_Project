@@ -12,12 +12,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 const emoji = require("emoji-dictionary");
 
-// const useStyles = theme =>({
+//const useStyles = theme =>({
 //     table: {
 //       minWidth: 650,
 //     },
 //   });
-// const classes = useStyles();
+//const classes = useStyles();
 
 class CommentBoard extends Component {
 
@@ -117,7 +117,7 @@ class CommentBoard extends Component {
         }
         return val;
     }
-    
+
     togglePopup = () => {
         document.getElementById("popup-1").classList.toggle("active");
         this.setState({course: this.state.searchValue});
@@ -162,6 +162,7 @@ class CommentBoard extends Component {
     displayUtilities = () => {
         return (
             <div>
+                <div class="addCommentParent"><div class="addComment" onClick={() => this.togglePopup()}>+</div></div>
                 <div class="popup" id="popup-1">
                     <div class="overlay"></div>
                     <div class="content">
@@ -172,7 +173,7 @@ class CommentBoard extends Component {
                             class="popUpInputClass"
                             type="text"
                             // placeholder="Course Code"
-                            value = {this.state.course}
+                            value = {this.state.course.toUpperCase()}
                             id="courseInput"
                             onChange={this.handleCourseChange}
                         />
@@ -203,34 +204,39 @@ class CommentBoard extends Component {
                         </div>
                     </div>
                 </div>
-                <button className="addComment" onClick={() => this.togglePopup()}>+</button>
             </div>
-
-
         );
-
-
     }
 
     displayComments = () => {
-
         return(
-            <TableContainer component={Paper}>
+            <TableContainer class="tableContainer" component={Paper}>
                 <Table aria-label="simple table">
                     <TableBody>
                     {this.state.classArr.map((comment) => {
                         return(
-                            <TableRow key={comment.comment}>
-                                <TableCell component="th" scope="row">
-                                    {comment.comment}
-                                        {comment.likes}
-                                    <button class="reaction" onClick={() => {this.updateLike(comment._id);}}>{emoji.getUnicode("+1")}</button>
-                                    {comment.dislikes}
-                                    <button class="reaction" onClick={() => {this.updateDislike(comment._id);}}>{emoji.getUnicode("-1")}</button>
-                                    {comment.flags}
-                                    <button class="reaction" onClick={() => {this.updateFlags(comment._id);}}>{emoji.getUnicode("triangular_flag_on_post")}</button>
+                            <TableRow class="expand" key={comment.comment}>
+                                <TableCell colSpan={1} component="th" scope="row">
+                                    <div class="courseAndProf">
+                                      {comment.class + " / "}
+                                      {comment.professor}
+                                    </div>
+                                    <div class="maxWidth">{comment.comment}</div>
+                                    <div class="reactionParent">
+                                      <div class="statAndEmoji">
+                                        <p class="stat">{comment.likes}</p>
+                                        <button class="reaction" onClick={() => {this.updateLike(comment._id);}}>{emoji.getUnicode("+1")}</button>
+                                      </div>
+                                      <div class="statAndEmoji">
+                                        <p class="stat">{comment.dislikes}</p>
+                                        <button  class="reaction" onClick={() => {this.updateDislike(comment._id);}}>{emoji.getUnicode("-1")}</button>
+                                      </div>
+                                      <div class="statAndEmoji">
+                                        <p class="stat">{comment.flags}</p>
+                                        <button class="reaction"  onClick={() => {this.updateFlags(comment._id);}}>{emoji.getUnicode("triangular_flag_on_post")}</button>
+                                      </div>
+                                    </div>
                                 </TableCell>
-                            
                             </TableRow>
                         );
                     })}
@@ -249,7 +255,7 @@ class CommentBoard extends Component {
         //             likes = {comment.likes}
         //             dislikes = {comment.dislikes}
         //             prof = {comment.professor}
-                
+
         //             key = {comment}
         //         />
 
@@ -258,7 +264,7 @@ class CommentBoard extends Component {
         // });
     }
 
-    render(){
+    render() {
         return(
             <div>
                 <div >
@@ -274,24 +280,21 @@ class CommentBoard extends Component {
                             if(val){
                                 this.getCommentsFromDB()
                             }
-                            
                         }
                     }}
                     type="text"
-                    className="searchBox"
+                    class="searchBox"
                     onChange={this.handleSearchChange}
                     placeholder="Enter a Course Code"
                 />
-                {this.state.isSubmitted ? 
+                {this.state.isSubmitted ?
                 <div className="valid">
-                    {this.state.searchisValid ? "Showing Results for " + this.state.searchValue : "Invalid Course Code"}
-                    {this.state.searchisValid ? this.displayUtilities(): null}
+                    {this.state.searchisValid ? this.displayUtilities():<div class="spaceOut"></div>}
+                    <div class="showingResults"> {this.state.searchisValid ? "Showing Results for " + this.state.searchValue.toUpperCase(): "Invalid Course Code"}</div>
                     {this.state.searchisValid ? this.displayComments(): null}
                 </div> : null}
-                {/* <div className="valid">
-                {this.state.searchisValid ? "Showing Results for " + this.state.searchValue : "Invalid Course Code"}
-                </div> */}
-            </div>            
+
+            </div>
         );
     }
 }

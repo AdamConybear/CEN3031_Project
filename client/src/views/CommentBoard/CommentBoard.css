@@ -1,3 +1,12 @@
+input.searchBox:focus {
+  outline: none;
+}
+
+input.searchBox:hover {
+  transform: scale(1.1);
+  transition-duration: 1s;
+}
+
 input.searchBox {
   display: block;
   margin: 0 auto;
@@ -10,51 +19,68 @@ input.searchBox {
   height: 70px;
   font-size: 20px;
   font-family: "Nunito", sans-serif;
+  font-weight: lighter;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   text-align: center;
   transition: transform 1s ease-out;
-  }
-  ​ .searchBox:focus {
-  outline: none;
-  }
-  ​ .searchBox:hover {
-  transform: scale(1.1);
-  transition-duration: 1s;
-  }
-  
-  h1.commentBoard {
-  width: 500px;
-  height: 50px;
+}
+
+input.searchBox::placeholder {
+  font-size: 14px;
+}
+
+h1.commentBoard {
+  width:500px;
+  height:50px;
   margin: 0 auto;
   text-align: center;
   align-self: center;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: bold;
   font-size: 40px;
   padding-top: 30px;
   padding-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
-  }
-  
-  .valid {
-      font-family: "Nunito", sans-serif;
-      margin: 0 auto;
-      text-align: center;
-      align-self: center;
-      font-weight: bold;
-      font-size: 24px;
-      padding-top: 40px;
-      padding-bottom: 10px;
-  }
-  
-  /* .addCommentParent {
+}
+
+.tableContainer {
   margin-left: auto;
   margin-right: auto;
   width: 60%;
-  } */
-  ​button.addComment {
-  display: block;
+  background-color: white;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-bottom: 100px;
+}
+.showingResults {
+  background-color: white;
+  width: 60%;
+  height: 60px;
+  line-height: 60px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-family: Nunito, sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+}
+.valid {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.addComment:hover {
+  transform: scale(1.5);
+  transition-duration: 0.2s;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.addComment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 60px;
   width: 60px;
   border-top-style: hidden;
@@ -62,32 +88,29 @@ input.searchBox {
   border-left-style: hidden;
   border-bottom-style: hidden;
   background-color: white;
-  border-radius: 0;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
-  margin-right: 0;
-  margin-left: auto;
   transition: transform 0.2s ease-out;
   font-family: "Nunito", sans-serif;
   font-weight: lighter;
   font-size: 30px;
-  align-content: center;
-  }
-  ​ button.addComment:hover {
-  transform: scale(1.5);
-  transition-duration: 0.2s;
-  }
-  ​ button.addComment:focus {
-  outline: none;
-  }
-  
-  .lbl {
+}
+.addCommentParent {
+  display: flex;
+  justify-content: flex-end;
+  width: 60%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.lbl {
   font-family: "Nunito", sans-serif;
   font-weight: lighter;
   font-size: 15px;
   padding-left: 20px;
   height: 15px;
-  }
-  textarea.popUpInput {
+}
+
+textarea.popUpInput {
   display: flex;
   border-top-style: hidden;
   border-right-style: hidden;
@@ -106,11 +129,13 @@ input.searchBox {
   max-width: 450px;
   max-height: 100px;
   border: 1px solid;
-  }
-  .popUpInput:focus {
+}
+
+.popUpInput:focus {
   outline: none;
-  }
-  textarea.popUpInputClass {
+}
+
+textarea.popUpInputClass {
   display: flex;
   border-top-style: hidden;
   border-right-style: hidden;
@@ -129,14 +154,17 @@ input.searchBox {
   max-width: 450px;
   max-height: 30px;
   border: 1px solid;
-  }
-  .popUpInputClass:focus {
+}
+
+.popUpInputClass:focus {
   outline: none;
-  }
-  .popUpInputClass::placeholder {
+}
+
+.popUpInputClass::placeholder {
   line-height: 30px;
-  }
-  textarea.popUpInputProf {
+}
+
+textarea.popUpInputProf {
   display: flex;
   border-top-style: hidden;
   border-right-style: hidden;
@@ -155,22 +183,26 @@ input.searchBox {
   max-width: 450px;
   max-height: 30px;
   border: 1px solid;
-  }
-  .popUpInputProf:focus {
+}
+
+.popUpInputProf:focus {
   outline: none;
-  }
-  .popUpInputProf::placeholder {
+}
+
+.popUpInputProf::placeholder {
   line-height: 30px;
-  }
-  .inputPart {
+}
+
+.inputPart {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: white;
   width: 100%;
   height: 85%;
-  }
-  .popup .overlay {
+}
+
+.popup .overlay {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -179,8 +211,9 @@ input.searchBox {
   background: rgba(0, 0, 0, 0.7);
   z-index: 1;
   display: none;
-  }
-  .popup .content {
+}
+
+.popup .content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -192,15 +225,18 @@ input.searchBox {
   text-align: center;
   box-sizing: border-box;
   font-family: "Nunito", sans-serif;
-  }
-  .popup.active .overlay {
+}
+
+.popup.active .overlay {
   display: block;
-  }
-  .popup.active .content {
+}
+
+.popup.active .content {
   transition: all 300ms ease-in-out;
   transform: translate(-50%, -50%) scale(1);
-  }
-  .submit {
+}
+
+.submit {
   display: flex;
   border-top-style: hidden;
   border-right-style: hidden;
@@ -215,8 +251,9 @@ input.searchBox {
   font-size: 15px;
   margin-right: 0px;
   margin-left: auto;
-  }
-  .cancel {
+}
+
+.cancel {
   display: flex;
   border-top-style: hidden;
   border-right-style: hidden;
@@ -229,54 +266,121 @@ input.searchBox {
   font-family: "Nunito", sans-serif;
   font-weight: lighter;
   font-size: 15px;
-      margin-left: 0px;
-    }
-    .cancel:focus {
+  margin-left: 0px;
+}
+
+.cancel:focus {
       outline: none;
-    }
-    .cancel:hover {
-      transform: scale(1.2);
-      transition-duration: 0.2s;
-    }
-    .submit:focus {
+}
+
+.cancel:hover {
+    transform: scale(1.2);
+    transition-duration: 0.2s;
+}
+
+.submit:focus {
       outline: none;
-    }
-    .submit:hover {
-      transform: scale(1.2);
-      transition-duration: 0.2s;
-    }
-    .cancelSubmit {
+}
+
+.submit:hover {
+    transform: scale(1.2);
+    transition-duration: 0.2s;
+}
+
+.cancelSubmit {
       display: flex;
       flex-direction: row;
       align-content: center;
       width: 450px;
-      /* margin: auto; */
       margin-top: 20px;
-    }
-    .addTitle {
+}
+
+.addTitle {
       font-family: "Nunito", sans-serif;
       font-weight: normal;
       font-size: 20px;
       margin-left: auto;
       margin-right: auto;
       height: 1px;
-    }
-  
-    .reaction {
-      border-top-style: hidden;
-      border-right-style: hidden;
-      border-left-style: hidden;
-      border-bottom-style: hidden;
-      background-color: rgba(255, 0, 0, 0);
-      transition: transform 1s ease-out;
-      line-height: 3;
-      font-size: 15px;
-    }
-    ​ .reaction:hover {
-      transform: scale(1.5);
-      transition-duration: 0.2s;
-    }
-    ​ .reaction:focus {
-      outline: none;
-    }
-    
+}
+
+.reaction {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: rgba(255, 0, 0, 0);
+  transition: transform 1s ease-out;
+  line-height: 3;
+  font-size: 15px;
+}
+.reaction:hover {
+  transform: scale(1.5);
+  transition-duration: 0.2s;
+}
+.reaction:focus {
+  outline: none;
+}
+
+.maxWidth {
+  width: 800px !important;
+  overflow-wrap: break-word;
+  align-content: center;
+}
+
+.reactionParent {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-end;
+}
+
+.courseAndProf {
+  justify-content: flex-start;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+
+.expand {
+  transition: transform 1s ease-out;
+}
+
+.expand:hover {
+  transform: scale(1.01);
+  transition-duration: 1s;
+}
+
+.stat {
+  font-family: Nunito, sans-serif;
+  font-size: 12px;
+  font-weight: lighter;
+  align-self: center;
+}
+
+.statAndEmoji {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+.spaceOut {
+  margin-top: 20px;
+}
+
+.invalid {
+  background-color: white;
+  width: 60%;
+  height: 60px;
+  line-height: 60px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-family: Nunito, sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+}
