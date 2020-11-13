@@ -266,7 +266,7 @@ class CommentBoard extends Component {
                           </button>
                         </div>
                         <div class="statAndEmoji">
-                          <p class="stat">{comment.flags}</p>
+                          {/* <p class="stat">{comment.flags}</p> */}
                           <button
                             class="reaction"
                             onClick={() => {
