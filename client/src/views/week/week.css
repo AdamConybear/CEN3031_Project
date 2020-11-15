@@ -1,120 +1,35 @@
-.lbl {
-  font-family: "Nunito", sans-serif;
-  font-weight: lighter;
-  font-size: 15px;
-  padding-left: 20px;
-  height: 15px;
-}
-textarea.popUpInput {
-  display: flex;
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: hidden;
-  background-color: white;
-  height: 100px;
-  min-height: 110px;
-  width: 450px;
-  font-size: 15px;
-  font-family: "Nunito", sans-serif;
-  font-weight: lighter;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 450px;
-  max-height: 100px;
-  border: 1px solid;
-}
-.popUpInput:focus {
-  outline: none;
-}
-textarea.popUpInputClass {
-  display: flex;
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: hidden;
-  background-color: white;
-  height: 30px;
-  min-height: 30px;
-  width: 450px;
-  font-size: 15px;
-  font-family: "Nunito", sans-serif;
-  font-weight: lighter;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 450px;
-  max-height: 30px;
-  border: 1px solid;
-}
-.popUpInputClass:focus {
-  outline: none;
-}
-.popUpInputClass::placeholder {
-  line-height: 30px;
-}
-textarea.popUpInputProf {
-  display: flex;
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: hidden;
-  background-color: white;
-  height: 30px;
-  min-height: 30px;
-  width: 450px;
-  font-size: 15px;
-  font-family: "Nunito", sans-serif;
-  font-weight: lighter;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 450px;
-  max-height: 30px;
-  border: 1px solid;
-}
-.popUpInputProf:focus {
-  outline: none;
-}
-.popUpInputProf::placeholder {
-  line-height: 30px;
-}
-.inputPart {
+.upload-expensePart {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: white;
   width: 100%;
   height: 85%;
 }
-.popup .overlay {
+.popupbby .overlay {
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 1;
   display: none;
 }
-.popup .content {
+.popupbby .content {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(1);
   background: #fff;
-  width: 500px;
-  height: 460px;
   z-index: 2;
   text-align: center;
   box-sizing: border-box;
   font-family: "Nunito", sans-serif;
 }
-.popup.active .overlay {
+.popupbby.active .overlay {
   display: block;
 }
-.popup.active .content {
+.popupbby.active .content {
   transition: all 300ms ease-in-out;
   transform: translate(-50%, -50%) scale(1);
 }
@@ -131,8 +46,6 @@ textarea.popUpInputProf {
   font-family: "Nunito", sans-serif;
   font-weight: lighter;
   font-size: 15px;
-  margin-right: 0px;
-  margin-left: auto;
 }
 .cancel {
   display: flex;
@@ -178,4 +91,138 @@ textarea.popUpInputProf {
   margin-left: auto;
   margin-right: auto;
   height: 1px;
+}
+
+.num-inputs{
+  margin-top: 30px;
+  justify-content: center;
+
+}
+
+.assignmentBox {
+  height: 100px;
+  width: 150px;
+  background-color: white;
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.5s; /* Animation */
+}
+
+.assignmentBox:hover {
+  transform: scale(1.05);
+  transition-duration: 0.5s;
+}
+
+.courseOnBox {
+  margin-bottom: 5px;
+  font-family: "Nunito", sans-serif;
+  font-weight: normal;
+  text-align: center;
+  font-size: 12px;
+}
+
+.assignmentNameOnBox {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 12px;
+  overflow-y: scroll;
+  transition: all 0.5s ease-in-out;
+}
+
+.assignmentNameOnBox:hover {
+  transform: scale(1.2);
+  transition-duration: 0.35s;
+}
+
+.timeAndDifficulty {
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  text-align: center;
+  font-size: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+.timeAndDifficulty:hover {
+  transform: scale(1.2);
+  transition-duration: 0.35s;
+}
+
+.rateButtonOnBox {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: black;
+  font-family: "Nunito", sans-serif;
+  font-weight: normal;
+  color: white;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+.rateButtonOnBox:hover {
+  transform: scale(1.2);
+  transition-duration: 0.35s;
+  background-color: #EDEFF7;
+  color: black;
+}
+
+.rateButtonOnBox:focus {
+  outline: none;
+}
+
+.sideClassDisplay {
+  height: 100%;
+  width: 15px !important;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+  align-content: center;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: normal;
+  color: #BABABA;
+  font-size: 12px;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.middleContent {
+  height: 100%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+ .weeklyTitle {
+   font-size: 40px;
+   text-align: center;
+   font-family: "Nunito", sans-serif;
+   font-weight: bolder;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.lilShadow {
+
+  background-color: red;
 }
