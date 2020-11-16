@@ -46,13 +46,19 @@ const PopUp = (props) => {
         </header>
         <div className="content">
           <label>How stressed are you today?</label>
-          <Slider setVar={setStress} />
+          <div className="fixRadio">
+            <Slider setVar={setStress} />
+          </div>
 
           <label>How many hours of sleep did you get?</label>
-          <Slider setVar={setSleep} />
+          <div className="fixRadio">
+            <Slider setVar={setSleep} />
+          </div>
 
           <label>Did you exercise today?</label>
-          <Radio setEx={setEx} />
+          <div className="fixRadio">
+            <Radio setEx={setEx} />
+          </div>
         </div>
         <button class="dialogButton" onClick={handleClick}>
           Submit
