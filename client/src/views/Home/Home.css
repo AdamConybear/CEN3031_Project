@@ -6,7 +6,15 @@
   margin-top: 2%;
   text-align: center;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  /* align-content: center; */
+  justify-content: center;
+}
+
+.pie {
+
+  align-self: center;
 }
 
 .home {
@@ -22,4 +30,66 @@ h1 {
   font-size: 50px;
   padding-bottom: 0px;
   text-align: center;
+}
+
+.graphsParent {
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+
+}
+
+.sleepgraph {
+  align-self: center;
+  transition: transform 0.2s ease-out;
+}
+
+.pieWelcomeParent {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  height: 500px;
+  width: 100%;
+}
+.welcome {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 40px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  text-align: center;
+  margin-bottom: 30px;
+  width: 80%;
+  align-self: center;
+  padding: 31px;
+  transition: transform 0.4s ease-out;
+}
+
+.welcome:hover {
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+}
+.sleepgraph:hover {
+  transform: scale(1.05);
+  transition-duration: 0.4s;
+}
+
+.pieParent {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  background-color: white;
+  width: 300px;
+  height: 300px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  transition: transform 0.4s ease-out;
+}
+.pieParent:hover {
+  transform: scale(1.05);
+  transition-duration: 0.4s;
 }

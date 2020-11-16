@@ -49,7 +49,7 @@ const Tips = (props) => {
     props.setOpen(false);
   };
 
-  const userName = "Jeffrey";
+  const userName = "Adam";
 
   return (
     <div className="modal">

@@ -12,14 +12,16 @@ import Resources from "./views/Resources/Resources";
 import AboutUs from "./views/AboutUs/AboutUs";
 import Help from "./views/Help/Help";
 import { Link } from "react-router-dom";
-import "./App.css";
-
+import "./App.css"; 
 const App = () => {
   return (
     <html>
+   <body>
+    <div class = "wrapper">
+      <div class = "page-header">
       <Header />
-      <body>
-        <div class="wrapper">
+      </div>
+        <article class="content">
           <Switch>
             <Route path="/Home" component={Home} />
             <Route path="/Week" exact component={Week} />
@@ -34,17 +36,24 @@ const App = () => {
             </Route>
             <Route component={NotFound} />
           </Switch>
+        </article>
         </div>
-        <div class="footer">
+        
+        
+      
+        <div class="page-footer">
+          
           <div class="footerHeading">
-                  <Link to="/Contact">Contact</Link>
-                  <Link to="/AboutUs">About us</Link>
-                  <Link to="/Help">Help</Link>
+          
+                  <Link to="/Contact">Contact</Link>
+                  <Link to="/AboutUs">About us</Link>
+                  <Link to="/Help">Help</Link>
           </div>
         </div>
-      </body>
-    </html>
+        </body>
+        </html>
+        
+        
   );
 };
-
 export default App;

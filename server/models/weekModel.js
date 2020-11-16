@@ -2,34 +2,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 //Create schema
-const commentSchema = new Schema ({
-    comment: {
+const weekSchema = new Schema ({
+    assignment: {
         type: String,
         required: true
     },
-    class: {
-        type: String,
-        required: true
-    },
-    professor: {
-        type: String,
-        required: true
-    },
-    likes: {
+    hours: {
         type: Number,
         required: true
     },
-    dislikes: {
+    difficulty: {
         type: Number,
         required: true
     },
-    flags: {
-        type: Number,
-        required: true
-    }
 });
 //specifies the collection in the third var
 // export default mongoose.model('popups', popupSchema, 'UserPopUps'); 
 module.exports = {
-    Item: mongoose.model('comment', commentSchema, 'CommentBoard')
+    Item: mongoose.model('week', weekSchema, 'WeeklyAssignments')
 }

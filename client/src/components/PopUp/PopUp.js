@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { useState, setState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 import Slider from "../Slider";
 import "./PopUp.css";
@@ -10,7 +10,7 @@ import moment from "moment";
 const PopUp = (props) => {
   const [stress, setStress] = useState(5);
   const [sleep, setSleep] = useState(5);
-  const [exercise, setEx] = useState(false);
+  const [exercise, setEx] = useState(true);
 
   const handleClick = () => {
     const DailyData = {
@@ -22,21 +22,20 @@ const PopUp = (props) => {
     props.setOpen(false);
     console.log(DailyData);
 
-
     let address = process.env.ADDRESS || "http://localhost:5000/api/popups";
-    axios.post(address,DailyData)
-    .then(res => console.log(res.data))
-    .catch(error => {
-      if (error.response) {
+    axios
+      .post(address, DailyData)
+      .then((res) => console.log(res.data))
+      .catch((error) => {
+        if (error.response) {
           console.log(error.response.data);
           console.log(error.response.status);
           console.log(error.response.headers);
-      }
-    });
-
+        }
+      });
   };
 
-  const userName = "Jeffrey";
+  const userName = "Adam";
 
   return (
     <div className="modalx">
@@ -47,13 +46,19 @@ const PopUp = (props) => {
         </header>
         <div className="content">
           <label>How stressed are you today?</label>
-          <Slider setVar={setStress} />
+          <div className="fixRadio">
+            <Slider setVar={setStress} />
+          </div>
 
           <label>How many hours of sleep did you get?</label>
-          <Slider setVar={setSleep} />
+          <div className="fixRadio">
+            <Slider setVar={setSleep} />
+          </div>
 
           <label>Did you exercise today?</label>
-          <Radio setEx={setEx} />
+          <div className="fixRadio">
+            <Radio setEx={setEx} />
+          </div>
         </div>
         <button class="dialogButton" onClick={handleClick}>
           Submit

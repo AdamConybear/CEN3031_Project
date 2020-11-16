@@ -1,7 +1,17 @@
 import React from "react";
 import "./Radio.css";
+import { useState, setState } from "react";
 
 const Radio = (props) => {
+  const [value, setValue] = useState(true);
+
+  const handleOnChangeNo = (e) => {
+    console.log("radio is ");
+
+    setValue(false);
+    props.setEx(false);
+  };
+
   return (
     <div class="b">
       <label class="container">
@@ -11,7 +21,7 @@ const Radio = (props) => {
       </label>
       <label class="container">
         No
-        <input type="radio" name="radio"></input>
+        <input type="radio" name="radio" onChange={handleOnChangeNo}></input>
         <span class="checkmark"></span>
       </label>
     </div>

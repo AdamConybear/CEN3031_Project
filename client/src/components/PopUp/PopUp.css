@@ -22,20 +22,22 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.25);
-  justify-content: "center";
-  align-items: "center";
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .modal_contentx {
   background-color: white;
-  position: absolute;
+  /* position: absolute; */
+  align-self: center;
   text-align: center;
-  top: 20%;
-  left: 30%;
+  /* top: 20%; */
+  /* left: 30%; */
   width: 30%;
   border-radius: 5px;
   border: 2px solid black;
-  justify-content: "center";
+  justify-content: center;
   align-items: "center";
 }
 
@@ -47,4 +49,12 @@
 
 .content {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.fixRadio {
+  align-self: center;
 }
