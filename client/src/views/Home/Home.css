@@ -6,7 +6,15 @@
   margin-top: 2%;
   text-align: center;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  /* align-content: center; */
+  justify-content: center;
+}
+
+.pie {
+  width: 5px;
+  height: 5px;
 }
 
 .home {

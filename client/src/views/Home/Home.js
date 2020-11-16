@@ -30,11 +30,11 @@ const Home = () => {
       </div>
       {!isOpen ? getName() : null}
       <div class="graph" style={{ justifyContent: "center" }}>
-        <div style={{ padding: "50px" }}>
+        <div>
           <Graph />
         </div>
-        <div style={{ padding: "50px" }}>
-          <PieChartComponent />
+        <div>
+          <PieChartComponent class="pie" />
         </div>
       </div>
     </div>

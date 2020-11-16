@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import ICAL from "ical.js";
 import moment from "moment";
 import styled from "styled-components";
-import Assignment from './Assignment';
+import Assignment from "./Assignment";
 import Button from "@material-ui/core/Button";
 import "./week.css";
 import "./Upload.css";
@@ -116,7 +116,7 @@ const Upload = () => {
     fileReader.onloadend = handleFileRead;
     fileReader.readAsText(file);
     //e.preventDefault();
-  //  setShowAssingments(true);
+    //  setShowAssingments(true);
   };
 
   // const handleSubmit = (e) => {
@@ -128,19 +128,20 @@ const Upload = () => {
     let assignments = [];
     let classArr = [];
     // let assignments = [];
-    for(const [key, value] of classMap.entries()){
+    for (const [key, value] of classMap.entries()) {
       let className;
       const regex = "^[a-zA-Z]{3}[0-9]{4}$"; //EX: CEN3031
       //just gets course code and number
-      if (!key.match(regex)){
-        className = key.substring(0,7);
-      }else{
+      if (!key.match(regex)) {
+        className = key.substring(0, 7);
+      } else {
         className = key;
       }
-      for (let i = 0; i < value.length; i++){
+      for (let i = 0; i < value.length; i++) {
         let text = value[i][0]; //assignment
-        let date = moment(value[i][1]).format('dddd'); //date of assignment
-        if (date === day){ //if assingment belongs to the specfic day passed in
+        let date = moment(value[i][1]).format("dddd"); //date of assignment
+        if (date === day) {
+          //if assingment belongs to the specfic day passed in
           //will be one of assignments displayed
           assignments.push(text);
           classArr.push(className);
@@ -151,11 +152,9 @@ const Upload = () => {
       classes: classArr,
       assignments: assignments,
     };
-  }
+  };
 
-
-  const displayWeek =(day)=> {
-
+  const displayWeek = (day) => {
     let arr = getDayAssignments(day);
     let cArr = arr.classes;
     let aArr = arr.assignments;
@@ -172,59 +171,55 @@ const Upload = () => {
 
     // })
 
-    return aArr.map(assignment => {
+    return aArr.map((assignment) => {
       let index = aArr.indexOf(assignment);
       // let numAssignments = aArr.length;
       let c = cArr[index];
-      
-      return(
-        <Assignment
-          assignment = {assignment}
-          c = {c}
-          key= {assignment}
-        />
-      );
-    })
-  }
+
+      return <Assignment assignment={assignment} c={c} key={assignment} />;
+    });
+  };
 
   const calculateStress = () => {
     //I have access to classMap
     console.log(classMap);
     let stress = 0;
-    
-    for(const [key, value] of classMap.entries()){
+
+    for (const [key, value] of classMap.entries()) {
       let className = key;
       //stress by class Type
-      if (className.charAt(3) === '4'){
+      if (className.charAt(3) === "4") {
         console.log("4000 lvl class");
         stress += 1;
-      }else if (className.charAt(3) === '3') {
-        stress +=0.5
-      }else{ stress += 0.25}
+      } else if (className.charAt(3) === "3") {
+        stress += 0.5;
+      } else {
+        stress += 0.25;
+      }
 
-
-      for (let i = 0; i < value.length; i++){
+      for (let i = 0; i < value.length; i++) {
         let assignment = value[i][0]; //assignment
 
         //stress by assignment type
-        if (assignment.toUpperCase().includes("EXAM")){
+        if (assignment.toUpperCase().includes("EXAM")) {
           stress += 2;
-        }else if(assignment.toUpperCase().includes("QUIZ")){
+        } else if (assignment.toUpperCase().includes("QUIZ")) {
           stress += 1.5;
-        }else if(assignment.toUpperCase().includes("PROJECT")){
-          console.log("project")
+        } else if (assignment.toUpperCase().includes("PROJECT")) {
+          console.log("project");
           stress += 1.75;
+        } else {
+          stress += 1;
         }
         // let date = moment(value[i][1]).format('dddd'); //date of assignment
 
         //each assignment adds stress
         stress += 0.25;
-        
       }
     }
     // return stress;
     setOverallStress(stress);
-  }
+  };
 
   return (
     <div>
@@ -234,7 +229,9 @@ const Upload = () => {
       </div>
 
       <div class="fileInputParent">
-        <label for="file" class="custom-file-upload">Upload an iCal File</label>
+        <label for="file" class="custom-file-upload">
+          Upload an iCal File
+        </label>
         <input
           type="file"
           id="file"
@@ -243,19 +240,27 @@ const Upload = () => {
           onChange={(e) => handleFileChosen(e.target.files[0])}
         />
       </div>
-      <div style={{display:'flex', flexDirection:'row', justifyContent:'center', marginTop: '0px;'}}>
-        {weekArr.map(day => {
-          return(
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          marginTop: "0px;",
+        }}
+      >
+        {weekArr.map((day) => {
+          return (
             <div>
-              <div class = "dayColumn">
+              <div class="dayColumn">
                 <div class="day">{day}</div>
-                <div class="assignment">{showAssingments ? displayWeek(day) : null}</div>
+                <div class="assignment">
+                  {showAssingments ? displayWeek(day) : null}
+                </div>
               </div>
             </div>
           );
         })}
       </div>
-
     </div>
   );
 };
