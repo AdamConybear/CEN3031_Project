@@ -17,10 +17,6 @@ const Home = () => {
   const getPop = (e) => {
     return <PopUp setOpen={setOpen} />;
   };
-  const getName = () => {
-    return <h1>Welcome Adam Conybear</h1>;
-  };
-
   return (
     <div class="home">
       <TipPopUp />
@@ -28,16 +24,19 @@ const Home = () => {
         <button onClick={handleOpen}>Open Pop</button>
         {isOpen ? getPop() : null}
       </div>
-      {!isOpen ? getName() : null}
-      <div class="graph" style={{ justifyContent: "center" }}>
-        <div>
-          <Graph />
+
+
+
+      <div class="graphsParent">
+        <div class="pieWelcomeParent">
+          <div class="welcome">Welcome back, Adam</div>
+          <div class="pieParent"><PieChartComponent/></div>
         </div>
-        <div>
-          <PieChartComponent class="pie" />
-        </div>
+        <div class="sleepgraph"><Graph/></div>
       </div>
-    </div>
+
+
+      </div>
   );
 };
 

@@ -1,7 +1,7 @@
 import { Pie } from "react-chartjs-2";
 import React, { Component } from "react";
 import axios from "axios";
-
+import "./PieChart.css"
 let sam = [];
 
 function getdata() {
@@ -33,7 +33,7 @@ const pie = {
   datasets: [
     {
       data: [7, 5],
-      backgroundColor: ["red", "blue"],
+      backgroundColor: ["orange", "blue"],
     },
   ],
 };
@@ -58,7 +58,7 @@ class PieChartComponent extends Component {
   render() {
     return (
       <div>
-        <div>Exercise</div>
+        <div class="exTitle">Exercise</div>
         <Pie data={this.state.chartData} height="200%" />
         <br />
       </div>

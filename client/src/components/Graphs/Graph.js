@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import axios from "axios";
 import { LineWeight } from "@material-ui/icons";
 import { red } from "@material-ui/core/colors";
+import "./Graph.css";
 
 const Graph = () => {
   let r = [[]];
@@ -64,9 +65,9 @@ const Graph = () => {
           labels: title,
           datasets: [
             {
-              label: "sleep",
+              label: "Sleep",
               fill: false,
-              borderColor: "#742774",
+              borderColor: "blue",
               data: arr,
               backgroundColor: [
                 "#3cb371",
@@ -88,10 +89,10 @@ const Graph = () => {
               ],
             },
             {
-              label: "stress",
+              label: "Stress",
               fill: false,
               backgroundColor: "#aad2ed",
-              borderColor: "rgba(75,192,192,1)",
+              borderColor: "orange",
               data: arr2,
               backgroundColor: [
                 "#3cb371",
@@ -129,20 +130,15 @@ const Graph = () => {
   return (
     // A react-chart hyper-responsively and continuously fills the available
     // space of its parent element automatically
-    <div
-      style={{
-        width: "450px",
-        height: "450px",
-      }}
-    >
-      <div>Sleep and Stress</div>
+    <div class="box">
+      <div class="ssTitle">Sleep and Stress</div>
       <Line
+        class="size"
         data={popupArr.Data}
         axes={axes}
         options={options}
         legend={legend}
       />
-      <div>check in</div>
     </div>
   );
 };
