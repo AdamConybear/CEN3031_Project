@@ -10,7 +10,7 @@ import moment from "moment";
 const PopUp = (props) => {
   const [stress, setStress] = useState(5);
   const [sleep, setSleep] = useState(5);
-  const [exercise, setEx] = useState(false);
+  const [exercise, setEx] = useState(true);
 
   const handleClick = () => {
     const DailyData = {

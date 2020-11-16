@@ -7,6 +7,7 @@ const path = require("path"),
   config = require("./config");
   cors = require('cors');
   commentRouter = require("../routes/commentRouter");
+  weekRouter = require("../routes/weekRouter");
 
 module.exports.init = () => {
   /* 
@@ -44,6 +45,7 @@ module.exports.init = () => {
   // add a router
   app.use('/api/popups', popupRouter);
   app.use('/api/comment', commentRouter);
+  app.use('/api/week', weekRouter);
 
   if (process.env.NODE_ENV === "production") {
     // Serve any static files

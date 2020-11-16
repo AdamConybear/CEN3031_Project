@@ -1,11 +1,12 @@
 import React from "react";
 // import './Home.css';
 import Upload from "./Upload";
+import "./week.css";
 
 const weekDash = () => {
   return (
     <div>
-      <h1 style={{padding: '20px', fontSize: '40px'}}>Weekly Schedule</h1>
+      <h1 class="weeklyTitle">Weekly Schedule</h1>
       <Upload />
     </div>
   );

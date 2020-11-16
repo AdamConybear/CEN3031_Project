@@ -4,21 +4,8 @@ import moment from "moment";
 import styled from "styled-components";
 import Assignment from './Assignment';
 import Button from "@material-ui/core/Button";
-// import { LensTwoTone } from "@material-ui/icons";
-
-// const UploadButton = styled.button`
-//   background-color: red;
-//   height: 60px;
-//   width: 120px;
-// `;
-
-// const AssignmentsContainer = styled.div`
-//   // display: flex;
-//   // flex-direction: row;
-//   // justifyContent:'center';
-//   // margin-top: '30px';
-
-// `;
+import "./week.css";
+import "./Upload.css";
 
 let classMap = new Map();
 let weekArr = [];
@@ -34,6 +21,7 @@ const Upload = () => {
   const hiddenFileInput = useRef(null);
 
   const [showAssingments, setShowAssingments] = useState(false);
+  const [overallStress, setOverallStress] = useState(0);
 
   const parseEvent = (e) => {
     //passed in a single vevent
@@ -119,35 +107,43 @@ const Upload = () => {
     console.log(classMap);
     // console.log(classMap.size);
     console.log("moment week: " + weekArr);
+    setShowAssingments(true);
+    calculateStress();
   };
 
   const handleFileChosen = (file) => {
     fileReader = new FileReader();
     fileReader.onloadend = handleFileRead;
     fileReader.readAsText(file);
+    //e.preventDefault();
+  //  setShowAssingments(true);
   };
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      setShowAssingments(true);
-  }
-  
-  
+  // const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     setShowAssingments(true);
+  // }
 
   const getDayAssignments = (day) => {
-    let assignments = []; 
+    let assignments = [];
     let classArr = [];
     // let assignments = [];
     for(const [key, value] of classMap.entries()){
+      let className;
+      const regex = "^[a-zA-Z]{3}[0-9]{4}$"; //EX: CEN3031
+      //just gets course code and number
+      if (!key.match(regex)){
+        className = key.substring(0,7);
+      }else{
+        className = key;
+      }
       for (let i = 0; i < value.length; i++){
         let text = value[i][0]; //assignment
         let date = moment(value[i][1]).format('dddd'); //date of assignment
-        // console.log("day: " + day + " date: " + date);
         if (date === day){ //if assingment belongs to the specfic day passed in
-          // console.log("day and date are the same, get assignment from");
           //will be one of assignments displayed
           assignments.push(text);
-          classArr.push(key);   
+          classArr.push(className);
         }
       }
     }
@@ -165,13 +161,24 @@ const Upload = () => {
     let aArr = arr.assignments;
     // console.log(arr.classes);
     // console.log(arr.assignments);
-    
+
+    //setting overall stress
+    // aArr.map(assignment => {
+    //   let index = aArr.indexOf(assignment);
+    //   let numAssignments = aArr.length;
+    //   let c = cArr[index];
+    //   let assingmentStress = calculateStress(assignment, numAssignments, c);
+    //   setOverallStress(overallStress + assingmentStress);
+
+    // })
+
     return aArr.map(assignment => {
       let index = aArr.indexOf(assignment);
+      // let numAssignments = aArr.length;
       let c = cArr[index];
-
+      
       return(
-        <Assignment 
+        <Assignment
           assignment = {assignment}
           c = {c}
           key= {assignment}
@@ -180,42 +187,70 @@ const Upload = () => {
     })
   }
 
+  const calculateStress = () => {
+    //I have access to classMap
+    console.log(classMap);
+    let stress = 0;
+    
+    for(const [key, value] of classMap.entries()){
+      let className = key;
+      //stress by class Type
+      if (className.charAt(3) === '4'){
+        console.log("4000 lvl class");
+        stress += 1;
+      }else if (className.charAt(3) === '3') {
+        stress +=0.5
+      }else{ stress += 0.25}
+
+
+      for (let i = 0; i < value.length; i++){
+        let assignment = value[i][0]; //assignment
+
+        //stress by assignment type
+        if (assignment.toUpperCase().includes("EXAM")){
+          stress += 2;
+        }else if(assignment.toUpperCase().includes("QUIZ")){
+          stress += 1.5;
+        }else if(assignment.toUpperCase().includes("PROJECT")){
+          console.log("project")
+          stress += 1.75;
+        }
+        // let date = moment(value[i][1]).format('dddd'); //date of assignment
+
+        //each assignment adds stress
+        stress += 0.25;
+        
+      }
+    }
+    // return stress;
+    setOverallStress(stress);
+  }
+
   return (
     <div>
-      <div className="upload-expense" style={{ textAlign: "center" }}>
-        {/* <UploadButton onClick={handleClick}>Upload a File</UploadButton> */}
+      <div class="weeksAverage">
+        <div>Week's Stress:</div>
+        <div class="bold">{overallStress}</div>
+      </div>
+
+      <div class="fileInputParent">
+        <label for="file" class="custom-file-upload">Upload an iCal File</label>
         <input
           type="file"
           id="file"
-          className="input-file"
           accept=".ics"
           ref={hiddenFileInput}
           onChange={(e) => handleFileChosen(e.target.files[0])}
-          // style={{display:'none'}}
         />
       </div>
-      {/* {classMap.size !== 0 ? success() : null} */}
-      <div
-        style={{
-          paddingTop: 3,
-          paddingBottom: 10,
-          textAlign: "center",
-          color: "#907163",
-        }}
-      >
-        *upload an ical file (.ics)
-      </div>
-      <div style={{textAlign:'center'}}>
-        <Button size="medium" variant="contained" style={{fontSize: 11, cursor: 'pointer'}} onClick={handleSubmit}>
-            Submit
-        </Button>
-      </div>
-      <div style={{display:'flex', flexDirection:'row', justifyContent:'center', marginTop: '30px'}}>
+      <div style={{display:'flex', flexDirection:'row', justifyContent:'center', marginTop: '0px;'}}>
         {weekArr.map(day => {
           return(
-            <div style={{padding:'20px', fontSize:'24px', textAlign:'center'}}>
-              {day}
-              {showAssingments ? displayWeek(day) : null}
+            <div>
+              <div class = "dayColumn">
+                <div class="day">{day}</div>
+                <div class="assignment">{showAssingments ? displayWeek(day) : null}</div>
+              </div>
             </div>
           );
         })}

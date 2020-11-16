@@ -1,0 +1,89 @@
+.dayColumn {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+
+}
+.day {
+  font-size: 15px;
+  font-family: "Nunito", sans-serif;
+  font-weight: normal;
+  background-color: white;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  align-content: center;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.5s ease-out;
+}
+
+/* .day:hover {
+    transform: scale(1.2);
+    transition-duration: 0.5s;
+} */
+.fileInputParent {
+ display: flex;
+ margin-left: auto;
+ margin-right: auto;
+ margin-bottom: 20px;
+ width: 1170px;
+ height: 50px;
+ flex-direction: column;
+ align-content: flex-start;
+}
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+  font-size: 15px;
+  font-family: "Nunito", sans-serif;
+  font-weight: bolder;
+  background-color: white;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  height: 100%;
+  line-height: 50px;
+  width: 150px;
+  transition: all 0.5s ease-out;
+}
+
+.custom-file-upload:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+  background-color: black;
+  color: white;
+}
+
+.weeksAverage {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  font-size: 23px;
+  font-weight: lighter;
+  font-family: "Nunito", sans-serif;
+  width: 20%;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 10px;
+  line-height: 70px;
+  text-align: center;
+}
+
+.bold {
+  padding-left: 10px;
+  font-weight: bolder;
+  font-size: 30px;
+}
