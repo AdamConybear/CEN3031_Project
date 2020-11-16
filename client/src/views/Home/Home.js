@@ -2,8 +2,8 @@ import React from "react";
 import PopUp from "../../components/PopUp/PopUp";
 import { useState, useEffect, setState } from "react";
 import TipPopUp from "../../components/Tips/TipPopUp";
-import SleepGraph from "../../components/Graphs/SleepGraph";
-import StressGraph from "../../components/Graphs/StressGraph";
+import Graph from "../../components/Graphs/Graph";
+import PieChartComponent from "../../components/Graphs/PieChartComponent";
 import "./Home.css";
 
 const Home = () => {
@@ -31,10 +31,10 @@ const Home = () => {
       {!isOpen ? getName() : null}
       <div class="graph" style={{ justifyContent: "center" }}>
         <div style={{ padding: "50px" }}>
-          <SleepGraph />
+          <Graph />
         </div>
         <div style={{ padding: "50px" }}>
-          <StressGraph />
+          <PieChartComponent />
         </div>
       </div>
     </div>
