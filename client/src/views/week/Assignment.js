@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 // import './Home.css';
 import Button from "@material-ui/core/Button";
@@ -76,6 +76,9 @@ const Assignment = ({ assignment, c }) => {
   const [hour, setHour] = useState('1');
   const [diff, setDiff] = useState('4');
   const [showPop,setShowPop] = useState(false);
+  const [timeDB, setTimeDB] = useState(0);
+  const [diffDB, setDiffDB] = useState(0);
+  const [hasRated, setHasRated] = useState(false);
   // const [ass,setAss] = useState();
   // const [popup, setPopup] = useState(false);
 
@@ -90,6 +93,34 @@ const Assignment = ({ assignment, c }) => {
 //     setShowPop(false);
 //    // document.getElementById("popup-1").classList.toggle("active");
 //  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let address = process.env.ADDRESS || 'http://localhost:5000/api/week';
+      const result = await axios.get(address,{
+        params: {
+          assignment: assignment
+      }});
+      console.log(result.data);
+      
+      if (result.data.length > 0){
+        let tempDiff = 0;
+        let tempHours = 0;
+        let len = result.data.length;
+
+        result.data.map(a => {
+          tempDiff += a.difficulty;
+          tempHours += a.hours;
+        })
+        setTimeDB(tempHours/len);
+        setDiffDB(tempDiff/len);
+
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
 
   const assignmentDone = () =>{
@@ -129,6 +160,7 @@ const Assignment = ({ assignment, c }) => {
     });
 
     setShowPop(false);
+    setHasRated(true);
   }
 
   const showPopup = () => {
@@ -188,16 +220,17 @@ const Assignment = ({ assignment, c }) => {
     <div>
       {showPop ? showPopup():null}
       <ShakePose pose={["shake"]} poseKey={hwColor}>
-        <div class="assignmentBox" onDoubleClick={assignmentDone}>
+        <div class="assignmentBox" style={{backgroundColor:hwColor}} onDoubleClick={assignmentDone}>
           <div class="sideClassDisplay">{c}</div>
           <div class="middleContent">
             <div class="assignmentNameOnBox">{assignment}</div>
-            <div class="timeAndDifficulty">Time: 10h</div>
-            <div class="timeAndDifficulty">Difficulty: 9/10</div>
+            <div class="timeAndDifficulty">Time: {timeDB}</div>
+            <div class="timeAndDifficulty">Difficulty: {diffDB}</div>
+            {!hasRated ? 
             <Button class="rateButtonOnBox" variant="contained"
               onClick={toggleRateForm}>
               Rate
-            </Button>
+            </Button> : null}
           </div>
           <div class="sideClassDisplay">{c}</div>
         </div>

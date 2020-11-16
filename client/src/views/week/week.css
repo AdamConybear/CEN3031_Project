@@ -140,11 +140,11 @@
   overflow-y: scroll;
   transition: all 0.5s ease-in-out;
 }
-
+/* 
 .assignmentNameOnBox:hover {
   transform: scale(1.2);
   transition-duration: 0.35s;
-}
+} */
 
 .timeAndDifficulty {
   text-align: center;
@@ -155,10 +155,10 @@
   transition: all 0.5s ease-in-out;
 }
 
-.timeAndDifficulty:hover {
+/* .timeAndDifficulty:hover {
   transform: scale(1.2);
   transition-duration: 0.35s;
-}
+} */
 
 .rateButtonOnBox {
   border-top-style: hidden;
@@ -177,8 +177,8 @@
 }
 
 .rateButtonOnBox:hover {
-  transform: scale(1.2);
-  transition-duration: 0.35s;
+  /* transform: scale(1.2); */
+  /* transition-duration: 0.35s; */
   background-color: #EDEFF7;
   color: black;
 }

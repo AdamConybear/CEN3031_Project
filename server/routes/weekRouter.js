@@ -3,5 +3,6 @@ const express = require("express");; //refers to Express the middleware helper f
 const weekRouter = express.Router();
 
 weekRouter.post('/',weekController.addAssignmentData);
+weekRouter.get('/',weekController.getDataFromAssignment);
 
 module.exports = weekRouter;

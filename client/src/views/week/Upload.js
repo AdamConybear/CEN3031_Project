@@ -21,6 +21,7 @@ const Upload = () => {
   const hiddenFileInput = useRef(null);
 
   const [showAssingments, setShowAssingments] = useState(false);
+  const [overallStress, setOverallStress] = useState(0);
 
   const parseEvent = (e) => {
     //passed in a single vevent
@@ -107,6 +108,7 @@ const Upload = () => {
     // console.log(classMap.size);
     console.log("moment week: " + weekArr);
     setShowAssingments(true);
+    calculateStress();
   };
 
   const handleFileChosen = (file) => {
@@ -117,10 +119,10 @@ const Upload = () => {
   //  setShowAssingments(true);
   };
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      setShowAssingments(true);
-  }
+  // const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     setShowAssingments(true);
+  // }
 
   const getDayAssignments = (day) => {
     let assignments = [];
@@ -160,10 +162,21 @@ const Upload = () => {
     // console.log(arr.classes);
     // console.log(arr.assignments);
 
+    //setting overall stress
+    // aArr.map(assignment => {
+    //   let index = aArr.indexOf(assignment);
+    //   let numAssignments = aArr.length;
+    //   let c = cArr[index];
+    //   let assingmentStress = calculateStress(assignment, numAssignments, c);
+    //   setOverallStress(overallStress + assingmentStress);
+
+    // })
+
     return aArr.map(assignment => {
       let index = aArr.indexOf(assignment);
+      // let numAssignments = aArr.length;
       let c = cArr[index];
-
+      
       return(
         <Assignment
           assignment = {assignment}
@@ -174,11 +187,58 @@ const Upload = () => {
     })
   }
 
+  const calculateStress = () => {
+    //I have access to classMap
+    console.log(classMap);
+    let stress = 0;
+
+    let numAssignments = 0;
+    for(const [key, value] of classMap.entries()){
+      let className = key;
+      //stress by class Type
+      if (className.charAt(3) === '4'){
+        console.log("4000 lvl class");
+        stress += 1;
+      }else if (className.charAt(3) === '3') {
+        stress +=0.5
+      }else{ stress += 0.25}
+
+
+      for (let i = 0; i < value.length; i++){
+        let assignment = value[i][0]; //assignment
+        numAssignments ++;
+        //stress by assignment type
+        if (assignment.toUpperCase().includes("EXAM")){
+          stress += 2;
+        }else if(assignment.toUpperCase().includes("QUIZ")){
+          stress += 1.5;
+        }else if(assignment.toUpperCase().includes("PROJECT")){
+          console.log("project")
+          stress += 1.75;
+        }
+        // let date = moment(value[i][1]).format('dddd'); //date of assignment
+        
+      }
+    }
+
+    // //stress by number of assignments
+    if (numAssignments > 7){
+      stress +=2;
+    }else if (numAssignments > 4){
+      stress += 1.5;
+    }else if (numAssignments > 2){
+      stress += 0.75;
+    }
+
+    // return stress;
+    setOverallStress(stress);
+  }
+
   return (
     <div>
       <div class="weeksAverage">
         <div>Week's Stress:</div>
-        <div class="bold">7.3</div>
+        <div class="bold">{overallStress}</div>
       </div>
 
       <div class="fileInputParent">
