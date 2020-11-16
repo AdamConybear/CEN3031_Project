@@ -7,18 +7,22 @@ const Header = () => {
   return (
     <div className="header">
       <Link to="/Home" className="logo-header">
-        <img src={gator} alt="logo" />
-        <span className="logo">
-          <b>Gator Rater</b>
-        </span>
+        <div className="logoAndName">
+         <img className="gatorLogo" src={gator} alt="logo"/>
+         <div className="gatorRater">Gator Rater</div>
+        </div>
       </Link>
 
-      <div className="header-right">
-        <Link to="/Week">Weekly Schedule</Link>
-        <Link to="/WhatIf">What-If</Link>
-        <Link to="/Resources">Resources</Link>
-        <Link to="/CommentBoard">Comment Board</Link>
-        <a>Signout</a>
+      <div class="header-right">
+        <div><Link className="linkTo" to="/Week">Weekly Schedule</Link></div>
+        <div className="separator">|</div>
+        <Link class="linkTo" to="/WhatIf">What-If</Link>
+        <div className="separator">|</div>
+        <Link class="linkTo" to="/Resources">Resources</Link>
+        <div className="separator">|</div>
+        <Link class="linkTo" to="/CommentBoard">Comment Board</Link>
+        <div className="separator">|</div>
+        <a className="linkTo">Signout</a>
       </div>
     </div>
   );

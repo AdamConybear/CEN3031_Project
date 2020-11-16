@@ -191,8 +191,7 @@ const Upload = () => {
     //I have access to classMap
     console.log(classMap);
     let stress = 0;
-
-    let numAssignments = 0;
+    
     for(const [key, value] of classMap.entries()){
       let className = key;
       //stress by class Type
@@ -206,7 +205,7 @@ const Upload = () => {
 
       for (let i = 0; i < value.length; i++){
         let assignment = value[i][0]; //assignment
-        numAssignments ++;
+
         //stress by assignment type
         if (assignment.toUpperCase().includes("EXAM")){
           stress += 2;
@@ -217,19 +216,12 @@ const Upload = () => {
           stress += 1.75;
         }
         // let date = moment(value[i][1]).format('dddd'); //date of assignment
+
+        //each assignment adds stress
+        stress += 0.25;
         
       }
     }
-
-    // //stress by number of assignments
-    if (numAssignments > 7){
-      stress +=2;
-    }else if (numAssignments > 4){
-      stress += 1.5;
-    }else if (numAssignments > 2){
-      stress += 0.75;
-    }
-
     // return stress;
     setOverallStress(stress);
   }
