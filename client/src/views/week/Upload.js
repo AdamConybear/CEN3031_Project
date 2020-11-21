@@ -184,6 +184,7 @@ const Upload = () => {
     //I have access to classMap
     console.log(classMap);
     let stress = 0;
+    let mult; //multiplier for course code
 
     for (const [key, value] of classMap.entries()) {
       let className = key;
@@ -191,10 +192,13 @@ const Upload = () => {
       if (className.charAt(3) === "4") {
         console.log("4000 lvl class");
         stress += 1;
+        mult = 1;
       } else if (className.charAt(3) === "3") {
-        stress += 0.5;
+        stress += 0.75;
+        mult = 0.5;
       } else {
         stress += 0.25;
+        mult = 0.25;
       }
 
       for (let i = 0; i < value.length; i++) {
@@ -202,23 +206,24 @@ const Upload = () => {
 
         //stress by assignment type
         if (assignment.toUpperCase().includes("EXAM")) {
-          stress += 2;
+          stress += 2 * mult;
         } else if (assignment.toUpperCase().includes("QUIZ")) {
-          stress += 1.5;
+          stress += 1 * mult;
         } else if (assignment.toUpperCase().includes("PROJECT")) {
           console.log("project");
-          stress += 1.75;
+          stress += 1.75 * mult;
         } else {
-          stress += 1;
+          stress += 0.5 * mult;
         }
         // let date = moment(value[i][1]).format('dddd'); //date of assignment
 
         //each assignment adds stress
-        stress += 0.25;
+        stress += 0.10;
       }
     }
+    var round = stress.toFixed(1);
     // return stress;
-    setOverallStress(stress);
+    setOverallStress(round);
   };
 
   return (

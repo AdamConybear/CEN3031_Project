@@ -181,6 +181,7 @@
   /* transition-duration: 0.35s; */
   background-color: #EDEFF7;
   color: black;
+  cursor: pointer;
 }
 
 .rateButtonOnBox:focus {
