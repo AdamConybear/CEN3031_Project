@@ -1,6 +1,6 @@
 import React from "react";
 import PopUp from "../../components/PopUp/PopUp";
-import { useState, useEffect, setState } from "react";
+import { useState } from "react";
 import TipPopUp from "../../components/Tips/TipPopUp";
 import Graph from "../../components/Graphs/Graph";
 import PieChartComponent from "../../components/Graphs/PieChartComponent";

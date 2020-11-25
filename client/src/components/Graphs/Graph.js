@@ -1,12 +1,12 @@
-import React, { useEffect, setState, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
-import { LineWeight } from "@material-ui/icons";
-import { red } from "@material-ui/core/colors";
+// import { LineWeight } from "@material-ui/icons";
+// import { red } from "@material-ui/core/colors";
 import "./Graph.css";
 
 const Graph = () => {
-  let r = [[]];
+  // let r = [[]];
   let arr = [];
   let arr2 = [];
 
@@ -14,9 +14,9 @@ const Graph = () => {
 
   const [popupArr, setpopupArr] = useState([[]]);
 
-  const [address, setaddress] = useState(
-    process.env.ADDRESS || "http://localhost:5000/api/popups"
-  );
+  // const [address, setaddress] = useState(
+  //   process.env.ADDRESS || "http://localhost:5000/api/popups"
+  // );
 
   const legend = {
     display: true,
@@ -44,7 +44,7 @@ const Graph = () => {
   };
 
   useEffect(() => {
-    axios.get(address).then((res) => {
+    axios.get('/api/popups').then((res) => {
       const r = res.data;
       //console.log("samanta");
       //console.log(r);

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { useState, setState } from "react";
+import React from "react";
+import { useState } from "react";
 import axios from "axios";
 
 import Slider from "../Slider";
@@ -22,9 +22,9 @@ const PopUp = (props) => {
     props.setOpen(false);
     console.log(DailyData);
 
-    let address = process.env.ADDRESS || "http://localhost:5000/api/popups";
+    // let address = process.env.ADDRESS || "http://localhost:5000/api/popups";
     axios
-      .post(address, DailyData)
+      .post('/api/popups', DailyData)
       .then((res) => console.log(res.data))
       .catch((error) => {
         if (error.response) {
