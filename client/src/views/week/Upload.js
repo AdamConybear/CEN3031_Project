@@ -210,7 +210,6 @@ const Upload = () => {
         } else if (assignment.toUpperCase().includes("QUIZ")) {
           stress += 1 * mult;
         } else if (assignment.toUpperCase().includes("PROJECT")) {
-          console.log("project");
           stress += 1.75 * mult;
         } else {
           stress += 0.5 * mult;

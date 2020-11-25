@@ -143,6 +143,7 @@ const Assignment = ({ assignment, c }) => {
   const handleSubmit = () => {
     const newAssignment ={
       assignment: assignment,
+      class: c,
       hours:hour,
       difficulty: diff
     }

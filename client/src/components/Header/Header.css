@@ -19,6 +19,7 @@
   font-weight: bolder;
   transform: scale(1.15);
   transition-duration: 0.3s;
+  cursor: pointer;
 }
 .header-right {
   display: flex;

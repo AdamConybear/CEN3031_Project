@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import gator from "../../assets/lilgator.png";
 import "./Header.css";
+import { useAuth0 } from '@auth0/auth0-react'
 
 const Header = () => {
+
+  const { loginWithRedirect , isAuthenticated, logout } = useAuth0();
+  // console.log(isAuthenticated);
   return (
     <div className="header">
       <Link to="/Home" className="logo-header">
@@ -22,7 +26,12 @@ const Header = () => {
         <div className="separator">|</div>
         <Link class="linkTo" to="/CommentBoard">Comment Board</Link>
         <div className="separator">|</div>
-        <a className="linkTo">Signout</a>
+        {isAuthenticated &&(
+          <a className="linkTo" onClick={()=>{logout({returnTo: "http://localhost:3000/Auth"})}}>Logout</a> 
+        ) }
+        {!isAuthenticated && (
+          <a className="linkTo" onClick={()=> loginWithRedirect()}>Login</a>
+        )}
       </div>
     </div>
   );
