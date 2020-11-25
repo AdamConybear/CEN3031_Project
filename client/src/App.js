@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound";
 import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 import Week from "./views/week/weekDash";
 import CommentBoard from "./views/CommentBoard/CommentBoard";
 import Contact from "./views/Contact/Contact";

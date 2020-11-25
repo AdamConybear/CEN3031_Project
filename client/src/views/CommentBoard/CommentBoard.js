@@ -7,7 +7,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
+// import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 const emoji = require("emoji-dictionary");
@@ -38,10 +38,10 @@ class CommentBoard extends Component {
   getCommentsFromDB = () => {
     console.log("getting comments for: " + this.state.searchValue);
 
-    let address = process.env.ADDRESS || "http://localhost:5000/api/comment";
+    // let address = process.env.ADDRESS || "http://localhost:5000/api/comment";
 
     axios
-      .get(address, {
+      .get('/api/comment', {
         params: {
           class: this.state.searchValue.toUpperCase(),
         },
@@ -59,11 +59,11 @@ class CommentBoard extends Component {
       });
   };
   updateLike = (commentId) => {
-    let address =
-      process.env.ADDRESS || "http://localhost:5000/api/comment/like/";
+    // let address =
+    //   process.env.ADDRESS || "http://localhost:5000/api/comment/like/";
     console.log(commentId);
     axios
-      .put(address + commentId)
+      .put('/api/comment/like/' + commentId)
       .then((res) => {
         console.log(res.data);
       })
@@ -76,11 +76,11 @@ class CommentBoard extends Component {
       });
   };
   updateDislike = (commentId) => {
-    let address =
-      process.env.ADDRESS || "http://localhost:5000/api/comment/dislike/";
+    // let address =
+    //   process.env.ADDRESS || "http://localhost:5000/api/comment/dislike/";
     console.log(commentId);
     axios
-      .put(address + commentId)
+      .put('/api/comment/dislike/' + commentId)
       .then((res) => {
         console.log(res.data);
       })
@@ -93,11 +93,11 @@ class CommentBoard extends Component {
       });
   };
   updateFlags = (commentId) => {
-    let address =
-      process.env.ADDRESS || "http://localhost:5000/api/comment/flag/";
+    // let address =
+    //   process.env.ADDRESS || "http://localhost:5000/api/comment/flag/";
     console.log(commentId);
     axios
-      .put(address + commentId)
+      .put('/api/comment/flag/' + commentId)
       .then((res) => {
         console.log(res.data);
       })
@@ -141,9 +141,9 @@ class CommentBoard extends Component {
       dislikes: 0,
       flags: 0,
     };
-    let address = process.env.ADDRESS || "http://localhost:5000/api/comment";
+    // let address = process.env.ADDRESS || "http://localhost:5000/api/comment";
     axios
-      .post(address, commentData)
+      .post('/api/comment', commentData)
       .then((res) => {
         console.log(res.data);
       })

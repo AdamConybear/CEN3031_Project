@@ -1,6 +1,6 @@
 import React from "react";
 import "./Radio.css";
-import { useState, setState } from "react";
+import { useState } from "react";
 
 const Radio = (props) => {
   const [value, setValue] = useState(true);

@@ -50,7 +50,7 @@ h1.commentBoard {
   width: 60%;
   background-color: white;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 .showingResults {
   background-color: white;
@@ -75,6 +75,7 @@ h1.commentBoard {
   transform: scale(1.5);
   transition-duration: 0.2s;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .addComment {
@@ -317,15 +318,17 @@ textarea.popUpInputProf {
 .reaction:hover {
   transform: scale(1.5);
   transition-duration: 0.2s;
+  cursor: pointer;
 }
 .reaction:focus {
   outline: none;
 }
 
 .maxWidth {
-  width: 800px !important;
+  width: 1075px !important;
   overflow-wrap: break-word;
   align-content: center;
+  font-weight: lighter;
 }
 
 .reactionParent {
@@ -347,10 +350,10 @@ textarea.popUpInputProf {
   transition: transform 1s ease-out;
 }
 
-.expand:hover {
+/* .expand:hover {
   transform: scale(1.01);
   transition-duration: 1s;
-}
+} */
 
 .stat {
   font-family: Nunito, sans-serif;

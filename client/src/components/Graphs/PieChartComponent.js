@@ -2,13 +2,13 @@ import { Pie } from "react-chartjs-2";
 import React, { Component } from "react";
 import axios from "axios";
 import "./PieChart.css"
-let sam = [];
+// let sam = [];
 
 function getdata() {
   let arr = [];
 
-  let address = process.env.ADDRESS || "http://localhost:5000/api/popups";
-  axios.get(address).then((res) => {
+  // let address = process.env.ADDRESS || "http://localhost:5000/api/popups";
+  axios.get('/api/popups').then((res) => {
     const r = res.data;
 
     console.log(r);
@@ -45,14 +45,14 @@ class PieChartComponent extends Component {
       chartData: pie,
     };
 
-    const legend = {
-      display: true,
-      position: "bottom",
-      labels: {
-        fontColor: "#323130",
-        fontSize: 14,
-      },
-    };
+    // const legend = {
+    //   display: true,
+    //   position: "bottom",
+    //   labels: {
+    //     fontColor: "#323130",
+    //     fontSize: 14,
+    //   },
+    // };
   }
 
   render() {
