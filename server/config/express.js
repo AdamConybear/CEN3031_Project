@@ -4,18 +4,11 @@ const path = require("path"),
   morgan = require("morgan"),
   bodyParser = require("body-parser"),
   popupRouter = require("../routes/popupRouter");
-  config = require("./config");
+  // config = require("./config");
   cors = require('cors');
   commentRouter = require("../routes/commentRouter");
   weekRouter = require("../routes/weekRouter");
-
-  // if (process.env.NODE_ENV === 'production') {
-  //   // we are in production - return the prod set of keys
-  //   const config = require('./prod');
-  // } else {
-  //   // we are in development - return the dev keys!!
-  //   const config = require('./config');
-  // }
+  dbKey = require('./config');
 
 module.exports.init = () => {
   /* 
@@ -23,7 +16,7 @@ module.exports.init = () => {
         - reference README for db uri
     */
   mongoose
-    .connect(process.env.MONGO_URI || config.db.uri, {
+    .connect(process.env.MONGO_URI || dbKey.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
@@ -31,12 +24,6 @@ module.exports.init = () => {
     .then(() => console.log("MongoDB Connected..."))
     .catch((err) => console.log(err));
     db = mongoose.connection;
-  // // const db = config.get('config');
-  // console.log(db);
-  // mongoose
-  //     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-  //     .then(() => console.log('MongoDB Connected...'))
-  //     .catch(err => console.log(err));
 
   mongoose.set("useCreateIndex", true);
   mongoose.set("useFindAndModify", false);
