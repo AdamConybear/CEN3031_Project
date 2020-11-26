@@ -9,13 +9,21 @@ const path = require("path"),
   commentRouter = require("../routes/commentRouter");
   weekRouter = require("../routes/weekRouter");
 
+  // if (process.env.NODE_ENV === 'production') {
+  //   // we are in production - return the prod set of keys
+  //   const config = require('./prod');
+  // } else {
+  //   // we are in development - return the dev keys!!
+  //   const config = require('./config');
+  // }
+
 module.exports.init = () => {
   /* 
         connect to database
         - reference README for db uri
     */
   mongoose
-    .connect(process.env.DB_URI || config.db.uri, {
+    .connect(process.env.MONGO_URI || config.db.uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
