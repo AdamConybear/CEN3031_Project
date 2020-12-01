@@ -44,7 +44,7 @@ const Graph = () => {
   };
 
   useEffect(() => {
-    axios.get('/api/popups').then((res) => {
+    axios.get('/api/popups',{timeout: 200}).then((res) => {
       const r = res.data;
       //console.log("samanta");
       //console.log(r);
