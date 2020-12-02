@@ -44,7 +44,10 @@ const Graph = () => {
   };
 
   useEffect(() => {
-    axios.get('/api/popups',{timeout: 200}).then((res) => {
+
+    let addy = process.env.BASE_URL || "http://localhost:5000/";
+
+    axios.get( addy + 'api/popups').then((res) => {
       const r = res.data;
       //console.log("samanta");
       //console.log(r);
