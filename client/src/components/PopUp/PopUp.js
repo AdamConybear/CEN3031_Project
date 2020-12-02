@@ -22,9 +22,9 @@ const PopUp = (props) => {
     props.setOpen(false);
     console.log(DailyData);
 
-    // let address = process.env.ADDRESS || "http://localhost:5000/api/popups";
+    let address = process.env.BASE_URL || "http://localhost:5000";
     axios
-      .post('/api/popups', DailyData)
+      .post( address + '/api/popups', DailyData)
       .then((res) => console.log(res.data))
       .catch((error) => {
         if (error.response) {

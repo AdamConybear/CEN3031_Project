@@ -7,8 +7,8 @@ import "./PieChart.css"
 function getdata() {
   let arr = [];
 
-  // let address = process.env.ADDRESS || "http://localhost:5000/api/popups";
-  axios.get('/api/popups').then((res) => {
+  let address = process.env.BASE_URL || "http://localhost:5000";
+  axios.get(address + '/api/popups').then((res) => {
     const r = res.data;
 
     console.log(r);

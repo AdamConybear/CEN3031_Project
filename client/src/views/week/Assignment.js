@@ -58,8 +58,10 @@ const Assignment = ({ assignment, c }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // let address = process.env.ADDRESS || 'http://localhost:5000/api/week';
-      const result = await axios.get('/api/week',{
+
+      let address = process.env.BASE_URL || "http://localhost:5000";
+
+      const result = await axios.get(address + '/api/week',{
         params: {
           assignment: assignment
       }});
@@ -110,8 +112,8 @@ const Assignment = ({ assignment, c }) => {
     }
     console.log(newAssignment);
 
-    // let address = process.env.ADDRESS || "http://localhost:5000/api/week";
-    axios.post('/api/week',newAssignment)
+    let address = process.env.BASE_URL || "http://localhost:5000";
+    axios.post(address + '/api/week',newAssignment)
     .then(res => console.log(res.data))
     .catch(error => {
       if (error.response) {
