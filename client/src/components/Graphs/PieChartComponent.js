@@ -10,7 +10,7 @@ function getdata() {
   let address = process.env.BASE_URL || "http://localhost:5000";
   axios.get(address + '/api/popups').then((res) => {
     const r = res.data;
-
+    
     console.log(r);
     let yes = 0;
     let no = 0;
