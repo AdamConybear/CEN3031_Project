@@ -129,7 +129,7 @@ const Assignment = ({ assignment, c }) => {
         // production code
         address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
     }
-    
+
     axios.post(address + '/api/week',newAssignment)
     .then(res => console.log(res.data))
     .catch(error => {
