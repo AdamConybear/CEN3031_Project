@@ -49,6 +49,9 @@ module.exports.init = () => {
     app.get("/*", function (req, res) {
       res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
     });
+    app.get("/butter"), function (req, res) {
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    };
   }
 
   return app;
