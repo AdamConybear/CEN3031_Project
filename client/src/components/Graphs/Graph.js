@@ -49,13 +49,13 @@ const Graph = () => {
 
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
         // dev code
-        address = "http://localhost:5000";
+        address = "http://localhost:5000/";
     } else {
         // production code
-        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com/";
     }
 
-    axios.get( address + 'api/popups').then((res) => {
+    axios.get(address + 'api/popups').then((res) => {
       const r = res.data;
       //console.log("samanta");
       //console.log(r);
