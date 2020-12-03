@@ -23,7 +23,7 @@ module.exports.init = () => {
     })
     .then(() => console.log("MongoDB Connected..."))
     .catch((err) => console.log(err));
-    db = mongoose.connection;
+    // db = mongoose.connection;
   // // const db = config.get('config');
   // console.log(db);
   // mongoose

@@ -46,8 +46,9 @@ const Graph = () => {
   useEffect(() => {
     axios.get(address).then((res) => {
       const r = res.data;
+
       //console.log("samanta");
-      //console.log(r);
+      console.log(r);
 
       let index = 1;
       r.forEach((record) => {
