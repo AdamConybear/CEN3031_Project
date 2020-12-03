@@ -38,7 +38,15 @@ class CommentBoard extends Component {
   getCommentsFromDB = () => {
     console.log("getting comments for: " + this.state.searchValue);
 
-    let address = process.env.BASE_URL || "http://localhost:5000";
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
 
     axios
       .get(address + '/api/comment', {
@@ -61,7 +69,15 @@ class CommentBoard extends Component {
   updateLike = (commentId) => {
     
 
-    let address = process.env.BASE_URL || "http://localhost:5000";
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
     console.log(commentId);
     axios
       .put(address + '/api/comment/like/' + commentId)
@@ -78,7 +94,15 @@ class CommentBoard extends Component {
   };
   updateDislike = (commentId) => {
     
-    let address = process.env.BASE_URL || "http://localhost:5000";
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
 
     console.log(commentId);
     axios
@@ -96,7 +120,15 @@ class CommentBoard extends Component {
   };
   updateFlags = (commentId) => {
     
-    let address = process.env.BASE_URL || "http://localhost:5000";
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
 
     console.log(commentId);
     axios
@@ -144,7 +176,15 @@ class CommentBoard extends Component {
       dislikes: 0,
       flags: 0,
     };
-    let address = process.env.BASE_URL || "http://localhost:5000";
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
     axios
       .post(address + '/api/comment', commentData)
       .then((res) => {
