@@ -41,10 +41,7 @@ module.exports.init = () => {
   app.use('/api/popups', popupRouter);
   app.use('/api/comment', commentRouter);
   app.use('/api/week', weekRouter);
-  app.get("/butter"), function (req, res) {
-    res.end("Testing butter route")
-  };
-
+  
   if (process.env.NODE_ENV === "production") {
     // Serve any static files
     app.use(express.static(path.join(__dirname, "../../client/build")));
