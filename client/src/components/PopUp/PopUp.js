@@ -41,28 +41,31 @@ const PopUp = (props) => {
     <div className="modalx">
       <div className="modal_contentx">
         <header className="daily">
-          Hi, {userName}! This is your daily check-in!{" "}
-          {moment(Date()).format("dddd, MMMM Do YYYY")}
+          <div class="welcomee">Welcome back, {userName}</div>
+          <div class="date">{moment(Date()).format("dddd, MMMM Do YYYY")}</div>
         </header>
         <div className="content">
-          <label>How stressed are you today?</label>
-          <div className="fixRadio">
-            <Slider setVar={setStress} />
+          <label class="question">How stressed are you today?</label>
+          <div class="sliderCompanions">
+            <div style={{paddingRight: "15px", fontWeight: "lighter",}}>0</div>
+            <Slider setVar={setStress}/>
+            <div style={{paddingLeft: "15px", fontWeight: "lighter",}}>10</div>
           </div>
 
-          <label>How many hours of sleep did you get?</label>
-          <div className="fixRadio">
-            <Slider setVar={setSleep} />
+          <label class="question">How many hours of sleep did you get?</label>
+          <div class="sliderCompanions">
+            <div style={{paddingRight: "15px", fontWeight: "lighter",}}>0</div>
+            <div class="huh"><Slider setVar={setSleep} /></div>
+            <div style={{paddingLeft: "15px", fontWeight: "lighter",}}>10</div>
           </div>
 
-          <label>Did you exercise today?</label>
-          <div className="fixRadio">
-            <Radio setEx={setEx} />
-          </div>
+          <label class="question">Did you exercise today?</label>
+          <div class="huh"><Radio setEx={setEx}/></div>
         </div>
-        <button class="dialogButton" onClick={handleClick}>
-          Submit
-        </button>
+
+        <div class="containerr" onClick={handleClick}>
+	         <p class="animated-word">Submit</p>
+        </div>
       </div>
     </div>
   );

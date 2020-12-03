@@ -4,11 +4,12 @@ const path = require("path"),
   morgan = require("morgan"),
   bodyParser = require("body-parser"),
   popupRouter = require("../routes/popupRouter");
-  dbKey = require("./dev");
   cors = require('cors');
   commentRouter = require("../routes/commentRouter");
   weekRouter = require("../routes/weekRouter");
   userRouter = require("../routes/userInfoRouter");
+  dbKey = require('./config');
+
 
 module.exports.init = () => {
   /* 
@@ -24,12 +25,6 @@ module.exports.init = () => {
     .then(() => console.log("MongoDB Connected..."))
     .catch((err) => console.log(err));
     // db = mongoose.connection;
-  // // const db = config.get('config');
-  // console.log(db);
-  // mongoose
-  //     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-  //     .then(() => console.log('MongoDB Connected...'))
-  //     .catch(err => console.log(err));
 
   mongoose.set("useCreateIndex", true);
   mongoose.set("useFindAndModify", false);
@@ -52,11 +47,11 @@ module.exports.init = () => {
   if (process.env.NODE_ENV === "production") {
     // Serve any static files
     app.use(express.static(path.join(__dirname, "../../client/build")));
-
-    // Handle React routing, return all requests to React app
-    app.get("*", function (req, res) {
-      res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
+    // app.use(express.static('client/build'));
+    app.get("/*", function (req, res) {
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
     });
+    
   }
 
   return app;

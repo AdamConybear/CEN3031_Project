@@ -2,28 +2,21 @@ import React from "react";
 import "./Radio.css";
 import { useState, setState } from "react";
 
-const Radio = (props) => {
-  const [value, setValue] = useState(true);
+const Radio = ({setEx}) => {
 
-  const handleOnChangeNo = (e) => {
-    console.log("radio is ");
+  const handleYesChange = (e) => {
+    e.preventDefault();
+    setEx(true);
+  }
+  const handleNoChange = (e) => {
+    e.preventDefault();
+    setEx(false);
+  }
 
-    setValue(false);
-    props.setEx(false);
-  };
-
-  return (
-    <div class="b">
-      <label class="container">
-        Yes
-        <input type="radio" checked="checked" name="radio"></input>
-        <span class="checkmark"></span>
-      </label>
-      <label class="container">
-        No
-        <input type="radio" name="radio" onChange={handleOnChangeNo}></input>
-        <span class="checkmark"></span>
-      </label>
+return (
+    <div class="parent">
+      <button class="yes" onClick={handleYesChange}><div class="inside">Yes</div></button>
+      <button class="no"  onClick={handleNoChange}><div class="inside">No</div></button>
     </div>
   );
 };

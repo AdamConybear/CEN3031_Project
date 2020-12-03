@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 // import './Home.css';
 import Button from "@material-ui/core/Button";
 // mport styled from "styled-components";
 // import Icon from "@material-ui/core/Icon";
 // import Textarea from "react-textarea-autosize";
 // import Card from "@material-ui/core/Card";
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import posed from "react-pose";
@@ -15,44 +15,6 @@ import axios from 'axios';
 // import styles from './week.css'
 import "./week.css";
 
-// const Outline = styled.div`
-//   height: 100px;
-//   width: 150px;
-
-//   background-color: #f9f9f9;
-//   padding: 10px;
-//   margin-top: 30px;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   /*cursor: pointer;*/
-//   border-radius: 10px;
-//   box-shadow: 0 2px 4px black;
-//   position: relative;
-//   transition: transform 0.2s; /* Animation */
-//   font-size: 15px;
-//   //   &:hover{
-//   //     transform: scale(1.05)
-//   //   }
-// `;
-
-// const Testing = styled.div`
-//   height: 380px;
-//   width: 380px;
-//   background: #f9f9f9;
-//   //   padding: 10px;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   // transform: translate(-50%, -50%) scale(0);
-//   background: #fff;
-//   /* width: 380px;
-//   height: 350px; */
-//   z-index: 2;
-//   text-align: center;
-//   box-sizing: border-box;
-//   // font-family: "Nunito", sans-serif;
-// `;
 
 const ShakePose = posed.div({
   shake: {
@@ -96,8 +58,18 @@ const Assignment = ({ assignment, c }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let address = process.env.ADDRESS || 'http://localhost:5000/api/week';
-      const result = await axios.get(address,{
+
+      let address;
+
+      if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+          // dev code
+          address = "http://localhost:5000";
+      } else {
+          // production code
+          address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+      }
+
+      const result = await axios.get(address + '/api/week',{
         params: {
           assignment: assignment
       }});
@@ -149,8 +121,17 @@ const Assignment = ({ assignment, c }) => {
     }
     console.log(newAssignment);
 
-    let address = process.env.ADDRESS || "http://localhost:5000/api/week";
-    axios.post(address,newAssignment)
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+
+    axios.post(address + '/api/week',newAssignment)
     .then(res => console.log(res.data))
     .catch(error => {
       if (error.response) {
