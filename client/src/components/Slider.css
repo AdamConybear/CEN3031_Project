@@ -1,0 +1,41 @@
+.value {
+  flex: 1;
+  margin-top: 5px;
+}
+
+input[type="range"] {
+ -webkit-appearance: none;
+  width: 300px;
+}
+
+input[type="range"]:focus {
+ outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+ background: black;
+ height: 2px;
+
+}
+
+input[type="range"]::-moz-range-track {
+ background: black;
+ height: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+ -webkit-appearance: none;
+ height: 15px;
+ width: 3px;
+ background: black;
+ margin-top: -6px;
+ border-radius: 0;
+}
+
+input[type="range"]::-moz-range-thumb {
+ height: 15px;
+ width: 3px;
+ background: black;
+ margin-top: -6px;
+ border-radius: 0;
+}
