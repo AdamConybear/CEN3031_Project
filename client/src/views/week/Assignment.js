@@ -58,8 +58,18 @@ const Assignment = ({ assignment, c }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // let address = process.env.ADDRESS || 'http://localhost:5000/api/week';
-      const result = await axios.get('/api/week',{
+
+      let address;
+
+      if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+          // dev code
+          address = "http://localhost:5000";
+      } else {
+          // production code
+          address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+      }
+
+      const result = await axios.get(address + '/api/week',{
         params: {
           assignment: assignment
       }});
@@ -110,8 +120,17 @@ const Assignment = ({ assignment, c }) => {
     }
     console.log(newAssignment);
 
-    // let address = process.env.ADDRESS || "http://localhost:5000/api/week";
-    axios.post('/api/week',newAssignment)
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+
+    axios.post(address + '/api/week',newAssignment)
     .then(res => console.log(res.data))
     .catch(error => {
       if (error.response) {
