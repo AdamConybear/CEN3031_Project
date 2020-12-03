@@ -1,60 +1,131 @@
-.dialogButton {
-  margin-bottom: "15px" margin;
-  left: 40%;
-  padding: "3-x 8px";
-  cursor: "pointer";
-  border: "none";
-  border-radius: 5px;
-  width: "38px";
-  height: "38px";
-  font-weight: "bold";
-  margin-bottom: 2%;
-  background-color: black;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  cursor: pointer;
-}
 
+.dialogButton:hover {
+  color: black;
+  background-color: #EDEFF7;
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+}
 .modalx {
   position: fixed;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.25);
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+  align-content: center;
   display: flex;
+  justify-content: center;
 }
 
 .modal_contentx {
   background-color: white;
-  /* position: absolute; */
-  align-self: center;
+  width: 500px;
+  /*height: 510px;*/
+  z-index: 2;
   text-align: center;
-  /* top: 20%; */
-  /* left: 30%; */
-  width: 30%;
-  border-radius: 5px;
-  border: 2px solid black;
-  justify-content: center;
-  align-items: "center";
+  font-family: "Nunito", sans-serif;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
 }
 
-.daily {
+.modal_contentx:hover {
+  background-color: #FAF5F0;
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+}
+
+.welcomee {
   font-size: 30px;
-  /* text-align: center; */
+  margin-top: 15px;
   padding: 5px;
+  font-weight: bolder;
+}
+
+.date {
+  font-weight: lighter;
+  font-size: 15px;
+  padding-bottom: 20px;
+}
+
+.question {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: lighter;
+  font-size: 18px;
 }
 
 .content {
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  align-content: center;
   justify-content: center;
 }
 
-.fixRadio {
+.huh {
   align-self: center;
+}
+
+.sliderCompanions {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-self: center;
+  font-family: "Nunito", sans-serif;
+  margin-top: 15px;
+}
+.dialogButton {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: black;
+  border-radius: 0;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease-out;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+  align-self: center;
+  color: white;
+  height: 40px;
+  width: 70px;
+  margin-bottom: 20px;
+}
+
+.containerr {
+	height: 40px;
+	display: flex;
+	align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.animated-word {
+	font-family: Nunito, sans-serif;
+  line-height: 40px;
+	font-weight: lighter;
+	font-size: 15px;
+	text-align: center;
+  background-color: black;
+	color: white;
+  cursor: pointer;
+  max-width: 600px;
+  width: 90px;
+  height: 40px;
+  outline: 3px solid;
+  outline-color: black;
+  outline-offset: 0px;
+  transition: all 600ms cubic-bezier(0.2, 0, 0, 0.8);
+}
+
+.animated-word:hover {
+	color: black;
+  transform: scale(1.2);
+  transition-duration: 0.3s;
+  background-color: #EDEFF7;
+  outline-color:  #EDEFF7;
+  outline-offset: 10px;
 }
