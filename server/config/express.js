@@ -4,7 +4,7 @@ const path = require("path"),
   morgan = require("morgan"),
   bodyParser = require("body-parser"),
   popupRouter = require("../routes/popupRouter");
-  config = require("./config");
+  dbKey = require("./dev");
   cors = require('cors');
   commentRouter = require("../routes/commentRouter");
   weekRouter = require("../routes/weekRouter");
@@ -16,7 +16,7 @@ module.exports.init = () => {
         - reference README for db uri
     */
   mongoose
-    .connect(process.env.DB_URI || config.db.uri, {
+    .connect(process.env.MONGO_URI || dbKey.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
