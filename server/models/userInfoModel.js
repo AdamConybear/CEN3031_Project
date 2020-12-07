@@ -2,43 +2,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//Create schema
-const popupSchema = new Schema ({
-    stress: {
-        type: Number,
-        required: true
-    },
-    sleep: {
-        type: Number,
-        required: true
-    },
-    exercise: {
-        type: Boolean,
-        required: true
-    }
-});
-
-const weekSchema = new Schema ({
-    assignment: {
-        type: String,
-        required: true
-    },
-    class: {
-        type: String,
-        required: true
-    },
-    hours: {
-        type: Number,
-        required: true
-    },
-    difficulty: {
-        type: Number,
-        required: true
-    },
-});
-
-// const Popup = mongoose.model('Popup', popupSchema);
-// const Assignment = mongoose.model('Assignment', weekSchema);
 
 const userInfoSchema = new Schema ({
     id: {
@@ -49,14 +12,50 @@ const userInfoSchema = new Schema ({
         type: String,
         required: true
     },
-    popups: [{ type: Schema.Types.ObjectId, ref: 'Popup'}],
-    assignments: [{ type: Schema.Types.ObjectId, ref: 'Assignment'}],
+    popups: [{ 
+        stress: {
+            type: Number,
+            required: true
+        },
+        sleep: {
+            type: Number,
+            required: true
+        },
+        exercise: {
+            type: Boolean,
+            required: true
+        }
+    }],
+    assignments: [{
+        assignment: {
+            type: String,
+            required: true
+        },
+        class: {
+            type: String,
+            required: true
+        },
+        dueDate: {
+            type: String,
+            required: true
+        },
+        hours: {
+            type: Number,
+            required: true
+        },
+        difficulty: {
+            type: Number,
+            required: true
+        },
+        isRated:{
+            type: Boolean,
+            required: true
+        }
+    }]
     
 });
 //specifies the collection in the third var
 // export default mongoose.model('popups', popupSchema, 'UserPopUps'); 
 module.exports = {
     User: mongoose.model('users', userInfoSchema, 'UserInfo'),
-    Popup: mongoose.model('Popup', popupSchema),
-    Assignment: mongoose.model('Assignment', weekSchema)
 }

@@ -18,8 +18,12 @@ const popupSchema = new Schema ({
 });
 //specifies the collection in the third var
 
-// module.exports = {
-//     Item: mongoose.model('popups', popupSchema, 'UserPopUps')
-// }
+module.exports = {
+    Item: mongoose.model('popups', popupSchema, 'UserPopUps')
+}
 
-module.exports = popupSchema;
+// module.exports = popupSchema;
+
+// module.exports = {
+//     Item: popupSchema
+// }

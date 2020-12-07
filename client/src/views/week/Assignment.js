@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
-// import styled from "styled-components";
-// import './Home.css';
 import Button from "@material-ui/core/Button";
-// mport styled from "styled-components";
-// import Icon from "@material-ui/core/Icon";
-// import Textarea from "react-textarea-autosize";
-// import Card from "@material-ui/core/Card";
-// import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import posed from "react-pose";
 import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 
 // import styles from './week.css'
 import "./week.css";
@@ -41,8 +35,11 @@ const Assignment = ({ assignment, c }) => {
   const [timeDB, setTimeDB] = useState(0);
   const [diffDB, setDiffDB] = useState(0);
   const [hasRated, setHasRated] = useState(false);
+
   // const [ass,setAss] = useState();
   // const [popup, setPopup] = useState(false);
+  const { user } = useAuth0();
+  const { sub } = user;
 
   const toggleRateForm = () => {
     console.log("toggling rate");
@@ -69,12 +66,20 @@ const Assignment = ({ assignment, c }) => {
           address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
       }
 
-      const result = await axios.get(address + '/api/week',{
+      const result = await axios.get(address + '/api/user/allAssignments',{
         params: {
           assignment: assignment
       }});
-      console.log(result.data);
+
+      const userResult = await axios.get(address + '/api/user/indivAssignment',{
+        params: {
+          id: sub,
+          assignment: assignment
+      }});
+      setHasRated(userResult.data.isRated);
+      // console.log(result.data);//will give me an array of objects, each object is a differnt assignmet with same title
       
+      //assignment exists in db
       if (result.data.length > 0){
         let tempDiff = 0;
         let tempHours = 0;
@@ -85,7 +90,7 @@ const Assignment = ({ assignment, c }) => {
           tempHours += a.hours;
         })
         setTimeDB(tempHours/len);
-        setDiffDB(tempDiff/len);
+        setDiffDB(tempDiff/len); 
 
       }
     };
@@ -113,13 +118,13 @@ const Assignment = ({ assignment, c }) => {
   }
 
   const handleSubmit = () => {
-    const newAssignment ={
-      assignment: assignment,
-      class: c,
-      hours:hour,
-      difficulty: diff
+
+    const ratedAssingment = {
+      hours: hour,
+      difficulty: diff,
+      isRated: true
     }
-    console.log(newAssignment);
+
 
     let address;
 
@@ -131,8 +136,12 @@ const Assignment = ({ assignment, c }) => {
         address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
     }
 
-    axios.post(address + '/api/week',newAssignment)
-    .then(res => console.log(res.data))
+    axios.put(address + '/api/user/assignmentRated', ratedAssingment,{
+      params: {
+        id: sub,
+        assignment: assignment
+    }})
+    .then(setHasRated(true))
     .catch(error => {
       if (error.response) {
           console.log(error.response.data);
@@ -142,7 +151,7 @@ const Assignment = ({ assignment, c }) => {
     });
 
     setShowPop(false);
-    setHasRated(true);
+    // setHasRated(true);
   }
 
   const showPopup = () => {

@@ -17,14 +17,14 @@ const Header = () => {
         </div>
       </Link>
 
-      <div class="header-right">
+      <div className="header-right">
         <div><Link className="linkTo" to="/Week">Weekly Schedule</Link></div>
         <div className="separator">|</div>
-        <Link class="linkTo" to="/WhatIf">What-If</Link>
+        <Link className="linkTo" to="/WhatIf">What-If</Link>
         <div className="separator">|</div>
-        <Link class="linkTo" to="/Resources">Resources</Link>
+        <Link className="linkTo" to="/Resources">Resources</Link>
         <div className="separator">|</div>
-        <Link class="linkTo" to="/CommentBoard">Comment Board</Link>
+        <Link className="linkTo" to="/CommentBoard">Comment Board</Link>
         <div className="separator">|</div>
         {isAuthenticated &&(
           <a className="linkTo" onClick={()=>{logout({returnTo: "http://localhost:3000/Auth"})}}>Logout</a> 

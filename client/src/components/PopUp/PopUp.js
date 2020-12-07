@@ -1,20 +1,22 @@
 import React, { Component } from "react";
 import { useState, setState } from "react";
 import axios from "axios";
-
 import Slider from "../Slider";
 import "./PopUp.css";
 import Radio from "../Radio/Radio";
 import moment from "moment";
+import { useAuth0 } from '@auth0/auth0-react';
 
 const PopUp = (props) => {
   const [stress, setStress] = useState(5);
   const [sleep, setSleep] = useState(5);
   const [exercise, setEx] = useState(true);
 
+  const { user } = useAuth0();
+  const { sub } = user;
+
   const handleClick = () => {
     const DailyData = {
-      userID: 0,
       stress: stress,
       sleep: sleep,
       exercise: exercise,
@@ -22,9 +24,22 @@ const PopUp = (props) => {
     props.setOpen(false);
     console.log(DailyData);
 
-    let address = process.env.ADDRESS || "http://localhost:5000/api/popups";
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+
     axios
-      .post(address, DailyData)
+      .post(address + "/api/user/popup", DailyData, {
+        params: {
+          id: sub
+        },
+      })
       .then((res) => console.log(res.data))
       .catch((error) => {
         if (error.response) {

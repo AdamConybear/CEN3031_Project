@@ -6,7 +6,7 @@ import "./week.css";
 const weekDash = () => {
   return (
     <div>
-      <h1 class="weeklyTitle">Weekly Schedule</h1>
+      <h1 className="weeklyTitle">Weekly Schedule</h1>
       <Upload />
     </div>
   );

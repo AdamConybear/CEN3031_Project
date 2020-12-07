@@ -12,9 +12,9 @@ const Home = () => {
   const [isOpen, setOpen] = useState(false);
 
   const { user } = useAuth0();
-  const { nickname, first_name , is_new } = user;
+  const { nickname, first_name , is_new, sub, is_admin } = user;
   console.log(user);
-  console.log(first_name);
+  // console.log(first_name);
 
   if (is_new) {
     //add user to db
@@ -28,16 +28,38 @@ const Home = () => {
 
   const addUser = () => {
 
+    let role;
+    if (is_admin){
+      role = "admin"
+    }else{
+      role = "user"
+    }
+
+    
+    const testPopData = {
+      stress: 7,
+      sleep: 7,
+      exercise: false
+    };
+
     const userData = {
-      id: 1,
-      role: "admin",
-      popups: [],
+      id: sub,
+      role: role,
+      popups: [testPopData],
       assignments: []
     };
 
-    let address = process.env.ADDRESS || "http://localhost:5000/api/user";
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
     axios
-      .post(address, userData)
+      .post(address + "/api/user/user", userData)
       .then((res) => console.log(res.data))
       .catch((error) => {
         if (error.response) {
@@ -46,16 +68,14 @@ const Home = () => {
           console.log(error.response.headers);
         }
       });
-
-
-
   }
 
   const getPop = (e) => {
     return <PopUp setOpen={setOpen} />;
   };
+
   return (
-    <div class="home">
+    <div className="home">
       <TipPopUp />
       <div>
         <button onClick={handleOpen}>Open Pop</button>
@@ -67,12 +87,12 @@ const Home = () => {
 
 
 
-      <div class="graphsParent">
-        <div class="pieWelcomeParent">
-          <div class="welcome">Welcome back, {nickname}</div>
+      <div className="graphsParent">
+        <div className="pieWelcomeParent">
+          <div className="welcome">Welcome back, {nickname}</div>
           <div class="pieParent"><PieChartComponent/></div>
         </div>
-        <div class="sleepgraph"><Graph/></div>
+        <div className="sleepgraph"><Graph/></div>
       </div>
 
 

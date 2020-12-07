@@ -33,11 +33,11 @@ const App = () => {
   return (
   <html>
     <body>
-      <div class = "wrapper">
-        <div class = "page-header">
+      <div className = "wrapper">
+        <div className = "page-header">
           {isAuthenticated ? <Header /> : null}
         </div>
-        <article class="content">
+        <article className="content">
               {testAuth()}
               {isAuthenticated ? 
                 <Switch>
@@ -65,8 +65,8 @@ const App = () => {
         </article>
       </div>
         
-      <div class="page-footer">
-        <div class="footerHeading">
+      <div className="page-footer">
+        <div className="footerHeading">
           <Link to="/Contact">Contact</Link>
           <Link to="/AboutUs">About us</Link>
           <Link to="/Help">Help</Link>

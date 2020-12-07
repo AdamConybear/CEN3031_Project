@@ -24,7 +24,6 @@ module.exports.init = () => {
     })
     .then(() => console.log("MongoDB Connected..."))
     .catch((err) => console.log(err));
-    // db = mongoose.connection;
 
   mongoose.set("useCreateIndex", true);
   mongoose.set("useFindAndModify", false);
