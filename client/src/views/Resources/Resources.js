@@ -5,7 +5,6 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
-// import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import LeafletMap from "../../components/Maps/LeafletMap";
@@ -46,6 +45,7 @@ class Resources extends Component {
         }
       });
   };
+
   getAcceptedFromDB = () => {
     console.log("getting tips");
 
@@ -75,7 +75,7 @@ class Resources extends Component {
       });
   };
 
-  displayUtilities = () => {
+  displayAddTip = () => {
     return (
       <div>
         <div class="addCommentParent">
@@ -134,7 +134,7 @@ class Resources extends Component {
                 return (
                   <TableRow class="expand" key={tip.tip}>
                     <TableCell colSpan={1} component="th" scope="row">
-                      <div class="courseAndProf">{tip.tip}</div>
+                      <div>{tip.tip}</div>
                     </TableCell>
                   </TableRow>
                 );
@@ -149,14 +149,10 @@ class Resources extends Component {
   render() {
     return (
       <div>
-        <button class="cancel" onClick={() => this.getAcceptedFromDB()}>
-          tips
-        </button>
+        <button onClick={() => this.getAcceptedFromDB()}>refresh tips</button>
         {this.displayTips()}
-        {this.displayUtilities()}
-        <div>
-          <LeafletMap />
-        </div>
+        {this.displayAddTip()}
+        <LeafletMap />
       </div>
     );
   }
