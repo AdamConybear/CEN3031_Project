@@ -7,6 +7,7 @@ const path = require("path"),
   cors = require('cors');
   commentRouter = require("../routes/commentRouter");
   weekRouter = require("../routes/weekRouter");
+  tipRouter = require("../routes/tipRouter");
   dbKey = require('./config');
 
 
@@ -41,6 +42,7 @@ module.exports.init = () => {
   app.use('/api/popups', popupRouter);
   app.use('/api/comment', commentRouter);
   app.use('/api/week', weekRouter);
+  app.use('/api/tip', tipRouter);
   
   if (process.env.NODE_ENV === "production") {
     // Serve any static files
