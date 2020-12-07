@@ -66,7 +66,7 @@ class PieChartComponent extends Component {
   render() {
     return (
       <div>
-        <div class="exTitle">Exercise</div>
+        <div className="exTitle">Exercise</div>
         <Pie data={this.state.chartData} height="200%" />
         <br />
       </div>

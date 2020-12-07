@@ -21,10 +21,10 @@ const App = () => {
 
   const { isAuthenticated , isLoading } = useAuth0();
 
-  const testAuth = () => {
-    console.log(isAuthenticated);
+  // const testAuth = () => {
+  //   console.log(isAuthenticated);
 
-  }
+  // }
 
   if(isLoading){
     return null;
@@ -38,7 +38,7 @@ const App = () => {
           {isAuthenticated ? <Header /> : null}
         </div>
         <article className="content">
-              {testAuth()}
+              {/* {testAuth()}  */}
               {isAuthenticated ? 
                 <Switch>
                   <Route path="/Home" component={Home} />

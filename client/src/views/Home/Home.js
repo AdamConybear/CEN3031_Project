@@ -90,7 +90,7 @@ const Home = () => {
       <div className="graphsParent">
         <div className="pieWelcomeParent">
           <div className="welcome">Welcome back, {nickname}</div>
-          <div class="pieParent"><PieChartComponent/></div>
+          <div className="pieParent"><PieChartComponent/></div>
         </div>
         <div className="sleepgraph"><Graph/></div>
       </div>

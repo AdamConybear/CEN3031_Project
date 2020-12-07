@@ -7,6 +7,16 @@ import { useAuth0 } from '@auth0/auth0-react'
 const Header = () => {
 
   const { loginWithRedirect , isAuthenticated, logout } = useAuth0();
+
+  let authPage;
+
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+      // dev code
+      authPage = "http://localhost:3000/Auth";
+  } else {
+      // production code
+      authPage = "https://lit-anchorage-94851.herokuapp.com/Auth";
+  }
   // console.log(isAuthenticated);
   return (
     <div className="header">
@@ -27,7 +37,7 @@ const Header = () => {
         <Link className="linkTo" to="/CommentBoard">Comment Board</Link>
         <div className="separator">|</div>
         {isAuthenticated &&(
-          <a className="linkTo" onClick={()=>{logout({returnTo: "http://localhost:3000/Auth"})}}>Logout</a> 
+          <a className="linkTo" onClick={()=>{logout({returnTo: authPage})}}>Logout</a> 
         ) }
         {!isAuthenticated && (
           <a className="linkTo" onClick={()=> loginWithRedirect()}>Login</a>

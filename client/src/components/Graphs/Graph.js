@@ -55,8 +55,8 @@ const Graph = () => {
         address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
     }
 
-    //only get data if user exists
-    let a = false
+    //only get data user is not new
+    let a = true;
 
     if (a){
       axios.get(address + '/api/user/popup', {

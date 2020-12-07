@@ -1,4 +1,7 @@
-module.exports = {
-    domain: "dev--xuoc9q7.auth0.com",
-    clientId: "0xZ1LlUnDHzjqAnAyKtrUaZpFpMlI4gi"
-};
+if (process.env.NODE_ENV === 'production') {
+    // we are in production - return the prod set of keys
+    module.exports = require('./authProd');
+} else {
+    // we are in development - return the dev keys!!
+    module.exports = require('./authDev');
+}
