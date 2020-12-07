@@ -19,7 +19,8 @@ import "./App.css";
 
 const App = () => {
 
-  const { isAuthenticated , isLoading } = useAuth0();
+  const { isAuthenticated , isLoading, user } = useAuth0();
+  
 
   // const testAuth = () => {
   //   console.log(isAuthenticated);
@@ -27,6 +28,8 @@ const App = () => {
   // }
 
   if(isLoading){
+    console.log("hopefully user exists here");
+    console.log(user);
     return null;
   }
 

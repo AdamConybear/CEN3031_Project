@@ -38,7 +38,7 @@ const Header = () => {
         <div className="separator">|</div>
         {isAuthenticated &&(
           <a className="linkTo" onClick={()=>{logout({returnTo: authPage})}}>Logout</a> 
-        ) }
+        )}
         {!isAuthenticated && (
           <a className="linkTo" onClick={()=> loginWithRedirect()}>Login</a>
         )}
