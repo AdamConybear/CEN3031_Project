@@ -25,6 +25,7 @@ import axios from 'axios';
 class Resources extends Component {
   state = {
     tip: "",
+    tipArr: []
   };
 
   togglePopup = () => {
@@ -48,6 +49,33 @@ class Resources extends Component {
       .post(address, tipData)
       .then((res) => {
         console.log(res.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  };
+  getAcceptedFromDB = () => {
+    console.log("getting tips");
+
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+
+    axios
+      .get(address + '/api/tip/accepted')
+      .then((res) => {
+        console.log(res.data);
+        this.setState({ tipArr: res.data });
       })
       .catch((error) => {
         if (error.response) {
