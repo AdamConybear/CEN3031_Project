@@ -15,7 +15,7 @@ const Header = () => {
       authPage = "http://localhost:3000/Auth";
   } else {
       // production code
-      authPage = "https://lit-anchorage-94851.herokuapp.com/Auth";
+      authPage = "https://lit-anchorage-94851.herokuapp.com/#/Auth";
   }
   // console.log(isAuthenticated);
   return (

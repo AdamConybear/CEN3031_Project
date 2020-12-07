@@ -14,10 +14,11 @@ const Home = () => {
   const { user } = useAuth0();
   const { nickname, first_name , is_new, sub, is_admin } = user;
   console.log(user);
-  // console.log(first_name);
+  console.log("First name: " + first_name);
 
   if (is_new) {
     //add user to db
+    console.log("user is new, first time logging in")
 
   }
 
@@ -89,7 +90,7 @@ const Home = () => {
 
       <div className="graphsParent">
         <div className="pieWelcomeParent">
-          <div className="welcome">Welcome back, {nickname}</div>
+          <div className="welcome">Welcome back, {first_name}</div>
           <div className="pieParent"><PieChartComponent/></div>
         </div>
         <div className="sleepgraph"><Graph/></div>
