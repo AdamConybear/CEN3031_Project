@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import "./Resources.css";
-import axios from 'axios';
-
+import axios from "axios";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+// import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 // // Initialize leaflet.js
 // var L = require("leaflet");
 
@@ -25,7 +31,7 @@ import axios from 'axios';
 class Resources extends Component {
   state = {
     tip: "",
-    tipArr: []
+    tipArr: [],
   };
 
   togglePopup = () => {
@@ -42,7 +48,7 @@ class Resources extends Component {
     const tipData = {
       tip: this.state.tip,
       accepted: false,
-      reviewed:false
+      reviewed: false,
     };
     let address = process.env.ADDRESS || "http://localhost:5000/api/tip";
     axios
@@ -63,16 +69,17 @@ class Resources extends Component {
 
     let address;
 
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-        // dev code
-        address = "http://localhost:5000";
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+      // dev code
+      address = "http://localhost:5000";
     } else {
-        // production code
-        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+      // production code
+      address =
+        process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
     }
 
     axios
-      .get(address + '/api/tip/accepted')
+      .get(address + "/api/tip/accepted")
       .then((res) => {
         console.log(res.data);
         this.setState({ tipArr: res.data });
@@ -135,8 +142,38 @@ class Resources extends Component {
     );
   };
 
+  displayTips = () => {
+    return (
+      <div>
+        <TableContainer class="tableContainer" component={Paper}>
+          <Table aria-label="simple table">
+            <TableBody>
+              {this.state.tipArr.map((tip) => {
+                return (
+                  <TableRow class="expand" key={tip.tip}>
+                    <TableCell colSpan={1} component="th" scope="row">
+                      <div class="courseAndProf">{tip.tip}</div>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
+  };
+
   render() {
-    return this.displayUtilities();
+    return (
+      <div>
+        <button class="cancel" onClick={() => this.getAcceptedFromDB()}>
+          tips
+        </button>
+        {this.displayTips()}
+        {this.displayUtilities()}
+      </div>
+    );
   }
 }
 
