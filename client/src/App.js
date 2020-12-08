@@ -21,13 +21,13 @@ import axios from 'axios';
 const App = () => {
 
   const { isAuthenticated , isLoading, user } = useAuth0();
-  const {sub, email} = user;
+  // const {sub, email} = user;
 
   const adminEmails = ["test@test.com", "joe@joe.com"];
   
 
   const addUsertoDB = () => {
-
+    const {sub, email} = user;
     // console.log("hopefully user exists here");
     // console.log(user);
 
