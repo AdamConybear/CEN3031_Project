@@ -37,6 +37,7 @@
     "moment": "^2.29.1",
     "mongoose": "^5.7.1",
     "morgan": "^1.9.1",
+    "node-fetch": "^2.6.1",
     "nodemon": "^1.18.10",
     "react-chartjs-2": "^2.11.1",
     "react-charts": "^2.0.0-beta.7",
