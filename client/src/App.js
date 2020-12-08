@@ -20,34 +20,49 @@ import "./App.css";
 const App = () => {
 
   const { isAuthenticated , isLoading, user } = useAuth0();
+  const {sub, email} = user;
+
+  const adminEmails = ["test@test.com", "joe@joe.com"];
   
 
   const addUsertoDB = () => {
 
-    console.log("hopefully user exists here");
-    console.log(user);
-    //if they're already in db dont add them, if not add
-    // let address;
-    // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-    //     // dev code
-    //     address = "http://localhost:5000";
-    // } else {
-    //     // production code
-    //     address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
-    // }
+    // console.log("hopefully user exists here");
+    // console.log(user);
 
+    // if they're already in db dont add them, if not add
+    let address;
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
 
+    //checking if user is an admin
+    let role;
+    if (adminEmails.includes(email)){
+      role = "admin"
+    }else{role = "user"}
 
-    // axios
-    //   .post(address + "/api/user/user", userData)
-    //   .then((res) => console.log(res.data))
-    //   .catch((error) => {
-    //     if (error.response) {
-    //       console.log(error.response.data);
-    //       console.log(error.response.status);
-    //       console.log(error.response.headers);
-    //     }
-    //   });
+    const userData = {
+      id: sub,
+      role: role,
+      popups: [],
+      assignments: []
+    };
+
+    axios
+      .post(address + "/api/user/user", userData)
+      .then((res) => console.log(res.data))
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
 
   }
 

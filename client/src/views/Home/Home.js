@@ -27,49 +27,48 @@ const Home = () => {
     setOpen(true);
   };
 
-  const addUser = () => {
+  // const addUser = () => {
 
-    let role;
-    if (is_admin){
-      role = "admin"
-    }else{
-      role = "user"
-    }
+  //   let role;
+  //   if (is_admin){
+  //     role = "admin"
+  //   }else{
+  //     role = "user"
+  //   }
 
-    
-    const testPopData = {
-      stress: 7,
-      sleep: 7,
-      exercise: false
-    };
+  //   const testPopData = {
+  //     stress: 7,
+  //     sleep: 7,
+  //     exercise: false
+  //   };
 
-    const userData = {
-      id: sub,
-      role: role,
-      popups: [testPopData],
-      assignments: []
-    };
+  //   const userData = {
+  //     id: sub,
+  //     role: role,
+  //     popups: [testPopData],
+  //     assignments: []
+  //   };
 
-    let address;
+  //   let address;
 
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-        // dev code
-        address = "http://localhost:5000";
-    } else {
-        // production code
-        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
-    }
-    axios
-      .post(address + "/api/user/user", userData)
-      .then((res) => console.log(res.data))
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-  }
+  //   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  //       // dev code
+  //       address = "http://localhost:5000";
+  //   } else {
+  //       // production code
+  //       address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+  //   }
+  //   axios
+  //     .post(address + "/api/user/user", userData)
+  //     .then((res) => console.log(res.data))
+  //     .catch((error) => {
+  //       if (error.response) {
+  //         console.log(error.response.data);
+  //         console.log(error.response.status);
+  //         console.log(error.response.headers);
+  //       }
+  //     });
+  // }
 
   const getPop = (e) => {
     return <PopUp setOpen={setOpen} />;
@@ -82,9 +81,9 @@ const Home = () => {
         <button onClick={handleOpen}>Open Pop</button>
         {isOpen ? getPop() : null}
       </div>
-      <div>
+      {/* <div>
         <button onClick={addUser}>Add User</button>
-      </div>
+      </div> */}
 
 
 

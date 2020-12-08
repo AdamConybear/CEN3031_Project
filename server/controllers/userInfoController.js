@@ -2,20 +2,25 @@ const moment = require("moment");
 const User = require("../models/userInfoModel").User;
 
 const addUser = async(req,res) => {
-    const user = req.body;
+    const newUser = req.body;
 
-    if (!user) {
-        return res.status(200).send({
-            error: "User data not found",
-        });
-    }
-    await new User(user).save()
-    .then((data) => {
-        res.json(data);
+    await User.findOne({id:newUser.id})
+    .then(user => {
+        if (!user) {
+           //user doesnt exist in db
+            new User(newUser).save()
+           .then((data) => {
+               res.json(data);
+           })
+           .catch((err) => {
+               res.status(200).send(err);
+           }); 
+        }else{
+            return res.status(200).send({
+                error: "User is already in database",
+            });
+        }
     })
-    .catch((err) => {
-        res.status(200).send(err);
-    }); 
 }
 
 const getUserPopupData = async(req,res) => {
@@ -276,19 +281,7 @@ const updateAssignment = async(req,res) => {
     });
 }
 
-// const getAllUsers = async(req,res) => {
 
-//     await User.find({},(err, data) => {
-//         if (err)
-//           return res.status(200).send({
-//             message: err.message || "An unknown error occurred",
-//           });
-
-
-
-//         res.json(data);
-//       });
-// }
 
 
 module.exports = {
