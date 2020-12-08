@@ -276,6 +276,20 @@ const updateAssignment = async(req,res) => {
     });
 }
 
+// const getAllUsers = async(req,res) => {
+
+//     await User.find({},(err, data) => {
+//         if (err)
+//           return res.status(200).send({
+//             message: err.message || "An unknown error occurred",
+//           });
+
+
+
+//         res.json(data);
+//       });
+// }
+
 
 module.exports = {
     addUser: addUser,

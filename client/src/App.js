@@ -22,14 +22,38 @@ const App = () => {
   const { isAuthenticated , isLoading, user } = useAuth0();
   
 
-  // const testAuth = () => {
-  //   console.log(isAuthenticated);
+  const addUsertoDB = () => {
 
-  // }
+    console.log("hopefully user exists here");
+    console.log(user);
+    //if they're already in db dont add them, if not add
+    // let address;
+    // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    //     // dev code
+    //     address = "http://localhost:5000";
+    // } else {
+    //     // production code
+    //     address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    // }
+
+
+
+    // axios
+    //   .post(address + "/api/user/user", userData)
+    //   .then((res) => console.log(res.data))
+    //   .catch((error) => {
+    //     if (error.response) {
+    //       console.log(error.response.data);
+    //       console.log(error.response.status);
+    //       console.log(error.response.headers);
+    //     }
+    //   });
+
+  }
 
   if(isLoading){
     console.log("hopefully user exists here");
-    console.log(user);
+    // console.log(user);
     return null;
   }
 
@@ -41,7 +65,7 @@ const App = () => {
           {isAuthenticated ? <Header /> : null}
         </div>
         <article className="content">
-              {/* {testAuth()}  */}
+              {addUsertoDB()} 
               {isAuthenticated ? 
                 <Switch>
                   <Route path="/Home" component={Home} />
