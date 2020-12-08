@@ -156,37 +156,6 @@ const Upload = () => {
     //  setShowAssingments(true);
   };
 
-  // const getDayAssignments = (day) => {
-
-  //   let assignments = [];
-  //   let classArr = [];
-  //   // let assignments = [];
-  //   for (const [key, value] of classMap.entries()) {
-  //     let className;
-  //     const regex = "^[a-zA-Z]{3}[0-9]{4}$"; //EX: CEN3031
-  //     //just gets course code and number
-  //     if (!key.match(regex)) {
-  //       className = key.substring(0, 7);
-  //     } else {
-  //       className = key;
-  //     }
-  //     for (let i = 0; i < value.length; i++) {
-  //       let text = value[i][0]; //assignment
-  //       let date = moment(value[i][1]).format("dddd"); //date of assignment
-  //       if (date === day) {
-  //         //if assingment belongs to the specfic day passed in
-  //         //will be one of assignments displayed
-  //         assignments.push(text);
-  //         classArr.push(className);
-  //       }
-  //     }
-  //   }
-  //   return {
-  //     classes: classArr,
-  //     assignments: assignments,
-  //   };
-  // };
-
   //adding assingments to db
   
   const addAssignmentsToDb = () => {

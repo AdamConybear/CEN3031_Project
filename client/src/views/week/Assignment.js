@@ -89,8 +89,10 @@ const Assignment = ({ assignment, c }) => {
           tempDiff += a.difficulty;
           tempHours += a.hours;
         })
-        setTimeDB(tempHours/len);
-        setDiffDB(tempDiff/len); 
+        let roundDiff = tempDiff/len;
+        let roundHours = tempHours/len;
+        setTimeDB(roundDiff.toFixed(1));
+        setDiffDB(roundHours.toFixed(1)); 
 
       }
     };
