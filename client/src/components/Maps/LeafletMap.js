@@ -27,12 +27,12 @@ function LocationMarker() {
   );
 }
 const LeafletMap = (props) => {
-  const position = [29.6425, -82.3693];
+  const position = [29.644900, -82.355410];
   return (
     <MapContainer
       className="map"
       center={position}
-      zoom={9}
+      zoom={15}
       scrollWheelZoom={true}
     >
       <TileLayer

@@ -5,5 +5,7 @@ const tipRouter = express.Router();
 tipRouter.post('/',tipController.addTipData);
 tipRouter.get('/reviewed',tipController.findTipDataReviewed);
 tipRouter.get('/accepted',tipController.findTipDataAccepted);
+tipRouter.get('/random',tipController.getRandomTip);
+
 
 module.exports = tipRouter;

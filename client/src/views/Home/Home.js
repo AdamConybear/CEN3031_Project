@@ -8,7 +8,7 @@ import "./Home.css";
 
 const Home = () => {
   const [isOpen, setOpen] = useState(false);
-
+  
   const handleOpen = (e) => {
     e.preventDefault();
     setOpen(true);

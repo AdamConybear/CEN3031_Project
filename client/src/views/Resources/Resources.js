@@ -13,6 +13,7 @@ class Resources extends Component {
   state = {
     tip: "",
     tipArr: [],
+    randomTip: "",
   };
 
   togglePopup = () => {
@@ -24,7 +25,7 @@ class Resources extends Component {
     e.preventDefault();
     this.setState({ tip: e.target.value });
   };
-
+  
   addTipToDB = () => {
     const tipData = {
       tip: this.state.tip,
@@ -74,11 +75,39 @@ class Resources extends Component {
         }
       });
   };
+  getRandomTip = () => {
+    console.log("getting random tip");
+
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+      // dev code
+      address = "http://localhost:5000";
+    } else {
+      // production code
+      address =
+        process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+
+    axios
+      .get(address + "/api/tip/random")
+      .then((res) => {
+        console.log(res.data);
+        this.setState({ randomTip: res.data[0].tip });
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  };
 
   displayAddTip = () => {
     return (
       <div>
-        <div class="addCommentParent">
+        <div class="addCommentParent" onClick={() => this.displayTips()}>
           <div class="addComment" onClick={() => this.togglePopup()}>
             +
           </div>
@@ -124,6 +153,7 @@ class Resources extends Component {
     );
   };
 
+
   displayTips = () => {
     return (
       <div>
@@ -145,14 +175,23 @@ class Resources extends Component {
       </div>
     );
   };
+  displayRandomTip = () => {
+    return (
+      <div>
+        {this.state.randomTip}
+      </div>
+    );
+  };
 
   render() {
     return (
       <div>
         <button onClick={() => this.getAcceptedFromDB()}>refresh tips</button>
+        <button onClick={() => this.getRandomTip()}>Random tip</button>
         {this.displayTips()}
         {this.displayAddTip()}
-        <LeafletMap />
+        {this.displayRandomTip()}
+        {<LeafletMap />}
       </div>
     );
   }

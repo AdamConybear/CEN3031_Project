@@ -38,10 +38,21 @@ const findTipDataReviewed = async(req,res) => {
       res.json(data);
     });
   }
+  const getRandomTip = async(req,res) => {
+    console.log("yo yo");
+    await Tip.aggregate([{$sample: { size: 1 }}], (err, data) => {
+      if (err)
+        return res.status(200).send({
+          message: err.message || "An unknown error occurred",
+        });
+      res.json(data);
+    });
+  }  
 
 module.exports = {
     findTipDataReviewed: findTipDataReviewed,
     findTipDataAccepted: findTipDataAccepted,
-    addTipData: addTipData
+    addTipData: addTipData,
+    getRandomTip: getRandomTip
 }
 
