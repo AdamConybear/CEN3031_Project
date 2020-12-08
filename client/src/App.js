@@ -81,7 +81,7 @@ const App = () => {
           {isAuthenticated ? <Header /> : null}
         </div>
         <article className="content">
-              {addUsertoDB()} 
+              {isAuthenticated ? addUsertoDB() : null} 
               {isAuthenticated ? 
                 <Switch>
                   <Route path="/Home" component={Home} />
