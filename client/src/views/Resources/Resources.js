@@ -1,25 +1,141 @@
 import React, { Component } from "react";
 import "./Resources.css";
 import axios from "axios";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+// import Table from "@material-ui/core/Table";
+// import TableBody from "@material-ui/core/TableBody";
+// import TableCell from "@material-ui/core/TableCell";
+// import TableContainer from "@material-ui/core/TableContainer";
+// import TableRow from "@material-ui/core/TableRow";
+// import Paper from "@material-ui/core/Paper";
 import LeafletMap from "../../components/Maps/LeafletMap";
+import { withAuth0 } from '@auth0/auth0-react';
+import CheckIcon from '@material-ui/icons/Check';
+import ClearIcon from '@material-ui/icons/Clear';
 import "leaflet/dist/leaflet.css";
 class Resources extends Component {
   state = {
     tip: "",
     tipArr: [],
     randomTip: "",
+    isAdmin: false,
+    tipsToReview: [],
+    allTips: [],
+    showPop:false,
+    loading: true,
   };
 
-  togglePopup = () => {
-    document.getElementById("popup-1").classList.toggle("active");
-    // this.setState({ course: this.state.searchValue });
+  componentDidMount() {
+
+    const { user } = this.props.auth0;
+    const { sub } = user;
+    let isMounted = true;
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+
+    axios.get(address + '/api/user/user',{
+      params: {
+        id: sub
+    }})
+      .then(res => {
+        let user = res.data;
+        console.log(user);
+        if (user.role === "admin"){
+          if (isMounted){
+            this.setState({isAdmin: true});
+          }
+        }
+      })
+
+    axios.get(address + '/api/tip/accepted')
+      .then(res => {
+        // let tempArr = res.data;
+        if (isMounted){
+          this.setState({allTips: res.data});
+        }
+      })
+
+    axios.get(address + '/api/tip/notAccepted')
+    .then(res => {
+      // let tempArr = res.data;
+      // console.log("false tips");
+      // console.log(res.data);
+      if (isMounted){
+        this.setState({tipsToReview: res.data});
+        this.setState({loading: false});
+      }
+
+    })
+    // this.setState({loading: false});
+    return () => { isMounted = false };
+  }
+
+
+
+  toggleTipForm = () => {
+    this.setState({showPop: !this.state.showPop})
   };
+
+  // togglePopup = () => {
+  //   document.getElementById("popup-1").classList.toggle("active");
+  //   // this.setState({ course: this.state.searchValue });
+  // };
+
+
+  acceptTip = (tipId) =>{
+    // console.log("accipting tip");
+    // console.log(tipId);
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+    //change status of accepted to true
+    axios.put(address + '/api/tip/' + tipId)
+    .then(res => {console.log(res.data)})
+    .catch(error => {
+      if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+      }
+    });
+  }
+
+  denyTip = (tipId) => {
+    console.log("deny tip");
+    // console.log(tipId);
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+    //change status of accepted to true
+    axios.delete(address + '/api/tip/' + tipId)
+    .then(res => {console.log(res.data)})
+    .catch(error => {
+      if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+      }
+    });
+  }
+
 
   handleTipChange = (e) => {
     e.preventDefault();
@@ -27,45 +143,29 @@ class Resources extends Component {
   };
   
   addTipToDB = () => {
+
+    const { user } = this.props.auth0;
+    const { nickname } = user;
+
     const tipData = {
       tip: this.state.tip,
-      accepted: false,
-      reviewed: false,
+      author: nickname,
+      accepted: false
     };
-    let address = process.env.ADDRESS || "http://localhost:5000/api/tip";
-    axios
-      .post(address, tipData)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-  };
-
-  getAcceptedFromDB = () => {
-    console.log("getting tips");
 
     let address;
 
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-      // dev code
-      address = "http://localhost:5000";
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
     } else {
-      // production code
-      address =
-        process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
     }
-
     axios
-      .get(address + "/api/tip/accepted")
+      .post(address + "/api/tip", tipData)
       .then((res) => {
         console.log(res.data);
-        this.setState({ tipArr: res.data });
       })
       .catch((error) => {
         if (error.response) {
@@ -74,127 +174,187 @@ class Resources extends Component {
           console.log(error.response.headers);
         }
       });
-  };
-  getRandomTip = () => {
-    console.log("getting random tip");
-
-    let address;
-
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-      // dev code
-      address = "http://localhost:5000";
-    } else {
-      // production code
-      address =
-        process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
-    }
-
-    axios
-      .get(address + "/api/tip/random")
-      .then((res) => {
-        console.log(res.data);
-        this.setState({ randomTip: res.data[0].tip });
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
+      this.toggleTipForm();
+      this.setState({tip: ""});
   };
 
-  displayAddTip = () => {
+  showPopup = () => {
+    // console.log("pop should show");
+
     return (
-      <div>
-        <div class="addCommentParent" onClick={() => this.displayTips()}>
-          <div class="addComment" onClick={() => this.togglePopup()}>
-            +
-          </div>
-        </div>
-        <div class="popup" id="popup-1">
-          <div class="overlay"></div>
-          <div class="content">
-            <div class="inputPart">
-              <p class="addTitle">Suggest a wellness tip!</p>
-              <p>
-                Thank you for contributing. Your tip will be sent for review
-                before it's added!
-              </p>
-              <textarea
-                class="popUpInputClass"
+      <div className="popupbby">
+        <div className="overlay"></div>
+        <div className="content" style={{width: '380px', height: '300px'}}>
+          <div>
+            <p>Suggest a wellness tip!</p>
+            <div>
+            <textarea
+                class="popUpInputTip"
                 type="text"
                 //placeholder="Enter your tip here."
                 value={this.state.tip}
-                id="tipInput"
+                // id="tipInput"
                 onChange={this.handleTipChange}
               />
+              
             </div>
-            <div class="cancelSubmit">
-              <button class="cancel" onClick={() => this.togglePopup()}>
-                Cancel
-              </button>
-              <button
-                class="submit"
-                onClick={() => {
-                  // Add the tip to the DB
-                  this.addTipToDB();
-                  this.togglePopup();
-                  console.log(this.state.tip);
-                  this.setState({ tip: "" });
-                }}
-              >
-                Submit
-              </button>
+            <div className="cancelSubmit">
+                <button className="cancel" onClick={this.toggleTipForm}>
+                  Cancel
+                </button>
+                <button className="submit" style={{marginLeft: '225px'}} onClick={this.addTipToDB}>Submit</button>
             </div>
+          </div>
+        </div>
+    </div>
+    );
+
+  }
+
+  displayAllTips = () => {
+    return this.state.allTips.map((tip) => {
+      return (
+        <div className="tipBox">
+          {tip.tip}
+        </div>
+      );
+    })
+  }
+  displayNonAcceptedTips = () => {
+    return this.state.tipsToReview.map((tip) => {
+      return (
+        <div className="tipBox">
+          <p style={{padding: "5px"}}>{tip.tip}</p>
+          <div className = "tipIcons">
+            <CheckIcon className="checkIcon" onClick={() => this.acceptTip(tip._id)} />
+            <ClearIcon className="clearIcon" onClick={() => this.denyTip(tip._id)}/>
+          </div>
+
+        </div>
+      );
+    })
+  }
+
+  adminView = () => {
+    return(
+      <div className = "admin">
+        {this.state.showPop ? this.showPopup(): null}
+        <div class="titleResources" style={{marginBottom:"20px"}}>Admin Resources</div>
+        <div>
+          <div className="tipButton" onClick={this.toggleTipForm}>Add Tip</div>
+        </div>
+        <div className="tips">
+          <div className = "admin-column">
+            <div class="adminSuggest">Review Tips</div>
+            {this.displayNonAcceptedTips()}
+          </div>
+          <div className = "admin-column">
+            <div className = "adminSuggest">Accepted Tips</div>
+            {this.displayAllTips()}
           </div>
         </div>
       </div>
     );
-  };
+  } 
 
+  userView = () => {
 
-  displayTips = () => {
-    return (
+    return(
       <div>
-        <TableContainer class="tableContainer" component={Paper}>
-          <Table aria-label="simple table">
-            <TableBody>
-              {this.state.tipArr.map((tip) => {
-                return (
-                  <TableRow class="expand" key={tip.tip}>
-                    <TableCell colSpan={1} component="th" scope="row">
-                      <div>{tip.tip}</div>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </TableContainer>
+         {this.state.showPop ? this.showPopup(): null}
+        <div className="titleResources">Resources</div>
+        <p className="quote">“Anything that’s human is mentionable, and anything that is mentionable
+        can be more manageable. When we can talk about our feelings, they become
+        less overwhelming, less upsetting, and less scary.” – Fred Rogers</p>
+        <div className="helperBar"></div>
+        <div className="centerMap">
+        <div className="legend">
+          <div className="titleLegend">Legend</div>
+          <div className="line">
+            <div className="health"></div><div className="subName">Seek Professional Help</div>
+          </div>
+          <div className="line">
+            <div className="health"></div><div className="subName">Stay Active</div>
+          </div>
+          <div className="line">
+            <div className="health"></div><div className="subName">Take a Break</div>
+          </div>
+          <div className="line">
+            <div className="health"></div><div className="subName">Improve Eating Habits</div>
+          </div>
+        </div>
+        <div className="mapScalar">{<LeafletMap />}</div>
+        <div className="legendSuggest">
+          <div className="titleSuggest">Help Us Help Others</div>
+          <div className="suggestButton">Suggest a New Place</div>
+          <div className="suggestButton" onClick={this.toggleTipForm}>Suggest a New Tip</div>
+          <div className="suggestButton">Suggest a New Hotline</div>
+          <p className="quoteSmaller">Your input is crucial for Gator Rater. By submitting recommendations you help Gator Rater grow and become a warmhearted community.</p>
+        </div>
+        </div>
+        <div className="helperBarBottom"></div>
+        <div className="hotlinesAndSites">
+          <div className="hotlines">
+            <div className="hotlineTitle">Hotlines</div>
+            <div className="hotlineName">1. National Suicide Prevention Lifeline</div>
+            <div className="phoneNumber">1-800-273-8255</div>
+            <div className="phoneTime">24 / 7</div>
+
+            <div className="hotlineName">2. National Alliance on Mental Illness</div>
+            <div className="phoneNumber">1-800-950-6264</div>
+            <div className="phoneTime">Monday through Friday, from 10 a.m. – 6 p.m.</div>
+
+            <div className="hotlineName">3. Panic Disorder Information Hotline</div>
+            <div className="phoneNumber">1-800-64-PANIC</div>
+            <div className="phoneTime">24 / 7</div>
+
+            <div className="hotlineName">4. General Crisis</div>
+            <div className="phoneNumber">Text SUPPORT to 741-741</div>
+            <div className="phoneTime">24 / 7</div>
+
+            <div className="hotlineName">5. Eating Disorder Hotline</div>
+            <div className="phoneNumber">1-800-931-2237</div>
+            <div className="phoneTime">Monday through Thursday, from 9 a.m. – 9 p.m. and Friday from 9 a.m. – 5 p.m. (EST).</div>
+          </div>
+          <div className="sites">
+            <div className="hotlineTitle">Websites</div>
+
+            <div className="hotlineName">1. Mental Health</div>
+            <div className="phoneNumber">www.mentalhealth.gov</div>
+            <div className="phoneTime">24 / 7</div>
+
+            <div className="hotlineName">2. Better Help</div>
+            <div className="phoneNumber">www.betterhelp.com</div>
+            <div className="phoneTime">24 / 7</div>
+
+            <div className="hotlineName">3. MyCompass</div>
+            <div className="phoneNumber">www.mycompass.org.au</div>
+            <div className="phoneTime">24 / 7</div>
+
+            <div className="hotlineName">4. This Way Up</div>
+            <div className="phoneNumber">www.thiswayup.org.au</div>
+            <div className="phoneTime">24 / 7</div>
+
+            <div className="hotlineName">5. Centre for Clinical Interventions</div>
+            <div className="phoneNumber">www.cci.health.wa.gov.au</div>
+            <div className="phoneTime">24 / 7</div>
+          </div>
+        </div>
       </div>
+
     );
-  };
-  displayRandomTip = () => {
-    return (
-      <div>
-        {this.state.randomTip}
-      </div>
-    );
-  };
+    
+  }
 
   render() {
     return (
       <div>
-        <button onClick={() => this.getAcceptedFromDB()}>refresh tips</button>
-        <button onClick={() => this.getRandomTip()}>Random tip</button>
-        {this.displayTips()}
-        {this.displayAddTip()}
-        {this.displayRandomTip()}
-        {<LeafletMap />}
+        
+        {this.state.loading ? null : this.state.isAdmin ? this.adminView(): this.userView()}
+        {/* {<LeafletMap />} */}
       </div>
     );
   }
 }
 
-export default Resources;
+export default withAuth0(Resources);

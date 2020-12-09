@@ -3,9 +3,10 @@ const express = require("express");; //refers to Express the middleware helper f
 const tipRouter = express.Router();
 
 tipRouter.post('/',tipController.addTipData);
-tipRouter.get('/reviewed',tipController.findTipDataReviewed);
+tipRouter.get('/notAccepted',tipController.findNonAcceptedTips);
 tipRouter.get('/accepted',tipController.findTipDataAccepted);
 tipRouter.get('/random',tipController.getRandomTip);
-
+tipRouter.put('/:tipId', tipController.changeTipStatus);
+tipRouter.delete('/:tipId',tipController.removeTip);
 
 module.exports = tipRouter;

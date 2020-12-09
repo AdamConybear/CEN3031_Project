@@ -12,7 +12,7 @@ const Header = () => {
 
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
       // dev code
-      authPage = "http://localhost:3000/Auth";
+      authPage = "http://localhost:3000/#/Auth";
   } else {
       // production code
       authPage = "https://lit-anchorage-94851.herokuapp.com/#/Auth";

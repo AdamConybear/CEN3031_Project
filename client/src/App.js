@@ -23,7 +23,7 @@ const App = () => {
   const { isAuthenticated , isLoading, user } = useAuth0();
   // const {sub, email} = user;
 
-  const adminEmails = ["test@test.com", "joe@joe.com"];
+  const adminEmails = ["test@test.com", "joe@joe.com", "admin@admin.com"];
   
 
   const addUsertoDB = () => {
@@ -64,12 +64,11 @@ const App = () => {
           console.log(error.response.headers);
         }
       });
+    
 
   }
 
   if(isLoading){
-    console.log("hopefully user exists here");
-    // console.log(user);
     return null;
   }
 
@@ -112,7 +111,7 @@ const App = () => {
         <div className="footerHeading">
           <Link to="/Contact">Contact</Link>
           <Link to="/AboutUs">About us</Link>
-          <Link to="/Help">Help</Link>
+          {/* <Link to="/Help">Help</Link> */}
         </div>
       </div>
 

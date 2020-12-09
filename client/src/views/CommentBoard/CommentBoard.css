@@ -422,3 +422,19 @@ a.reddit:hover {
   transition-duration: 0.33s;
   transition-property: all;
 }
+
+.admin-delete {
+  /* float: left, */
+  height: 40px;
+  width: 50px;
+
+}
+
+.deleteButton {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  padding-right: 30px;
+  /* float: left; */
+}

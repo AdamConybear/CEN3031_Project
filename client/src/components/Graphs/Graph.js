@@ -14,9 +14,10 @@ const Graph = () => {
   let title = [];
 
   const [popupArr, setpopupArr] = useState([[]]);
+  const [isloaded, setIsLoaded] = useState(false);
 
   const { user } = useAuth0();
-  const { sub, is_new } = user;
+  const { sub } = user;
 
   const legend = {
     display: true,
@@ -45,6 +46,7 @@ const Graph = () => {
 
   useEffect(() => {
 
+    let isMounted = true;
     let address;
 
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
@@ -55,31 +57,23 @@ const Graph = () => {
         address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
     }
 
-    //only get data user is not new
-    let a = true;
 
-    if (a){
-      axios.get(address + '/api/user/popup', {
-        params: {
-          id: sub,
-        }}).then((res) => {
-        const r = res.data;
+    axios.get(address + '/api/user/popup', {
+      params: {
+        id: sub,
+      }}).then((res) => {
+      const r = res.data;
+      //console.log("samanta");
+      //console.log(r);
 
-        //console.log("samanta");
-        console.log(r);
-  
-
-        let index = 1;
-        r.forEach((record) => {
-          title.push(index);
-          arr.push(record.sleep);
-          arr2.push(record.stress);
-          index = index + 1;
-        });
-
-        //console.log(arr);
-        //console.log(title);
-
+      let index = 1;
+      r.forEach((record) => {
+        title.push(index);
+        arr.push(record.sleep);
+        arr2.push(record.stress);
+        index = index + 1;
+      });
+      if (isMounted){
         setpopupArr({
           Data: {
             labels: title,
@@ -136,8 +130,11 @@ const Graph = () => {
             ],
           },
         });
-      });
-    }
+        setIsLoaded(true);
+      }
+    });
+
+    return () => { isMounted = false };
   }, []);
 
   const axes = React.useMemo(
@@ -151,15 +148,17 @@ const Graph = () => {
   return (
     // A react-chart hyper-responsively and continuously fills the available
     // space of its parent element automatically
-    <div className="box">
-      <div className="ssTitle">Sleep and Stress</div>
+    <div class="box">
+      <div class="ssTitle">Sleep and Stress</div>
+      {isloaded ? 
       <Line
-        className="size"
+        class="size"
         data={popupArr.Data}
         axes={axes}
         options={options}
         legend={legend}
-      />
+        height="100px"
+      /> : null}
     </div>
   );
 };

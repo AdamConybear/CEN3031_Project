@@ -6,11 +6,11 @@ const tipSchema = new Schema ({
         type: String,
         required: true
     },
-    accepted: {
-        type: Boolean,
+    author: {
+        type: String,
         required: true
     },
-    reviewed: {
+    accepted: {
         type: Boolean,
         required: true
     }

@@ -1,0 +1,46 @@
+.contact-welcome {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  text-align: center;
+  margin-bottom: 30px;
+  width: 50%;
+  align-self: center;
+  padding: 15px;
+  transition: transform 0.4s ease-out;
+}
+.contact-sub {
+  font-size: 35px;
+  text-align: center;
+  color: black;
+  font-family: "Nunito", sans-serif;
+}
+.contact-title {
+  font-size: 40px;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: bolder;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+}
+.contact-info {
+  font-size: 30px;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  color: black;
+
+}
+img.contact-icon{
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+img.contact-icon:hover {
+  transform: scale(1.09);
+  transition-duration: 0.4s;
+}

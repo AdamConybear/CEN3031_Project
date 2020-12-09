@@ -3,6 +3,7 @@ const express = require("express");; //refers to Express the middleware helper f
 const userRouter = express.Router();
 
 userRouter.post('/user',userController.addUser);
+userRouter.get('/user',userController.getUser);
 userRouter.get('/assignment', userController.getUserAssignmentData);
 userRouter.get('/popup', userController.getUserPopupData);
 userRouter.post('/popup', userController.addPopupData);

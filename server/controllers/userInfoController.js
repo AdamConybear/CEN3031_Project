@@ -23,6 +23,28 @@ const addUser = async(req,res) => {
     })
 }
 
+const getUser = async(req,res) => {
+    const _userId = req.query.id; //in params
+
+    await User.findOne({id:_userId})
+    .then(user => {
+        if (!user) {
+            return res.status(200).send({
+                error: "User not found with id: " + _userId,
+            });
+        }
+        //user is found
+        res.json(user);
+    })
+    .catch((err) => {
+        res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+        });
+    });
+}
+
+
+
 const getUserPopupData = async(req,res) => {
     const _userId = req.query.id; //in params
 
@@ -286,6 +308,7 @@ const updateAssignment = async(req,res) => {
 
 module.exports = {
     addUser: addUser,
+    getUser:getUser,
     getUserPopupData:getUserPopupData,
     getUserAssignmentData:getUserAssignmentData,
     addPopupData:addPopupData,

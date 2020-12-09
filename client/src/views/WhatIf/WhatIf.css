@@ -7,7 +7,6 @@
   margin-right: auto;
   padding: 30px;
 }
-
 .semAverage {
   display: flex;
   flex-direction: row;
@@ -26,16 +25,15 @@
   line-height: 70px;
   text-align: center;
 }
-
 .bold {
   padding-left: 10px;
   font-weight: bolder;
   font-size: 30px;
 }
-
 .addClass {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 60px;
   font-size: 15px;
   font-family: "Nunito", sans-serif;
   font-weight: bolder;
@@ -48,13 +46,14 @@
   transition: all 0.5s ease-out;
   margin-top: 20px;
 }
-
 .addClass:hover {
   transform: scale(1.1);
   transition-duration: 0.5s;
   background-color: black;
   color: white;
   cursor: pointer;
+}
+.displayIt {
 }
 
 .popup .content {
@@ -70,40 +69,39 @@
   box-sizing: border-box;
   font-family: "Nunito", sans-serif;
 }
-
 .popup.active .overlay {
   display: block;
 }
-
 .popup.active .content {
   transition: all 300ms ease-in-out;
   transform: translate(-50%, -50%) scale(1);
 }
 
+.above {
+  position: absolute;
+   z-index: 1;
+}
 .submit {
   display: flex;
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom-style: hidden;
-  background-color: #dfffd4;
+  background-color: #DFFFD4;
   border-radius: 0;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   transition: transform 0.2s ease-out;
   font-family: "Nunito", sans-serif;
   font-weight: lighter;
   font-size: 15px;
-
-
 }
-
 .cancel {
   display: flex;
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom-style: hidden;
-  background-color: #ff9494;
+  background-color: #FF9494;
   border-radius: 0;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   transition: transform 0.2s ease-out;
@@ -111,25 +109,23 @@
   font-weight: lighter;
   font-size: 15px;
 }
-
 .cancel:focus {
   outline: none;
 }
-
 .cancel:hover {
   transform: scale(1.2);
   transition-duration: 0.2s;
 }
-
 .submit:focus {
   outline: none;
 }
-
 .submit:hover {
   transform: scale(1.2);
   transition-duration: 0.2s;
 }
-
+.onTop {
+  margin-left: 10px;
+}
 .cancelSubmit {
   display: flex;
   flex-direction: row;
@@ -139,7 +135,6 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
 .lbl {
   font-family: "Nunito", sans-serif;
   font-weight: lighter;
@@ -147,74 +142,68 @@
   padding-left: 25px;
   height: 15px;
 }
-
-textarea.popUpInput {
+.classesContainer{
   display: flex;
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: hidden;
-  background-color: white;
-  height: 100px;
-  min-height: 110px;
-  width: 450px;
-  font-size: 15px;
-  font-family: "Nunito", sans-serif;
-  font-weight: lighter;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
-  max-width: 450px;
-  max-height: 100px;
-  border: 1px solid;
 }
 
-.popUpInput:focus {
-  outline: none;
+.classBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  width: 175px;
+  height: 175px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.classBox:hover {
+  transform: scale(1.05);
 }
 
 .popUpInputClass:focus {
   outline: none;
 }
-
 .popUpInputClass::placeholder {
   line-height: 30px;
 }
-
 .popUpInputField {
   display: flex;
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: hidden;
   background-color: white;
   height: 30px;
   min-height: 30px;
+  max-height: 30px;
   width: 450px;
+  max-width: 450px;
   font-size: 15px;
   font-family: "Nunito", sans-serif;
   font-weight: lighter;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
-  align-self: center;
-  max-width: 450px;
-  max-height: 30px;
   border: 1px solid;
   transition: transform 1s ease-out;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 .popUpInputField:focus {
   outline: none;
 }
-
 .popUpInputField:hover {
   transform: scale(1.05);
   transition-duration: 0.3s;
 }
-
 .popUpInputProf::placeholder {
   line-height: 30px;
 }
-
 .inputPart {
   display: flex;
   flex-direction: column;
@@ -223,7 +212,6 @@ textarea.popUpInput {
   width: 100%;
   height: 85%;
 }
-
 .addTitle {
   font-family: "Nunito", sans-serif;
   font-weight: normal;
@@ -232,15 +220,9 @@ textarea.popUpInput {
   margin-right: auto;
   height: 1px;
 }
-
-
-
-
-
 .dontDisplay {
   display: none;
 }
-
 .displayIt {
   display: box;
   background-color: white;
@@ -256,30 +238,93 @@ textarea.popUpInput {
   height: 30px;
   width: 454px;
   line-height: 30px;
-
 }
-
 .displayIt:hover {
   background-color: black;
   color: white;
   transform: scale(1.05);
   transition-duration: 0.5s;
 }
-
-
 .displayIt:focus {
   background-color: green;
 }
-
 .onTop {
   position: fixed;
   z-index: 1;
 }
-
 .center {
   align-self: center;
 }
 
-.well {
-  background-color: red;
+.courseOnBox {
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 10px;
+  transition: all 0.3s ease-in-out;
+
+}
+.courseOnBox:hover {
+  transform: scale(1.05);
+}
+
+.profOnBox {
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+  font-weight: lighter;
+  text-align: center;
+  margin-top: 5px;
+  transition: all 0.3s ease-in-out;
+
+}
+.profOnBox:hover {
+  transform: scale(1.05);
+}
+
+.stressRate {
+  font-family: "Nunito", sans-serif;
+  font-size: 60px;
+  font-weight: lighter;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+
+}
+.stressRate:hover {
+  transform: scale(1.05);
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
+}
+.trash {
+  width: 20px;
+  height: 20px;
+  background-image: url("https://image.freepik.com/free-icon/trash-bin-symbol_318-10194.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+
+}
+.trash:hover {
+  transform: scale(1.5);
+}
+
+.goToComment {
+  width: 20px;
+  height: 20px;
+  background-image: url("https://www.nicepng.com/png/full/71-714864_speech-bubble-png-instagram-like-comment-icons.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+}
+.goToComment:hover {
+  transform: scale(1.5);
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 //import Comment from "./Comment.js";
 import "./CommentBoard.css";
 import axios from "axios";
-// import { makeStyles,withStyles } from '@material-ui/core/styles';
+import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -10,6 +10,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 // import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { withAuth0 } from '@auth0/auth0-react';
 const emoji = require("emoji-dictionary");
 
 //const useStyles = theme =>({
@@ -18,6 +19,9 @@ const emoji = require("emoji-dictionary");
 //     },
 //   });
 //const classes = useStyles();
+
+// const { user } = this.props.auth0;
+// const { sub } = user;
 
 class CommentBoard extends Component {
   state = {
@@ -28,7 +32,37 @@ class CommentBoard extends Component {
     course: "",
     prof: "",
     comment: "",
+    isAdmin: false,
   };
+
+
+  componentDidMount() {
+
+    const { user } = this.props.auth0;
+    const { sub } = user;
+
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+
+    axios.get(address + '/api/user/user',{
+      params: {
+        id: sub
+    }})
+      .then(res => {
+        let user = res.data;
+        console.log(user);
+        if (user.role === "admin"){
+          this.setState({isAdmin: true});
+        }
+      })
+  }
 
   handleSearchChange = (e) => {
     e.preventDefault();
@@ -211,6 +245,38 @@ class CommentBoard extends Component {
     this.setState({ comment: e.target.value });
   };
 
+  deleteComment = (commentId) => {
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+
+    axios.delete(address + '/api/comment',{
+      params: {
+        commentId: commentId
+    }})
+      .then((res) => {
+        console.log(res.data); 
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+
+
+  }
+
+
+
+
   displayUtilities = () => {
     return (
       <div>
@@ -286,6 +352,17 @@ class CommentBoard extends Component {
                       </div>
                       <div class="maxWidth">{comment.comment}</div>
                       <div class="reactionParent">
+                        {this.state.isAdmin ? 
+                          <div class = "deleteButton">
+                          <Button 
+                            variant="contained" 
+                            color="secondary"
+                            size="small"
+                            className = "admin-delete"
+                            onClick= {() => {this.deleteComment(comment._id);}}
+                            >
+                            delete
+                          </Button> </div> : null}
                         <div class="statAndEmoji">
                           <p class="stat">{comment.likes}</p>
                           <button
@@ -327,9 +404,9 @@ class CommentBoard extends Component {
             </TableBody>
           </Table>
         </TableContainer>
-        <div className="redditParent">
+        <div class="redditParent">
           <a
-            className="reddit"
+            class="reddit"
             rel="noopener noreferrer"
             href={
               "https://www.reddit.com/r/ufl/search?q=" +
@@ -387,7 +464,7 @@ class CommentBoard extends Component {
           placeholder="Enter a Course Code"
         />
         {this.state.isSubmitted ? (
-          <div className="valid">
+          <div class="valid">
             {this.state.searchisValid ? (
               this.displayUtilities()
             ) : (
@@ -407,4 +484,4 @@ class CommentBoard extends Component {
   }
 }
 
-export default CommentBoard;
+export default withAuth0(CommentBoard);

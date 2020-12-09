@@ -7,5 +7,6 @@ commentRouter.get('/', commentController.getCommentsByClass);
 commentRouter.put('/like/:commentId', commentController.updateLike);
 commentRouter.put('/dislike/:commentId', commentController.updateDislike);
 commentRouter.put('/flag/:commentId', commentController.updateFlags);
+commentRouter.delete('/', commentController.removeComment);
 
 module.exports = commentRouter;
