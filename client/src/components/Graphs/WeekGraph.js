@@ -160,7 +160,7 @@ const WeekGraph = (props) => {
     // A react-chart hyper-responsively and continuously fills the available
     // space of its parent element automatically
     <div class="box">
-      <div class="ssTitle">Sleep and Wellness</div>
+      <div class="ssTitle">Sleep and Stress</div>
       {isloaded ? 
       <Line
         class="size"
@@ -168,6 +168,7 @@ const WeekGraph = (props) => {
         axes={axes}
         options={options}
         legend={legend}
+        height="85px"
       /> : null}
     </div>
   );

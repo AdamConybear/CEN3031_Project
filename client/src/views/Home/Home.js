@@ -8,6 +8,7 @@ import WeekGraph from "../../components/Graphs/WeekGraph";
 import PieChartComponent from "../../components/Graphs/PieChartComponent";
 import { Link } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
+import Quiz from "../../components/Quiz/Quiz";
 import axios from "axios";
 
 import "./Home.css";
@@ -16,6 +17,8 @@ const Home = () => {
   const [isOpen, setOpen] = useState(false);
   const [dbTip, setDbTip] = useState("");
   const [tipAuthor, setTipAuthor] = useState("");
+
+  const [openQuiz, setOpenQuiz] = useState(false);
 
   const [week, setweek] = useState(false);
   const [month, setmonth] = useState(false);
@@ -76,11 +79,19 @@ const Home = () => {
     return <Graph setfull = {setfull}/>
   }
 
+  const handleQuiz = (e) => {
+    e.preventDefault();
+    setOpenQuiz(true);
+  }
+  const getQuiz = (e) => {
+    return <Quiz setOpenQuiz = {setOpenQuiz}/>;
+  }
 
-  // const handleOpen = (e) => {
-  //   e.preventDefault();
-  //   setOpen(true);
-  // };
+
+  const handleOpen = (e) => {
+    e.preventDefault();
+    setOpen(true);
+  };
 
   const getPop = (e) => {
     return <PopUp setOpen={setOpen} />;
@@ -97,9 +108,10 @@ const Home = () => {
     <div>
       <div class="graphsParent">
         {isOpen ? getPop() : null}
+        {openQuiz? getQuiz() : null}
         <div className="test">
           <div class="welcomeParent">
-            <div class="welcome">Welcome back, {nickname}</div>
+            <div class="welcome" onClick = {handleOpen}>Welcome back, {nickname}</div>
             <div className = "row">
               <Link className = "boxOptionLeft" to="/Week">
                 <div className = "weeklyPic"></div>
@@ -144,9 +156,8 @@ const Home = () => {
                 <div className="optionButton" onClick={handleFull}>All Time</div>
               </div>
               <div className="yourRates">
-                <div className="yourRate">Stress Rate:</div>
-                <div className="rate">0.0</div>
-                <div className="refactor">Refactor</div>
+                <div className="yourRate">Quiz</div>
+                <div className="refactor" onClick={handleQuiz}>Refactor</div>
               </div>
             </div>
         </div>

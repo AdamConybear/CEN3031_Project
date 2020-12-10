@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { useState, setState } from "react";
 import axios from "axios";
-import Slider from "../Slider";
+import Slider from "../Slider/Slider";
 import "./PopUp.css";
 import Radio from "../Radio/Radio";
 import moment from "moment";

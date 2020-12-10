@@ -157,7 +157,7 @@ const Graph = () => {
         axes={axes}
         options={options}
         legend={legend}
-        height="100px"
+        height="85px"
       /> : null}
     </div>
   );

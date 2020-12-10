@@ -78,14 +78,14 @@ class Resources extends Component {
 
 
 
-  toggleTipForm = () => {
-    this.setState({showPop: !this.state.showPop})
-  };
-
-  // togglePopup = () => {
-  //   document.getElementById("popup-1").classList.toggle("active");
-  //   // this.setState({ course: this.state.searchValue });
+  // toggleTipForm = () => {
+  //   this.setState({showPop: !this.state.showPop})
   // };
+
+  togglePopup = () => {
+    document.getElementById("popupR").classList.toggle("active");
+    // this.setState({ course: this.state.searchValue });
+  };
 
 
   acceptTip = (tipId) =>{
@@ -179,34 +179,26 @@ class Resources extends Component {
   };
 
   showPopup = () => {
-    // console.log("pop should show");
+    console.log("pop should show");
 
     return (
-      <div className="popupbby">
-        <div className="overlay"></div>
-        <div className="content" style={{width: '380px', height: '300px'}}>
-          <div>
-            <p>Suggest a wellness tip!</p>
-            <div>
-            <textarea
-                class="popUpInputTip"
-                type="text"
-                //placeholder="Enter your tip here."
-                value={this.state.tip}
-                // id="tipInput"
-                onChange={this.handleTipChange}
-              />
-              
-            </div>
-            <div className="cancelSubmit">
-                <button className="cancel" onClick={this.toggleTipForm}>
-                  Cancel
-                </button>
-                <button className="submit" style={{marginLeft: '225px'}} onClick={this.addTipToDB}>Submit</button>
-            </div>
+      <div class="popupR">
+        <div class="overlayR"></div>
+        <div class="contentR">
+          <p>Suggested Wellness Tip</p>
+          <textarea
+            class="popUpInputTip"
+            type="text"
+            value={this.state.tip}
+            id="tipInput"
+            onChange={this.handleTipChange}
+          />
+          <div className="cancelSubmit">
+            <button className="cancel" onClick={() => this.togglePopup()}>Cancel</button>
+            <button className="submit"  onClick={this.addTipToDB}>Submit</button>
           </div>
         </div>
-    </div>
+      </div>
     );
 
   }
@@ -238,10 +230,31 @@ class Resources extends Component {
   adminView = () => {
     return(
       <div className = "admin">
-        {this.state.showPop ? this.showPopup(): null}
+        
+        <div class="popupR">
+        <div class="overlayR"></div>
+        <div class="contentR">
+          <p>Suggested Wellness Tip</p>
+          <textarea
+            class="popUpInputTip"
+            type="text"
+            value={this.state.tip}
+            id="tipInput"
+            onChange={this.handleTipChange}
+          />
+          <div className="cancelSubmit">
+            <button className="cancel" onClick={() => this.togglePopup()}>Cancel</button>
+            <button className="submit"  onClick={this.addTipToDB}>Submit</button>
+          </div>
+        </div>
+      </div>
+
+
+
+
         <div class="titleResources" style={{marginBottom:"20px"}}>Admin Resources</div>
         <div>
-          <div className="tipButton" onClick={this.toggleTipForm}>Add Tip</div>
+          <div className="tipButton" onClick={() => this.togglePopup()}>Add Tip</div>
         </div>
         <div className="tips">
           <div className = "admin-column">
@@ -261,7 +274,26 @@ class Resources extends Component {
 
     return(
       <div>
-         {this.state.showPop ? this.showPopup(): null}
+        
+        <div class="popupR" id="popupR">
+        <div class="overlayR"></div>
+        <div class="contentR">
+          <p>Suggested Wellness Tip</p>
+          <textarea
+            class="popUpInputTip"
+            type="text"
+            value={this.state.tip}
+            id="tipInput"
+            onChange={this.handleTipChange}
+          />
+          <div className="cancelSubmit">
+            <button className="cancel" onClick={() => this.togglePopup()}>Cancel</button>
+            <button className="submit"  onClick={this.addTipToDB}>Submit</button>
+          </div>
+        </div>
+      </div>
+
+
         <div className="titleResources">Resources</div>
         <p className="quote">“Anything that’s human is mentionable, and anything that is mentionable
         can be more manageable. When we can talk about our feelings, they become
@@ -271,23 +303,23 @@ class Resources extends Component {
         <div className="legend">
           <div className="titleLegend">Legend</div>
           <div className="line">
-            <div className="health"></div><div className="subName">Seek Professional Help</div>
+            <div className="circle"></div><div className="subName">Seek Professional Help</div>
           </div>
           <div className="line">
-            <div className="health"></div><div className="subName">Stay Active</div>
+            <div className="star"></div><div className="subName">Stay Active</div>
           </div>
           <div className="line">
-            <div className="health"></div><div className="subName">Take a Break</div>
+            <div className="square"></div><div className="subName">Take a Break</div>
           </div>
           <div className="line">
-            <div className="health"></div><div className="subName">Improve Eating Habits</div>
+            <div className="triangle"></div><div className="subName">Improve Eating Habits</div>
           </div>
         </div>
-        <div className="mapScalar">{<LeafletMap />}</div>
+        <div id = "map" className="mapScalar">{<LeafletMap class="bringDown"/>}</div>
         <div className="legendSuggest">
           <div className="titleSuggest">Help Us Help Others</div>
           <div className="suggestButton">Suggest a New Place</div>
-          <div className="suggestButton" onClick={this.toggleTipForm}>Suggest a New Tip</div>
+          <div className="suggestButton" onClick={() => this.togglePopup()}>Suggest a New Tip</div>
           <div className="suggestButton">Suggest a New Hotline</div>
           <p className="quoteSmaller">Your input is crucial for Gator Rater. By submitting recommendations you help Gator Rater grow and become a warmhearted community.</p>
         </div>
@@ -343,7 +375,7 @@ class Resources extends Component {
       </div>
 
     );
-    
+
   }
 
   render() {
