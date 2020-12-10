@@ -42,9 +42,9 @@
 
 .welcomee {
   font-size: 30px;
-  margin-top: 15px;
   padding: 5px;
-  font-weight: bolder;
+  font-weight: normal;
+  padding-bottom: 50px;
 }
 
 
@@ -78,12 +78,11 @@
   margin-top: 15px;
 }
 .dialogButton {
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: hidden;
+  border-top-style: none;
+  border-right-style: none;
+  border-left-style: none;
+  border-bottom-style: none;
   background-color: black;
-  border-radius: 0;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease-out;
   font-family: "Nunito", sans-serif;
@@ -107,7 +106,7 @@
 .animated-word-initial {
   align-self: center;
 	font-family: Nunito, sans-serif;
-  line-height: 40px;
+  line-height: 60px;
 	font-weight: lighter;
 	font-size: 15px;
 	text-align: center;
@@ -117,21 +116,26 @@
   max-width: 600px;
   width: 120px;
   height: 60px;
-  
- 
-  outline-offset: 0px;
   transition: all 600ms cubic-bezier(0.2, 0, 0, 0.8);
+}
 
+
+.noOutline {
+  border: 0px;
+  border-top-style: none;
+  border-right-style: none;
+  border-left-style: none;
+  border-bottom-style: none;
 }
 .initialS {
   padding:30px;
 }
 .space{
- 
+
   width:100%;
-  display:flex;  
+  display:flex;
   justify-content: center;
-  
+
 }
 .animated-word {
   align-self: center;
@@ -146,6 +150,7 @@
   max-width: 600px;
   width: 90px;
   height: 40px;
+  margin-top: 30px;
   outline: 3px solid;
   outline-color: black;
   outline-offset: 0px;

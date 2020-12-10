@@ -13,7 +13,7 @@
     line-height: 60px;
     transition: all 0.2s ease-in-out;
 }
-  
+
 .entryButton:hover {
     background-color: #ffc87a;
     transform: scale(1.05);
@@ -28,4 +28,14 @@
     align-items: center; */
     margin-top: 100px;
 
+}
+
+.statement {
+  font-size: 20px;
+  font-weight: normal;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
