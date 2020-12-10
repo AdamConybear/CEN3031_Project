@@ -127,16 +127,26 @@ const updateFlags = async(req,res) => {
 
 }
 
-// const getCommentsByProf = async(req,res) => {
+const removeComment = async (req, res) => {
+  let id = req.query.commentId;
 
-
-
-// }
+  await Comment.deleteOne({ _id: id }, (err) => {
+    if (err) {
+      return res.status(200).send({
+        error: err.message || "An unknown error occurred",
+      });
+    }
+    res.send({
+      message: id + " has been deleted successfully",
+    });
+  });
+};
 
 module.exports = {
     addCommentData: addCommentData,
     getCommentsByClass: getCommentsByClass,
     updateLike: updateLike,
     updateDislike: updateDislike,
-    updateFlags: updateFlags
+    updateFlags: updateFlags,
+    removeComment:removeComment
 }

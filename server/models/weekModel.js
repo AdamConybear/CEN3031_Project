@@ -7,6 +7,10 @@ const weekSchema = new Schema ({
         type: String,
         required: true
     },
+    class: {
+        type: String,
+        required: true
+    },
     hours: {
         type: Number,
         required: true
@@ -17,7 +21,9 @@ const weekSchema = new Schema ({
     },
 });
 //specifies the collection in the third var
-// export default mongoose.model('popups', popupSchema, 'UserPopUps'); 
-module.exports = {
-    Item: mongoose.model('week', weekSchema, 'WeeklyAssignments')
-}
+
+// module.exports = {
+//     Item: mongoose.model('week', weekSchema, 'WeeklyAssignments')
+// }
+
+module.exports = weekSchema;

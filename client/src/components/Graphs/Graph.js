@@ -4,6 +4,7 @@ import axios from "axios";
 // import { LineWeight } from "@material-ui/icons";
 // import { red } from "@material-ui/core/colors";
 import "./Graph.css";
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Graph = () => {
   // let r = [[]];
@@ -13,10 +14,10 @@ const Graph = () => {
   let title = [];
 
   const [popupArr, setpopupArr] = useState([[]]);
+  const [isloaded, setIsLoaded] = useState(false);
 
-  // const [address, setaddress] = useState(
-  //   process.env.ADDRESS || "http://localhost:5000/api/popups"
-  // );
+  const { user } = useAuth0();
+  const { sub } = user;
 
   const legend = {
     display: true,
@@ -45,6 +46,7 @@ const Graph = () => {
 
   useEffect(() => {
 
+    let isMounted = true;
     let address;
 
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
@@ -55,7 +57,11 @@ const Graph = () => {
         address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
     }
 
-    axios.get(address + '/api/popups').then((res) => {
+
+    axios.get(address + '/api/user/popup', {
+      params: {
+        id: sub,
+      }}).then((res) => {
       const r = res.data;
       //console.log("samanta");
       //console.log(r);
@@ -67,67 +73,68 @@ const Graph = () => {
         arr2.push(record.stress);
         index = index + 1;
       });
-
-      //console.log(arr);
-      //console.log(title);
-
-      setpopupArr({
-        Data: {
-          labels: title,
-          datasets: [
-            {
-              label: "Sleep",
-              fill: false,
-              borderColor: "blue",
-              data: arr,
-              backgroundColor: [
-                "#3cb371",
-                "#0000FF",
-                "#9966FF",
-                "#4C4CFF",
-                "#00FFFF",
-                "#f990a7",
-                "#aad2ed",
-                "#FF00FF",
-                "#FF00FF",
-                "#FF00FF",
-                "Blue",
-                "Blue",
-                "Blue",
-                "Blue",
-                "Blue",
-                "Red",
-              ],
-            },
-            {
-              label: "Stress",
-              fill: false,
-              backgroundColor: "#aad2ed",
-              borderColor: "orange",
-              data: arr2,
-              backgroundColor: [
-                "#3cb371",
-                "#0000FF",
-                "#9966FF",
-                "#4C4CFF",
-                "#00FFFF",
-                "#f990a7",
-                "#aad2ed",
-                "#FF00FF",
-                "#FF00FF",
-                "#FF00FF",
-                "Blue",
-                "Blue",
-                "Blue",
-                "Blue",
-                "Blue",
-                "Red",
-              ],
-            },
-          ],
-        },
-      });
+      if (isMounted){
+        setpopupArr({
+          Data: {
+            labels: title,
+            datasets: [
+              {
+                label: "Sleep",
+                fill: false,
+                borderColor: "blue",
+                data: arr,
+                backgroundColor: [
+                  "#3cb371",
+                  "#0000FF",
+                  "#9966FF",
+                  "#4C4CFF",
+                  "#00FFFF",
+                  "#f990a7",
+                  "#aad2ed",
+                  "#FF00FF",
+                  "#FF00FF",
+                  "#FF00FF",
+                  "Blue",
+                  "Blue",
+                  "Blue",
+                  "Blue",
+                  "Blue",
+                  "Red",
+                ],
+              },
+              {
+                label: "Stress",
+                fill: false,
+                backgroundColor: "#aad2ed",
+                borderColor: "orange",
+                data: arr2,
+                backgroundColor: [
+                  "#3cb371",
+                  "#0000FF",
+                  "#9966FF",
+                  "#4C4CFF",
+                  "#00FFFF",
+                  "#f990a7",
+                  "#aad2ed",
+                  "#FF00FF",
+                  "#FF00FF",
+                  "#FF00FF",
+                  "Blue",
+                  "Blue",
+                  "Blue",
+                  "Blue",
+                  "Blue",
+                  "Red",
+                ],
+              },
+            ],
+          },
+        });
+        setIsLoaded(true);
+      }
     });
+
+    return () => { isMounted = false };
   }, []);
 
   const axes = React.useMemo(
@@ -143,13 +150,15 @@ const Graph = () => {
     // space of its parent element automatically
     <div class="box">
       <div class="ssTitle">Sleep and Stress</div>
+      {isloaded ? 
       <Line
         class="size"
         data={popupArr.Data}
         axes={axes}
         options={options}
         legend={legend}
-      />
+        height="85px"
+      /> : null}
     </div>
   );
 };

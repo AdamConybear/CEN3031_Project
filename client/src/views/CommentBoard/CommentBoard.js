@@ -10,6 +10,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 // import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { CollectionsOutlined } from "@material-ui/icons";
 const emoji = require("emoji-dictionary");
 
 //const useStyles = theme =>({
@@ -20,15 +21,22 @@ const emoji = require("emoji-dictionary");
 //const classes = useStyles();
 
 class CommentBoard extends Component {
+  
+
+
   state = {
     searchValue: "",
     searchisValid: false,
+    selected: false,
     isSubmitted: false,
     classArr: [],
+    teacherArr: [],
     course: "",
     prof: "",
     comment: "",
+ 
   };
+
 
   handleSearchChange = (e) => {
     e.preventDefault();
@@ -57,6 +65,7 @@ class CommentBoard extends Component {
       .then((res) => {
         console.log(res.data);
         this.setState({ classArr: res.data });
+        console.log(this.state.classArr);
       })
       .catch((error) => {
         if (error.response) {
@@ -67,7 +76,7 @@ class CommentBoard extends Component {
       });
   };
   updateLike = (commentId) => {
-    
+
 
     let address;
 
@@ -93,7 +102,7 @@ class CommentBoard extends Component {
       });
   };
   updateDislike = (commentId) => {
-    
+
     let address;
 
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
@@ -119,7 +128,7 @@ class CommentBoard extends Component {
       });
   };
   updateFlags = (commentId) => {
-    
+
     let address;
 
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
@@ -144,8 +153,61 @@ class CommentBoard extends Component {
         }
       });
   };
+
+  getProfessors = (props) => {
+    var profs = new Set();
+  var teacherArray = [];
+   const size = props.length;
+   for (var i = 0; i < size; i ++){
+    var teachers = props[i]["sections"][0]["instructors"].length;
+    for (var j = 0; j < teachers; j++){
+          profs.add(props[i]["sections"][0]["instructors"][j]["name"])
+    }
+   }
+   profs.forEach(v => teacherArray.push(v));
+   console.log(teacherArray);
+
+   this.setState({ teacherArr: teacherArray });
+   console.log(this.state.teacherArr);
+
+  }
+
+
+
+  checkAPI = (props) => {
+    var proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    console.log(props);
+    const base = 'https://one.ufl.edu/apix/soc/schedule/?category=CWSP&course-code='
+    const mid = props;
+    const end = '&term=2208';
+    const url = proxyUrl + base + mid + end;
+    axios.get(url).then((value) => {
+      console.log(value);
+        if (value["data"][0]["COURSES"].length != 0){
+
+          console.log("exists");
+          this.getProfessors(value["data"][0]["COURSES"]);
+          this.setState({isSubmitted: true });
+          this.getCommentsFromDB();
+       //   return true;
+        }
+        else {
+
+          console.log("not a class");
+          this.setState({isSubmitted: true });
+          this.setState({searchisValid: false})
+          return false;
+         // return false;
+
+        }
+    }).catch((err)=> {
+    console.log(err);
+    });
+  }
+
+
   checkIfValid = () => {
-    let val = false;
+ 
     let regex1 = "^[a-zA-Z]{3}[0-9]{4}$";
     let regex2 = "^[a-zA-Z]{3}[0-9]{4}[a-zA-Z]{1}$";
     if (
@@ -154,12 +216,15 @@ class CommentBoard extends Component {
     ) {
       console.log("this is a good string");
       this.setState({ searchisValid: true });
-      val = true;
-    } else {
+     return this.checkAPI(this.state.searchValue);
+
+    }
+     else {
       console.log("this is a bad string");
       this.setState({ searchisValid: false });
+      return false; 
     }
-    return val;
+    
   };
 
   togglePopup = () => {
@@ -198,6 +263,7 @@ class CommentBoard extends Component {
         }
       });
   };
+
   handleCourseChange = (e) => {
     e.preventDefault();
     this.setState({ course: e.target.value });
@@ -221,7 +287,7 @@ class CommentBoard extends Component {
         </div>
         <div class="popup" id="popup-1">
           <div class="overlay"></div>
-          <div class="content">
+          <div class="contentP">
             <div class="inputPart">
               <p class="addTitle">Add a Comment</p>
               <p class="lbl">Course Code:</p>
@@ -270,7 +336,13 @@ class CommentBoard extends Component {
     );
   };
 
+
+
+
   displayComments = () => {
+ 
+   
+
     return (
       <div>
         <TableContainer class="tableContainer" component={Paper}>
@@ -344,23 +416,37 @@ class CommentBoard extends Component {
       </div>
     );
 
-    // // console.log(this.state.classArr);
-    // return this.state.classArr.map(comment => {
-    //     return(
-    //         <Comment
-    //             body={comment.comment}
-    //             c = {comment.class}
-    //             likes = {comment.likes}
-    //             dislikes = {comment.dislikes}
-    //             prof = {comment.professor}
-
-    //             key = {comment}
-    //         />
-
-    //     );
-
-    // });
   };
+
+
+
+
+
+  setProf = (obj) => {
+
+    console.log("clicked");
+    console.log(obj);
+    this.setState({prof: obj});
+    this.setState({selected: true});
+
+    var temparr = [];
+    console.log(this.state.prof);
+    this.state.classArr.forEach(comment => {
+      console.log(comment["professor"]);
+      console.log(this.state.prof);
+      
+      if (comment["professor"].localeCompare(obj)== 0){
+        console.log("same");
+         temparr.push(comment);
+      }
+    })
+
+    console.log("new arr");
+    console.log(temparr);
+    this.setState({classArr: temparr});
+   this.displayComments();
+
+  }
 
   render() {
     return (
@@ -373,12 +459,8 @@ class CommentBoard extends Component {
             if (ev.key === "Enter") {
               ev.preventDefault();
               this.setState({ isSubmitted: true });
-              //   this.setState({ searchValue: event.target.value });
               const val = this.checkIfValid();
-              //get comments for searchValue db
-              if (val) {
-                this.getCommentsFromDB();
-              }
+              
             }
           }}
           type="text"
@@ -394,12 +476,20 @@ class CommentBoard extends Component {
               <div class="spaceOut"></div>
             )}
             <div class="showingResults">
-              {" "}
-              {this.state.searchisValid
-                ? "Showing Results for " + this.state.searchValue.toUpperCase()
-                : "Invalid Course Code"}
+              {this.state.searchisValid ? "Showing Results for " + this.state.searchValue.toUpperCase() : "Invalid Course Code"}
+                 <div class = "profsContainer">
+                 <div className="filterTitle">Filter By Professor:  </div>
+                  {this.state.teacherArr.map((obj)=> {
+                      return (
+                        <div className="profBox" onClick={() => this.setProf(obj)}>
+                          {obj}
+                        </div>
+                      );
+                  })}
+                </div>
             </div>
             {this.state.searchisValid ? this.displayComments() : null}
+           
           </div>
         ) : null}
       </div>

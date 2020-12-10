@@ -1,0 +1,32 @@
+.about-card {
+  margin-left:auto;
+  margin-right: auto;
+  padding: 31px;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  background-color: white;
+  width: 600px;
+  height: 450px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  transition: transform 0.4s ease-out;
+  
+}
+.about-card:hover {
+  transform: scale(1.05);
+  transition-duration: 0.4s;
+}
+
+.about-title{
+  font-size: 40px;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: bolder;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+}

@@ -1,0 +1,36 @@
+img.people-img{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  padding: 15px;
+}
+img.people-img:hover {
+  transform: scale(1.09);
+  transition-duration: 0.4s;
+}
+.people-row{
+  padding-top: 35px;
+  padding-left: 15%;
+  padding-right: 15%;
+  height: 110px;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+.people-col {
+  float: left;
+  width: 19%;
+  padding: 4px;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+}
+
+/* Clear floats after image containers */
+.people-row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+/* .right{
+  margin-left: 10px;
+} */

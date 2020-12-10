@@ -4,7 +4,12 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import { HashRouter as Router } from "react-router-dom";
 import App from "./App";
+import { Auth0Provider } from '@auth0/auth0-react'
 import background from "../src/assets/gator.png";
+
+const domain = require('./config').domain;
+const clientId = require('./config').clientId;
+
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -23,9 +28,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
+  
   <Router>
-    <GlobalStyle />
-    <App />
+    <Auth0Provider
+      domain={domain}
+      clientId={clientId}
+      redirectUri={window.location.origin}
+    >
+      <GlobalStyle />
+      <App />
+    </Auth0Provider>
   </Router>,
   document.getElementById("root")
 );

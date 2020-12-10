@@ -1,18 +1,24 @@
-.size {
 
+.size {
+  transition: all 0.5s ease-out;
 }
 
+.size:hover {
+  transform: scale(1.05);
+  transition-duration: 0.5s;
+}
 .box {
-  width: 800px;
-  height: 450px;
-  padding-right: 30px;
-  flex-direction: row;
+  width: 90%;
+  height: 359px;
   background-color: white;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   font-family: "Nunito", sans-serif;
-  font-weight: lighter;
+  font-weight: bold;
   font-size: 20px;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
 }
 
 .ssTitle {
