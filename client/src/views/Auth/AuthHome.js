@@ -10,7 +10,7 @@ const AuthHome = () => {
     return (
         <div className ="auth-container">
             <h1 style={{fontSize: "40px"}}>Welcome to Gator Rater!</h1>
-            <h2>little blurb about what app is</h2>
+            <h2>We want to provide a platform for students to feel cared about. We want students to have the tools at their fingertips to be successful at UF while maintaining their well-being.</h2>
             <h2>To continue to site, please log in or register</h2>
             {/* <Login/>*/}
             {/* <button onClick={() => loginWithRedirect()}>
