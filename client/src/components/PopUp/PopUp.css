@@ -65,7 +65,10 @@
 }
 
 .huh {
-  align-self: center;
+  align-content: center;
+  display: flex;
+
+  justify-content: center;
 }
 
 .sliderCompanions {

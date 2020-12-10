@@ -44,29 +44,29 @@ const Quiz = (props) => {
  }
 
  const firstq = (e) => {
-   e.preventDefault(); 
+   e.preventDefault();
    setFirst(true);
    setInitial(false);
  }
  const secondq = (e) => {
-  e.preventDefault(); 
+  e.preventDefault();
   setSecond(true);
   setFirst(false);
 }
 
 const thirdq = (e) => {
-  e.preventDefault(); 
+  e.preventDefault();
   setThird(true);
   setSecond(false);
 }
 const fourthq = (e) => {
-  e.preventDefault(); 
+  e.preventDefault();
   setThird(false);
   setFourth(true);
 
 }
 const fifthq = (e) => {
-  e.preventDefault(); 
+  e.preventDefault();
 
   setFourth(false);
   setFifth(true);
@@ -76,14 +76,13 @@ const fifthq = (e) => {
 
 const getInitial = () => {
   return (
-    <div>
+    <div class="noOutline">
     <div class = "initialS">
- 
       <br></br>
       <div class = "space">
-    <div class = "animated-word-initial" onClick = {firstq}>Click to Begin</div>
-    {first? getFirst() : null}
-    </div>
+        <div class = "animated-word" onClick = {firstq}>Click to Begin</div>
+        {first? getFirst() : null}
+      </div>
     </div>
     </div>
   );
@@ -103,7 +102,7 @@ const getFirst = () => {
           <div class = "space">
           <div class = "animated-word" onClick = {secondq}>Next</div>
           {second? getSecond() : null}
-           
+
            </div>
           </div>
           </div>
@@ -114,7 +113,6 @@ const getSecond = () => {
  return (
        <div classname = "modal">
          <div classname = "modal_content">
-        
           <label class="question">How well do you handle stress?</label>
           <div class="sliderCompanions">
             <div style={{paddingRight: "15px", fontWeight: "lighter",}}>1</div>
@@ -125,7 +123,7 @@ const getSecond = () => {
           <div class = "space">
           <div class = "animated-word" onClick = {thirdq}>Next</div>
           </div>
-         
+
           </div>
           </div>
  );
@@ -135,7 +133,7 @@ const getThird = () => {
 return (
   <div classname = "modal">
   <div classname = "modal_content">
- 
+
    <label class="question">How fast of a worker are you?</label>
    <div class="sliderCompanions">
      <div style={{paddingRight: "15px", fontWeight: "lighter",}}>1</div>
@@ -146,7 +144,7 @@ return (
    <div class = "space">
    <div class = "animated-word" onClick = {fourthq}>Next</div>
    </div>
-  
+
    </div>
    </div>
 );
@@ -172,7 +170,7 @@ return (
           </div>
 );
 
-}         
+}
 
 const getFifth = () => {
 
@@ -180,18 +178,18 @@ const getFifth = () => {
     <div classname = "modal">
        <div classname = "modal_content"></div>
            <label class="question">Is exercise part of your everyday life?</label>
-         
+
 
           <div class="space">
             <Radio setEx={setEx}/>
             </div>
            <div class="containerr" onClick={handleClick}>
-       
+
 	          <p class="animated-word">Submit</p>
-          
+
          </div>
         </div>
-        
+
   );
 
 }
@@ -211,17 +209,17 @@ return(
         {third? getThird() : null}
         {fourth? getFourth() : null}
         {fifth? getFifth(): null}
-      
+
         <div className="content">
 
         </div>
-      
 
-        
+
+
       </div>
 </div>
 
   );
 
 }
-export default Quiz; 
+export default Quiz;
