@@ -150,14 +150,21 @@ const WhatIf = () => {
     // console.log(displayData);
     const size = displayData.length;
     // console.log(size);
-     for (let i = 0; i < index; i++){
-         newClassesArray.push(displayData[i]);
-     }
-     for (let j = index+1; j < size; j++){
-      newClassesArray.push(displayData[j]);
-     }
-     setDisplayData(newClassesArray);
-     setStress(stress - displayData[index].stress);
+
+    for (let i = 0; i < size; i++ ){
+      if (i !== index) {
+        newClassesArray.push(displayData[i]);
+      }
+    }
+
+    //  for (let i = 0; i < index; i++){
+    //      newClassesArray.push(displayData[i]);
+    //  }
+    //  for (let j = index+1; j < size; j++){
+    //   newClassesArray.push(displayData[j]);
+    //  }
+    setStress(stress - displayData[index].stress);
+    setDisplayData(newClassesArray);
      
   }
     
