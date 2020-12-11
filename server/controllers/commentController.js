@@ -128,7 +128,7 @@ const updateFlags = async(req,res) => {
 }
 
 const removeComment = async (req, res) => {
-  let id = req.query.commentId;
+  let id = req.query.id;
 
   await Comment.deleteOne({ _id: id }, (err) => {
     if (err) {

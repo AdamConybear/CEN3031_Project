@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState, setState } from "react";
 import { Link } from "react-router-dom";
 import { getInitialColumnReorderState } from "@material-ui/data-grid";
-import { Code } from "@material-ui/icons";
+import { TrendingUpOutlined } from "@material-ui/icons";
 const WhatIf = () => {
 
  
@@ -12,7 +12,7 @@ const WhatIf = () => {
   var newClassesArray = [];
   var classesInSchedule = [];
 
-
+ var empty = [];
 
   var classesArray = [];
   const [filteredClubs, setFilteredClubs] = useState([]);
@@ -26,36 +26,37 @@ const WhatIf = () => {
   const [postVal, setPostVal] = useState("");
   const [stress, setStress] = useState(0);
 
+
   const checkIfValid = (props) => {
-    console.log(props);
+    // console.log(props);
     //let val = false;
     let regex1 = "^[a-zA-Z]{3}[0-9]{4}$";
     let regex2 = "^[a-zA-Z]{3}[0-9]{4}[a-zA-Z]{1}$";
     if (props.match(regex1) || props.match(regex2))
     {
-      console.log("this is a good string");
+      // console.log("this is a good string");
       SearchisValid(true);
       setCode(props);
       setPostVal(props);
       checkAPI(props);
     }
     else {
-      console.log("this is a bad string");
+      // console.log("this is a bad string");
       //getTryAgain();
       checkAPI(props);
     }
   };
   const checkAPI = (props) => {
     var proxyUrl = "https://cors-anywhere.herokuapp.com/";
-    console.log(props);
+    // console.log(props);
     const base = 'https://one.ufl.edu/apix/soc/schedule/?category=CWSP&course-code='
     const mid = props;
-    const end = '&term=2208';
+    const end = '&term=2208'; //fall 2020
     const url = proxyUrl + base + mid + end;
     axios.get(url).then((value) => {
-      console.log(value);
+      // console.log(value);
         if (value["data"][0]["COURSES"].length != 0){
-          console.log("exists");
+          // console.log("exists");
           setCode(props);
           getProfessors(value["data"][0]["COURSES"]);
         }
@@ -78,7 +79,7 @@ const WhatIf = () => {
     }
    }
    profs.forEach(v => teacherArray.push(v));
-   console.log(teacherArray);
+  //  console.log(teacherArray);
     setArray(teacherArray);
   }
   const togglePopup = (props) => {
@@ -86,17 +87,14 @@ const WhatIf = () => {
     (document.getElementById("sucks").value = " ");
     document.getElementById("professorInput").value = "";
     setArray([]);
-    console.log(array);
+    // console.log(array);
    document.getElementById("popupAdd").classList.toggle("active");
    if (props){
-     //they pressed submit
      appendData();
-    //  calculateStress();
    }
   };
-
   const getFilteredClubs = (filterText, array) => {
-    console.log(array);
+    // console.log(array);
     let results = [];
     results = array.filter((Course) => {
       return (
@@ -104,23 +102,26 @@ const WhatIf = () => {
           Course.toLowerCase().indexOf(filterText.toLowerCase().trim()) !== -1
       );
   });
-  console.log(results);
+  // console.log(results);
   return results;
   };
   const getFilterText = (event) => {
     //console.log(classesArray);
-    console.log(event.target.value);
-    console.log(array);
+    // console.log(event.target.value);
+    // console.log(array);
     setFilteredClubs(getFilteredClubs(event.target.value, array))
    }
   function setCourseField(name) {
-   console.log("clicked");
-   console.log(name);
+    setFilteredClubs(empty);
+  //  console.log("clicked to select proffessor");
+  //  console.log(name);
     setTeacher(name);
     document.getElementById("hideMe").style.display = "none";
     document.getElementById("professorInput").value = name;
   }
   const buildingList = filteredClubs.length === 0 ? array.map((Course) => {
+    // console.log("filtered is length 0");
+    // console.log(filteredClubs);
       return (
         <div key={Course}>
           <div class="dontDisplay"> {"."} </div>
@@ -128,6 +129,8 @@ const WhatIf = () => {
       );
     })
       : filteredClubs.map((Course) => {
+        // console.log("build list is");
+        // console.log(filteredClubs);
         document.getElementById("hideMe").style.display = "block";
         return (
           <div key={Course}>
@@ -141,73 +144,70 @@ const WhatIf = () => {
     setShowDiv(true);
   }
 
-  const handleTrash = (props) => {
-    console.log("trying to delete");
-    console.log(displayData);
+  const handleTrash = (index) => {
+    // console.log(index);
+    // console.log("trying to delete");
+    // console.log(displayData);
     const size = displayData.length;
-    console.log(size);
-     for (let i = 0; i < props; i++){
+    // console.log(size);
+     for (let i = 0; i < index; i++){
          newClassesArray.push(displayData[i]);
      }
-     for (let j = props+1; j < size; j++){
+     for (let j = index+1; j < size; j++){
       newClassesArray.push(displayData[j]);
      }
      setDisplayData(newClassesArray);
+     setStress(stress - displayData[index].stress);
+     
   }
     
   const appendData = () => {
-    console.log(displayData);
+    // console.log(displayData);
     classesArray = displayData;
     const obj = {
+      stress: getClassStress(),
+      indx: classesInSchedule.length,
       class: code,
-      prof: teacher,
-      stress: getClassStress()
+      prof: teacher
     }
     classesArray.push(obj);
+    classesInSchedule.push(obj);
     setDisplayData(classesArray);
-    console.log(displayData);
+    // console.log(displayData);
   }
+  const getClassStress = () => {
 
-
-const getClassStress = () => {
-
-  let tempStress = 0;
-  let mult;
-  // console.log(code.charAt(1));
-  if (code.charAt(4) === "4") {
-    tempStress += 1;
-    mult = 1;
-  } else if (code.charAt(4) === "3") {
-    // console.log("has a 3 ");
-    tempStress += 0.75;
-    mult = 0.5;
-  } else {
-    tempStress += 0.25;
-    mult = 0.25;
+    let tempStress = 0;
+    let mult;
+    // console.log(code.charAt(1));
+    if (code.charAt(4) === "4") {
+      tempStress += 1;
+      mult = 1;
+    } else if (code.charAt(4) === "3") {
+      // console.log("has a 3 ");
+      tempStress += 0.75;
+      mult = 0.5;
+    } else {
+      tempStress += 0.25;
+      mult = 0.25;
+    }
+    // Fill in later with more specific algo
+  
+    if (code.toUpperCase().charAt(1) === 'P') {
+      tempStress += 0.75;
+    } else if (code.toUpperCase().charAt(1) === 'E') {
+      tempStress += 0.75;
+    } else if (code.toUpperCase().charAt(1) === 'C' || code.toUpperCase().charAt(1) === 'M') {
+      // console.log("starts wiht C ");
+      tempStress += 0.50;
+    }else {
+      tempStress += 0.25;
+    }
+    // console.log("tempS: " + tempStress);
+    setStress(stress + tempStress);
+  
+    return tempStress;
   }
-  // Fill in later with more specific algo
-
-  if (code.toUpperCase().charAt(1) === 'P') {
-    tempStress += 0.75;
-  } else if (code.toUpperCase().charAt(1) === 'E') {
-    tempStress += 0.75;
-  } else if (code.toUpperCase().charAt(1) === 'C' || code.toUpperCase().charAt(1) === 'M') {
-    // console.log("starts wiht C ");
-    tempStress += 0.50;
-  }else {
-    tempStress += 0.25;
-  }
-  console.log("tempS: " + tempStress);
-  setStress(stress + tempStress);
-
-  return tempStress;
-}
-const getTryAgain = () => {
-  console.log("retyrn try again");
-  return (
-  <div class invalid>invalid course code! Try again</div>
-  );
-}
   return (
     <div>
     <div class="popup" id="popupAdd">
@@ -216,12 +216,16 @@ const getTryAgain = () => {
         <div class="inputPart">
           <p class="addTitle">Add a Class</p>
           <p class="lbl">Course Code:</p>
+          <div class="lbl-info">please press enter once code is entered</div>
           <div class = "center">
             <div>
              <div style={{ marginTop: "1rem" }} class="ui search fluid">
              <div class="ui icon input">
                <input onKeyDown = {(ev)=> {
+                 setFilteredClubs(empty);
+                //  console.log(filteredClubs);
                  if (ev.key ==="Enter"){
+                   
                      isSubmitted(true);
                   checkIfValid(ev.target.value);
                  }
@@ -233,16 +237,16 @@ const getTryAgain = () => {
           </div>
           </div>
           <p class="lbl">Professor:</p>
-          <div class="center">
-            <input
+          <div class = "center">
+            <textarea
               class="popUpInputField"
               type="text"
               placeholder="Professor"
               id="professorInput"
               onChange = {getFilterText}
             />
-          <div id="hideMe" class="onTop">{buildingList}</div>
-          </div>
+           <div id="hideMe" class="onTop">{buildingList}</div>
+        </div>
         </div>
         <div class="cancelSubmit">
           <button class="cancel" onClick={() => togglePopup(false)}>Cancel</button>
@@ -253,7 +257,7 @@ const getTryAgain = () => {
       <div class = "whatIfTitle">What If</div>
       <div class="semAverage">
         <div>Semester's Stress:</div>
-              <div class="bold">{stress}</div>
+        <div class="bold">{stress}</div>
       </div>
       <div onClick={() => togglePopup()} class="addClass">Add a Class</div>
       <div>
@@ -268,7 +272,7 @@ const getTryAgain = () => {
           <div className="profOnBox">
             {obj.prof}
           </div>
-        <div className="stressRate">{obj.stress}</div>
+          <div className="stressRate">{obj.stress}</div>
           <div className="controls">
             <div className="trash" onClick={() => handleTrash(obj.indx)}></div>
            
@@ -283,6 +287,6 @@ const getTryAgain = () => {
         })}
         </div>
   </div>
-);
+  );
 };
 export default WhatIf;

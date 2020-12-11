@@ -136,7 +136,7 @@ const Home = () => {
           <div className="tipShower">
               <p className="tipHeader">A Tip For You</p>
               <p className="italic">"{dbTip}"</p>
-              <p className="author">{tipAuthor}</p>
+              <p className="author">Suggested by: {tipAuthor}</p>
           </div>
         </div>
 

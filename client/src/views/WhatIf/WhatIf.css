@@ -112,6 +112,7 @@
 .cancel:hover {
   transform: scale(1.2);
   transition-duration: 0.2s;
+  cursor: pointer;
 }
 .submit:focus {
   outline: none;
@@ -119,6 +120,7 @@
 .submit:hover {
   transform: scale(1.2);
   transition-duration: 0.2s;
+  cursor: pointer;
 }
 .onTop {
   margin-left: 10px;
@@ -138,6 +140,15 @@
   font-size: 15px;
   padding-left: 25px;
   height: 15px;
+}
+
+.lbl-info {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 12px;
+  padding-left: 25px;
+  height: 10px;
+  font-style: italic;
 }
 .classesContainer{
   display: flex;
@@ -265,6 +276,9 @@ textarea.popUpInput {
   position: fixed;
   z-index: 1;
 }
+.onTop:hover {
+  cursor: pointer;
+}
 .center {
   align-self: center;
 }
@@ -304,6 +318,10 @@ textarea.popUpInput {
   background-repeat: no-repeat;
   background-position: center;
 }
+.trash:hover{
+  cursor: pointer;
+}
+
 .goToComment {
   width: 20px;
   height: 20px;

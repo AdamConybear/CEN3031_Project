@@ -466,6 +466,7 @@ a.reddit:hover {
 
 .profBox:hover {
   transform: scale(1.1);
+  cursor: pointer;
 
 }
 
@@ -478,4 +479,28 @@ a.reddit:hover {
   align-self: center;
   margin-left: 20px;
   margin-right: 10px;
+}
+.admin-delete{
+  background-color: red;
+    width: 10%;
+    height: 40px;
+    /* margin-bottom: 40px; */
+    /* margin-left: auto; */
+    margin-right: auto;
+    color: white;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    line-height: 40px;
+    transition: all 0.2s ease-in-out;
+    margin-top: 10px;
+
+}
+.admin-delete:hover{
+  background-color: #ffc87a;
+  transform: scale(1.05);
+  color: black;
+  cursor: pointer;
+
 }

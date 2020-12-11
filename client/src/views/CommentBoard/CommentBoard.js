@@ -11,31 +11,59 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { CollectionsOutlined } from "@material-ui/icons";
+import { withAuth0 } from '@auth0/auth0-react';
 const emoji = require("emoji-dictionary");
 
-//const useStyles = theme =>({
-//     table: {
-//       minWidth: 650,
-//     },
-//   });
-//const classes = useStyles();
 
 class CommentBoard extends Component {
   
 
 
   state = {
+    disp: false,
     searchValue: "",
     searchisValid: false,
     selected: false,
     isSubmitted: false,
     classArr: [],
+    tempy: [],
     teacherArr: [],
     course: "",
     prof: "",
     comment: "",
+    isAdmin:false,
  
   };
+
+  componentDidMount(){
+    const { user } = this.props.auth0;
+    const { sub } = user;
+    let isMounted = true;
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+
+    axios.get(address + '/api/user/user',{
+      params: {
+        id: sub
+    }})
+      .then(res => {
+        let user = res.data;
+        console.log(user);
+        if (user.role === "admin"){
+          if (isMounted){
+            this.setState({isAdmin: true});
+          }
+        }
+      })
+    return () => { isMounted = false };
+  }
 
 
   handleSearchChange = (e) => {
@@ -64,6 +92,7 @@ class CommentBoard extends Component {
       })
       .then((res) => {
         console.log(res.data);
+        this.setState({tempy: res.data});
         this.setState({ classArr: res.data });
         console.log(this.state.classArr);
       })
@@ -141,7 +170,7 @@ class CommentBoard extends Component {
 
     console.log(commentId);
     axios
-      .put(address + '/api/comment/flag/' + commentId)
+      .put(address + '/api/comment/flag/', commentId)
       .then((res) => {
         console.log(res.data);
       })
@@ -336,13 +365,39 @@ class CommentBoard extends Component {
     );
   };
 
+  deleteComment = (commentId) => {
+    let address;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        // dev code
+        address = "http://localhost:5000";
+    } else {
+        // production code
+        address = process.env.BASE_URL || "https://lit-anchorage-94851.herokuapp.com";
+    }
+    axios
+      .delete(address + '/api/comment',{
+        params: {
+          id: commentId
+      }})
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+
+
+  }
+
 
 
 
   displayComments = () => {
- 
-   
-
     return (
       <div>
         <TableContainer class="tableContainer" component={Paper}>
@@ -358,6 +413,9 @@ class CommentBoard extends Component {
                       </div>
                       <div class="maxWidth">{comment.comment}</div>
                       <div class="reactionParent">
+                        
+                        {this.state.isAdmin ? <div class="admin-delete" onClick={() => this.deleteComment(comment._id)}>delete</div> : null}
+                        
                         <div class="statAndEmoji">
                           <p class="stat">{comment.likes}</p>
                           <button
@@ -424,19 +482,19 @@ class CommentBoard extends Component {
 
   setProf = (obj) => {
 
-    console.log("clicked");
-    console.log(obj);
-    this.setState({prof: obj});
-    this.setState({selected: true});
+    console.log("proffessor that was clicked is ", obj);
 
+    console.log(this.state.classArr);
+
+    this.setState({selected: true});
     var temparr = [];
-    console.log(this.state.prof);
-    this.state.classArr.forEach(comment => {
-      console.log(comment["professor"]);
-      console.log(this.state.prof);
+   
+    this.state.tempy.forEach(comment => {
+    //  console.log(comment["professor"]);
+     // console.log(this.state.prof);
       
       if (comment["professor"].localeCompare(obj)== 0){
-        console.log("same");
+      //  console.log("same");
          temparr.push(comment);
       }
     })
@@ -445,6 +503,7 @@ class CommentBoard extends Component {
     console.log(temparr);
     this.setState({classArr: temparr});
    this.displayComments();
+   //this.setState({classArr:this.state.tempy});
 
   }
 
@@ -480,7 +539,7 @@ class CommentBoard extends Component {
                  <div class = "profsContainer">
                  <div className="filterTitle">Filter By Professor:  </div>
                   {this.state.teacherArr.map((obj)=> {
-                      return (
+                      return (            
                         <div className="profBox" onClick={() => this.setProf(obj)}>
                           {obj}
                         </div>
@@ -497,4 +556,4 @@ class CommentBoard extends Component {
   }
 }
 
-export default CommentBoard;
+export default withAuth0(CommentBoard);
