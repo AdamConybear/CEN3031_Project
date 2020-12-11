@@ -204,13 +204,13 @@ class CommentBoard extends Component {
 
 
   checkAPI = (props) => {
-    var proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    var proxyUrl = "https://polar-eyrie-88824.herokuapp.com/"; //personal cors-anywhere server
     console.log(props);
     const base = 'https://one.ufl.edu/apix/soc/schedule/?category=CWSP&course-code='
     const mid = props;
-    const end = '&term=2208/allow-cors';
+    const end = '&term=2208';
     const url = proxyUrl + base + mid + end;
-    axios.get(url, {mode:'cors'}).then((value) => {
+    axios.get(url).then((value) => {
       console.log(value);
         if (value["data"][0]["COURSES"].length != 0){
 

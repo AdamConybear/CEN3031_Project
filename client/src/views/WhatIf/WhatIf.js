@@ -46,7 +46,7 @@ const WhatIf = () => {
     }
   };
   const checkAPI = (props) => {
-    var proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    var proxyUrl = "https://polar-eyrie-88824.herokuapp.com/"; //personal cors-anywhere server
     // console.log(props);
     const base = 'https://one.ufl.edu/apix/soc/schedule/?category=CWSP&course-code='
     const mid = props;
