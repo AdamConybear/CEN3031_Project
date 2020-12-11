@@ -9,7 +9,6 @@ const WhatIf = () => {
 
  
   var teacherArray = [];
-  var newClassesArray = [];
   var classesInSchedule = [];
 
  var empty = [];
@@ -148,6 +147,7 @@ const WhatIf = () => {
     // console.log(index);
     // console.log("trying to delete");
     // console.log(displayData);
+    let newClassesArray = [];
     const size = displayData.length;
     // console.log(size);
 

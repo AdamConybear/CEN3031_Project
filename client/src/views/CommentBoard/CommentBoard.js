@@ -208,9 +208,9 @@ class CommentBoard extends Component {
     console.log(props);
     const base = 'https://one.ufl.edu/apix/soc/schedule/?category=CWSP&course-code='
     const mid = props;
-    const end = '&term=2208';
+    const end = '&term=2208/allow-cors';
     const url = proxyUrl + base + mid + end;
-    axios.get(url).then((value) => {
+    axios.get(url, {mode:'cors'}).then((value) => {
       console.log(value);
         if (value["data"][0]["COURSES"].length != 0){
 
