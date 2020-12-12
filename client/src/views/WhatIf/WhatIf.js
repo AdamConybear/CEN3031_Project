@@ -173,7 +173,7 @@ const WhatIf = () => {
     classesArray = displayData;
     const obj = {
       stress: getClassStress(),
-      indx: classesInSchedule.length,
+      indx: displayData.length,
       class: code,
       prof: teacher
     }

@@ -343,10 +343,11 @@ textarea.popUpInputProf {
 }
 
 .maxWidth {
-  width: 1075px !important;
+  /* width: 1075px !important;
   overflow-wrap: break-word;
   align-content: center;
-  font-weight: lighter;
+  font-weight: lighter; */
+  width:80%;
 }
 
 .reactionParent {
@@ -503,4 +504,10 @@ a.reddit:hover {
   color: black;
   cursor: pointer;
 
+}
+
+.commentContent{
+  width:100%;
+  overflow-wrap: break-word;
+  font-weight: lighter;
 }

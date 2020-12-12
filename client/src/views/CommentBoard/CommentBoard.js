@@ -405,13 +405,13 @@ class CommentBoard extends Component {
             <TableBody>
               {this.state.classArr.map((comment) => {
                 return (
-                  <TableRow class="expand" key={comment.comment}>
+                  <TableRow class="maxWidth" key={comment.comment}>
                     <TableCell colSpan={1} component="th" scope="row">
                       <div class="courseAndProf">
                         {comment.class + " / "}
                         {comment.professor}
                       </div>
-                      <div class="maxWidth">{comment.comment}</div>
+                      <div class="commentContent">{comment.comment}</div>
                       <div class="reactionParent">
                         
                         {this.state.isAdmin ? <div class="admin-delete" onClick={() => this.deleteComment(comment._id)}>delete</div> : null}
