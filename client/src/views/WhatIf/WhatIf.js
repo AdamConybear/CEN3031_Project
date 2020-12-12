@@ -150,10 +150,19 @@ const WhatIf = () => {
     let newClassesArray = [];
     const size = displayData.length;
     // console.log(size);
-
+    
+    let count = 0;
     for (let i = 0; i < size; i++ ){
+      // let tempObj;
       if (i !== index) {
-        newClassesArray.push(displayData[i]);
+        let tempObj = {
+          stress: displayData[i].stress,
+          indx: count,
+          class: displayData[i].class,
+          prof: displayData[i].prof
+        };
+        newClassesArray.push(tempObj);
+        count++;
       }
     }
 
