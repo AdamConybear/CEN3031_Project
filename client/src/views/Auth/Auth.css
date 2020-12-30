@@ -36,6 +36,26 @@
   width: 40%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px;
+  margin-top: 40px;
   margin-bottom: 50px;
 }
+
+.credentials-1 {
+    font-size: 18px;
+    font-weight: normal;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 50px; */
+    margin-bottom: 10px;
+  }
+
+.credentials-2 {
+    font-size: 18px;
+    font-weight: normal;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 50px; */
+    margin-bottom: 40px;
+  }

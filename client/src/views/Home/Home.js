@@ -111,7 +111,7 @@ const Home = () => {
         {openQuiz? getQuiz() : null}
         <div className="test">
           <div class="welcomeParent">
-            <div class="welcome" onClick = {handleOpen}>Welcome back, {nickname}</div>
+            <div class="welcome">Welcome back, {nickname}</div>
             <div className = "row">
               <Link className = "boxOptionLeft" to="/Week">
                 <div className = "weeklyPic"></div>
@@ -156,7 +156,11 @@ const Home = () => {
                 <div className="optionButton" onClick={handleFull}>All Time</div>
               </div>
               <div className="yourRates">
+                <div className="yourRate">Daily Popup</div>
+                <div className="quiz-info">*complete once per day</div>
+                <div className="refactor" onClick={handleOpen}>Popup</div>
                 <div className="yourRate">Quiz</div>
+                <div className="quiz-info">*update once a semester</div>
                 <div className="refactor" onClick={handleQuiz}>Refactor</div>
               </div>
             </div>
